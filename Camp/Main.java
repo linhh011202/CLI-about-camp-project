@@ -7,7 +7,7 @@ public class Main {
         Staff currentStaff=new Staff("name",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps());
         currentStaff.createCamp("one CAMP", "011212","101212", "011012", false, "JOHOR", 5, 2, "BEST CAMP" , Faculty.NTU);
 
-        Staff nextStaff=new Staff("IDIOT",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps());
+        Staff nextStaff=new Staff("human",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps());
         nextStaff.createCamp("two CAMP", "011212", "101212","011012", false, "KOHOR", 5, 2, "BEST CAMP" , Faculty.SBS);
         nextStaff.createCamp("three CAMP", "011212","101212", "011012", false, "MOHOR B", 5, 2, "BEST CAMP" , Faculty.SCSE);
    
