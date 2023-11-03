@@ -13,6 +13,8 @@ public class CampDataBase
     private StaffViewAllCamps staffViewAllCamps;
     private StaffViewOwnCamps staffViewOwnCamps;
 
+    private FilterManager filterManager;
+
     private StudentViewAllCamps studentViewAllCamps;
 
     public CampDataBase()
@@ -28,15 +30,21 @@ public class CampDataBase
         staffViewAllCamps=new StaffViewAllCamps(this);
         staffViewOwnCamps=new StaffViewOwnCamps(this);
 
+        filterManager=new FilterManager(this);
+
         studentViewAllCamps=new StudentViewAllCamps(this);
 
     }
-
+    
+    //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
+    
     public StaffCampCreator getStaffCampCreator(){return staffCampCreator;}
     public StaffCampDeleter getStaffCampDeleter(){return staffCampDeleter;}
     public StaffCampEditor getStaffCampEditor(){return staffCampEditor;}
     public StaffViewAllCamps getStaffViewAllCamps(){return staffViewAllCamps;}
     public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
+
+    public FilterManager getFilterManager(){return filterManager;}
 
     public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
 

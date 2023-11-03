@@ -7,8 +7,10 @@ public class StudentViewAllCamps implements IViewAllCamps
     private CampDataBase campDataBase;
     public StudentViewAllCamps(CampDataBase campDataBase){this.campDataBase=campDataBase;}
 
-    public void viewAllCamps(User user)
+    public void viewAllCamps(User user,IFilterCamps iFilterCamps)
     {
+        iFilterCamps.filterCamps();//Filter camps according to filter set by user.
+
         ArrayList<Camp> allCamps=campDataBase.getAllCamps();
         System.out.println("List of all camps visible to you:\n");
         
@@ -22,7 +24,7 @@ public class StudentViewAllCamps implements IViewAllCamps
             {   
                 if(curCamp.getOpenTo()==Faculty.NTU || (curCamp.getOpenTo()==(((Student)user).getFaculty()))) 
                 {
-                    System.out.printf("Staff in charge: %s\nCamp name:%s\nRegistration Closing Date:%s\nTotal Slots:%d\n\n",curCamp.getStaffInCharge(),curCamp.getCampName(),curCamp.getStringRegClosingDate(),curCamp.getTotalSlots());
+                   curCamp.printCamp();
                 }
             }
         }

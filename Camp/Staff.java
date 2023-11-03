@@ -7,15 +7,18 @@ public class Staff extends User
     private IEditCamp iEditCamp;
     private IViewAllCamps iViewAllCamps;
     private IViewOwnCamps iViewOwnCamps;
+   
 
-    public Staff(String name,ICreateCamp iCreateCamp,IDeleteCamp iDeleteCamp,IEditCamp iEditCamp,IViewAllCamps iViewAllCamps,IViewOwnCamps iViewOwnCamps)
+    public Staff(String name,ICreateCamp iCreateCamp,IDeleteCamp iDeleteCamp,IEditCamp iEditCamp,IViewAllCamps iViewAllCamps,IViewOwnCamps iViewOwnCamps,IFilterCamps iFilterCamps)
     {
-        super(name);
+        super(name,iFilterCamps);
         this.iCreateCamp=iCreateCamp;
         this.iDeleteCamp=iDeleteCamp;
         this.iEditCamp=iEditCamp;
         this.iViewAllCamps=iViewAllCamps;
         this.iViewOwnCamps=iViewOwnCamps;
+        
+        
     }
 
     public void createCamp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int totalSlots,int campComSlots,String description,Faculty openTo)
@@ -36,11 +39,11 @@ public class Staff extends User
     }
     public void viewAllCamps()
     {
-        iViewAllCamps.viewAllCamps(this);
+        iViewAllCamps.viewAllCamps(this,super.getFilterCamps());
     }
     public void viewOwnCamps()
     {
-        iViewOwnCamps.viewOwnCamps(this);
+        iViewOwnCamps.viewOwnCamps(this,super.getFilterCamps());
     }
 
 }

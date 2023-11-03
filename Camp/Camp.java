@@ -34,6 +34,19 @@ public class Camp
         this.staffInCharge=user.getName();
         this.openTo=openTo;
     }
+    
+    public void printCamp()
+    {
+        System.out.printf("|| Camp name: %s | Staff in charge: %s ||\n",this.getCampName(),this.getStaffInCharge());
+        System.out.printf("|| Start Date: %s | End Date: %s ||\n",this.getStringStartDate(),this.getStringEndDate());
+        System.out.printf("|| Registration Closing Date: %s | Visibility: %b ||\n",this.getStringRegClosingDate(),this.getVisibility());
+        System.out.printf("|| Location: %s | Total Slots: %d ||\n",this.getLocation(),this.getTotalSlots());
+        System.out.printf("|| Camp Committee Slots: %d ||\n",this.getCampComSlots());
+        System.out.printf("|| Description: %s ||\n",this.getDescription());
+        System.out.printf("|| Open To: %s ||\n\n",this.getOpenTo().toString());
+    }
+
+    //Setters and getters
 
     public String getCampName() { return campName; }
     public void setCampName(String campName) {this.campName=campName;}
@@ -83,5 +96,6 @@ public class Camp
     public void setStaffInCharge(String staffInCharge) {this.staffInCharge=staffInCharge;}
 
     public Faculty getOpenTo() { return openTo; }
+    public String getStringOpenTo(){return openTo.toString();}
     public void setOpenTo(Faculty openTo) {this.openTo=openTo;}
 }

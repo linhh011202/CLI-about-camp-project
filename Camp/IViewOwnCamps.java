@@ -2,5 +2,5 @@ package camp;
 
 public interface IViewOwnCamps
 {
-    public void viewOwnCamps(User user);
+    public void viewOwnCamps(User user,IFilterCamps iFilterCamps);
 }

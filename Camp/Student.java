@@ -5,9 +5,9 @@ public class Student extends User
     private Faculty faculty;
     private IViewAllCamps iViewAllCamps;
 
-    public Student(String name,IViewAllCamps iViewAllCamps,Faculty faculty)
+    public Student(String name,IViewAllCamps iViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps)
     {
-        super(name);
+        super(name,iFilterCamps);
         this.iViewAllCamps=iViewAllCamps;
         this.faculty=faculty;
     }
@@ -24,7 +24,7 @@ public class Student extends User
 
     public void viewAllCamps()
     {
-        iViewAllCamps.viewAllCamps(this);
+        iViewAllCamps.viewAllCamps(this,super.getFilterCamps());
     }
 
 }
