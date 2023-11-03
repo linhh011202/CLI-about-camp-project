@@ -24,7 +24,7 @@ public class StudentViewAllCamps implements IViewAllCamps
                 {   
                     if(curCamp.getOpenTo()==Faculty.NTU || (curCamp.getOpenTo()==(((Student)user).getFaculty()))) 
                     {
-                        System.out.printf("Staff in charge: %s\nCamp name:%s\nRegistration Closing Date:%s\nTotal Slots:%d\n\n",curCamp.getStaffInCharge(),curCamp.getCampName(),curCamp.getRegClosingDate(),curCamp.getTotalSlots());
+                        System.out.printf("Staff in charge: %s\nCamp name:%s\nRegistration Closing Date:%s\nTotal Slots:%d\n\n",curCamp.getStaffInCharge(),curCamp.getCampName(),curCamp.getStringRegClosingDate(),curCamp.getTotalSlots());
                     }
                 }
             }

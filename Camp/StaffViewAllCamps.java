@@ -19,7 +19,7 @@ public class StaffViewAllCamps implements IViewAllCamps
             for(int j=0;j<allCamps.get(i).size();++j)
             {
                 Camp curCamp=allCamps.get(i).get(j);
-                System.out.printf("Staff in charge: %s\nCamp name:%s\nRegistration Closing Date:%s\nTotal Slots:%d\n\n",curCamp.getStaffInCharge(),curCamp.getCampName(),curCamp.getRegClosingDate(),curCamp.getTotalSlots());
+                System.out.printf("Staff in charge: %s\nCamp name:%s\nRegistration Closing Date:%s\nTotal Slots:%d\n\n",curCamp.getStaffInCharge(),curCamp.getCampName(),curCamp.getStringRegClosingDate(),curCamp.getTotalSlots());
             }
         }
     }

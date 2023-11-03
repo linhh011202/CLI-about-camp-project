@@ -1,11 +1,13 @@
 package camp;
 
+import java.time.LocalDate;
+
 public class Camp 
 {
     private String campName;
-    private String startDate;
-    private String endDate;
-    private String regClosingDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate regClosingDate;
     private boolean visibility;
     private String location;
     private int totalSlots;
@@ -16,10 +18,14 @@ public class Camp
 
     public Camp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int totalSlots,int campComSlots,String description,User user,Faculty openTo)
     {
+        //Consider error checking and throwing exception if dates not in proper format, or startDate>endDate, etc.
+        LocalDate lStartDate=DateUtils.stringToDate(startDate);
+        LocalDate lEndDate=DateUtils.stringToDate(endDate);
+        LocalDate lRegClosingDate=DateUtils.stringToDate(regClosingDate);
         this.campName=campName;
-        this.startDate=startDate;
-        this.endDate=endDate;
-        this.regClosingDate=regClosingDate;
+        this.startDate=lStartDate;
+        this.endDate=lEndDate;
+        this.regClosingDate=lRegClosingDate;
         this.visibility=visibility;
         this.location=location;
         this.totalSlots=totalSlots;
@@ -32,14 +38,31 @@ public class Camp
     public String getCampName() { return campName; }
     public void setCampName(String campName) {this.campName=campName;}
 
-    public String getStartDate() { return startDate; }
-    public void setStartDate(String startDate) {this.startDate=startDate;}
+    public LocalDate getStartDate() { return startDate; }
+    public String getStringStartDate(){return DateUtils.dateToString(startDate);}
+    public void setStartDate(String startDate) 
+    {
+        //Consider error checking for format and whether startDate>endDate;
+        LocalDate lStartDate=DateUtils.stringToDate(startDate);
+        this.startDate=lStartDate;
+    }
 
-    public String getEndDate() { return endDate; }
-    public void setEndDate(String endDate) {this.endDate=endDate;}
+    public LocalDate getEndDate() { return endDate; }
+    public String getStringEndDate(){return DateUtils.dateToString(endDate);}
+    public void setEndDate(String endDate) 
+    {
+        //Consider error checking for format and whether startDate>endDate;
+        LocalDate lEndDate=DateUtils.stringToDate(endDate);
+        this.startDate=lEndDate;
+    }
 
-    public String getRegClosingDate() { return regClosingDate; }
-    public void setregClosingDate(String regClosingDate) {this.regClosingDate=regClosingDate;}
+    public LocalDate getRegClosingDate() { return regClosingDate; }
+    public String getStringRegClosingDate(){return DateUtils.dateToString(regClosingDate);}
+    public void setregClosingDate(String regClosingDate) 
+    {
+        LocalDate lRegClosingDate=DateUtils.stringToDate(regClosingDate);
+        this.regClosingDate=lRegClosingDate;
+    }
 
     public boolean getVisibility() { return visibility; }
     public void setVisibility(boolean visibility) {this.visibility=visibility;}
