@@ -10,25 +10,14 @@ public class StaffCampEditor implements IEditCamp
     //Looks for the specific camp object to return.
     private Camp findCamp(String staffName,String campName)
     {
-        ArrayList<ArrayList<Camp>> allCamps=campDataBase.getAllCamps();
+        ArrayList<Camp> allCamps=campDataBase.getAllCamps();
 
         for(int i=0;i<allCamps.size();++i)
         {
-            if(allCamps.get(i).size()==0)//If a row is empty, check next rows
-            {
-                continue;
-            }
-            //If found his row, try find the camp and return the camp itself.
-            else if(allCamps.get(i).get(0).getStaffInCharge().equals(staffName))
-            {
-                for(int j=0;j<allCamps.get(i).size();++j)
-                {
-                    if(allCamps.get(i).get(j).getCampName().equals(campName))
-                    {
-                        return allCamps.get(i).get(j);
-                    }
-                }
-            }
+           if(allCamps.get(i).getCampName().equals(campName)&& allCamps.get(i).getStaffInCharge().equals(staffName))
+           {
+                return allCamps.get(i);
+           }
         }
         return null;
     }

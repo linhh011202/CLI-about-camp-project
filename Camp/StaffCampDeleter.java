@@ -13,27 +13,16 @@ public class StaffCampDeleter implements IDeleteCamp
         //Possible error checking if its not a staff?? But dont think we need it since there shouldn't be a place in the mainApp
         //where non-staffs can even call this func
         
-        //Find the staff's row of camps. If cant find, he has no camps to delete. 
-        ArrayList<ArrayList<Camp>> allCamps=campDataBase.getAllCamps();
+        //Find the campName that has the StaffName as in-charge for row of camps.
+        //If cant find because of no such camp, or camp is under diff staff, return false to indicate failure.
+        ArrayList<Camp> allCamps=campDataBase.getAllCamps();
 
         for(int i=0;i<allCamps.size();++i)
         {
-            if(allCamps.get(i).size()==0)//If a row is empty, check next rows
+            if(allCamps.get(i).getCampName().equals(campName) && allCamps.get(i).getStaffInCharge().equals(user.getName()))
             {
-                continue;
-            }
-            //If found his row, try find the ID and delete it.
-            else if(allCamps.get(i).get(0).getStaffInCharge().equals(user.getName()))
-            {
-                for(int j=0;j<allCamps.get(i).size();++j)
-                {
-                    if(allCamps.get(i).get(j).getCampName().equals(campName))
-                    {
-                        allCamps.get(i).remove(j);
-                        break;
-                    }
-                }
-                break;
+                allCamps.remove(i);
+                return true;
             }
         }
         //If can't find his row OR his row doesn't have campId, return false. (indicates failure to delete camp); Probably handled by mainAPP

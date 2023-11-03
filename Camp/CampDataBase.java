@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CampDataBase 
 {
-    private ArrayList<ArrayList<Camp>> allCamps;//2d array so we can separate by staff who creates it.
+    private ArrayList<Camp> allCamps;//2d array so we can separate by staff who creates it.
 
     //Association with the manager classes.
     private StaffCampCreator staffCampCreator;
@@ -18,12 +18,8 @@ public class CampDataBase
     public CampDataBase()
     {
         //Probably read in the data from files, but for now we make it empty at the start every time.
-        allCamps=new ArrayList<ArrayList<Camp>>(1);
+        allCamps=new ArrayList<Camp>(1);
         //add lists to each row (diff staff=diff rows)
-        for(int i=0;i<allCamps.size();++i)
-        {
-            allCamps.add(new ArrayList<Camp>());
-        }
 
         //Initialise Associated classes. (maybe its a composition now then)
         staffCampCreator=new StaffCampCreator(this);
@@ -44,7 +40,7 @@ public class CampDataBase
 
     public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
 
-    public ArrayList<ArrayList<Camp>> getAllCamps() {return allCamps;}
+    public ArrayList<Camp> getAllCamps() {return allCamps;}
 
 
 
