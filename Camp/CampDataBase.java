@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CampDataBase 
 {
-    private ArrayList<Camp> allCamps;//2d array so we can separate by staff who creates it.
+    private ArrayList<Camp> allCamps;
 
     //Association with the manager classes.
     private StaffCampCreator staffCampCreator;
