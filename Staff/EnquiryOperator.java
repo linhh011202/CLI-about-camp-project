@@ -1,7 +1,12 @@
 package staff;
 
+import java.util.Scanner;
+import java.util.ArrayList;
+import student.Enquires;
+
 public class EnquiryOperator 
 {
+     private ArrayList<Enquiries> = 
      /*PENDING KAIXUAN CODE:
     private Staff staff; //Corresponding staff object that this belongs to.
     private IHisInterfaceName hisInterface;
