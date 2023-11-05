@@ -8,53 +8,48 @@ public class SuggestionCampCommittee extends CampCommittee
     ArrayList<Suggestions> suggestions = new ArrayList<Suggestions>();
 
     public void sendSuggestion() {
+        System.out.println("Enter camp name: ");
+        String campName = sc.nextLine();
         System.out.println("Type your suggestion: ");
         String text = sc.nextLine();
-        Suggestions suggestion = new Suggestions(text, studentID);
-        suggestion.add(text);
-        super.increasePoint();
+        Suggestions suggestion = new Suggestions(studentID, text, null, campName);
+        suggestions.add(suggestion);
+        super.increasePoint(); //may need to change 
         System.out.println("Suggestion sent successfully. ");
     }
 
     public void editSuggestion() {
-        System.out.println("Enter a keyword or phrase unique to the suggestion you want to edit: ");
-        String searchKeyword = sc.nextLine();
+        System.out.println("Enter the suggestionID you want to edit: ");
+        int suggestionID = sc.nextInt();
+        sc.nextLine(); // Consume the newline character left in the input buffer
 
         boolean found = false;
-        for (int i = 0; i < suggestion.size(); i++) {
-            String currentSuggestion = suggestion.get(i);
-            if (currentSuggestion.contains(searchKeyword)) {
-                // Replace the current suggestion with the edited version
+        for (Suggestions suggestion : suggestions) {
+            if (suggestion.getSuggestionID() == suggestionID) {
                 System.out.println("Enter your updated suggestion: ");
-                String text = sc.nextLine();
-                suggestion.set(i, text);
+                String updatedText = sc.nextLine();
+                suggestion.setText(updatedText);
                 found = true;
+                System.out.println("Suggestion edited successfully.");
                 break; // Stop searching after the first match
             }
-        }
-
-        if (found) {
-            System.out.println("Suggestion edited successfully.");
-        } else {
-            System.out.println("Suggestion not found.");
         }
     }
 
     public void deleteSuggestion() {
-        System.out.println("Enter a keyword or phrase unique to the suggestion you want to delete: ");
-        String searchKeyword = sc.nextLine();
-
-        boolean found = false;
-        for (int i = 0; i < suggestion.size(); i++) {
-            String currentSuggestion = suggestion.get(i);
-            if (currentSuggestion.contains(searchKeyword)) {
-                suggestion.remove(i);
-                found = true;
+        System.out.println("Enter the suggestionID you want to delete: ");
+        int suggestionID = sc.nextInt();
+        sc.nextLine(); 
+        Suggestions suggestionToRemove = null;
+        for (Suggestions suggestion : suggestions) {
+            if (suggestion.getSuggestionID() == suggestionID) {
+                suggestionToRemove = suggestion;
                 break; // Stop searching after the first match
             }
         }
 
-        if (found) {
+        if (suggestionToRemove != null) {
+            suggestions.remove(suggestionToRemove);
             System.out.println("Suggestion deleted successfully.");
         } else {
             System.out.println("Suggestion not found.");
@@ -63,10 +58,12 @@ public class SuggestionCampCommittee extends CampCommittee
 
     public void viewOwnSuggestion() {
         System.out.println("Your Suggestions:");
-        for (int i = 0; i < suggestion.size(); i++) {
+        for (Suggestions suggestion : suggestions) {
             if (suggestion.getStudentID() == studentID) {
-                System.out.println(suggestion.getText());
+                System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
+                System.out.println("Camp Name: " + suggestion.getCampName());
+                System.println("Suggestion: " + suggestion.getText());
             }
         }
-    }
+    }    
 }

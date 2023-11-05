@@ -7,63 +7,67 @@ public class EnquiryStudent implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
     ArrayList<Enquiries> enquiries = new ArrayList<Enquiries>();
 
     public void sendEnquiry() {
+        System.out.println("Enter camp name: ");
+        String campName = sc.nextLine();
         System.out.println("Type your enquiry: ");
         String text = sc.nextLine();
-        Enquiries enquiry = new Enquiry(text, studentID);
-        enquiry.add(text);
+        Enquiries enquiry = new Enquiries(studentID, text, null, campName); // Assign null to replyText initially
+        enquiries.add(enquiry);
         System.out.println("Enquiry sent successfully. ");
     }
 
     public void editEnquiry() {
-        System.out.println("Enter a keyword or phrase unique to the enquiry you want to edit: ");
-        String searchKeyword = sc.nextLine();
+        System.out.println("Enter the enquiry ID you want to edit: ");
+        int enquiryNumber = sc.nextInt();
+        sc.nextLine(); // Consume the newline character left in the input buffer
 
         boolean found = false;
-        for (int i = 0; i < enquiry.size(); i++) {
-            String currentEnquiry = enquiry.get(i);
-            if (currentEnquiry.contains(searchKeyword)) {
-                // Replace the current enquiry with the edited version
+        for (Enquiries enquiry : enquiries) {
+            if (enquiry.getEnquiryID() == enquiryNumber) {
                 System.out.println("Enter your updated enquiry: ");
-                String text = sc.nextLine();
-                enquiry.set(i, text);
+                String updatedText = sc.nextLine();
+                enquiry.setText(updatedText);
                 found = true;
+                System.out.println("Enquiry edited successfully.");
                 break; // Stop searching after the first match
             }
         }
 
-        if (found) {
+        if (!found) {
             System.out.println("Enquiry edited successfully.");
-        } else {
-            System.out.println("Enquiry not found.");
         }
     }
 
     public void deleteEnquiry() {
-        System.out.println("Enter a keyword or phrase unique to the enquiry you want to delete: ");
-        String searchKeyword = sc.nextLine();
+        System.out.println("Enter the enquiry ID you want to delete: ");
+        int enquiryNumber = sc.nextInt();
+        sc.nextLine();
 
         boolean found = false;
-        for (int i = 0; i < enquiry.size(); i++) {
-            String currentEnquiry = enquiry.get(i);
-            if (currentEnquiry.contains(searchKeyword)) {
-                enquiry.remove(i);
+        Iterator<Enquiries> iterator = enquiries.iterator();
+
+        while (iterator.hasNext()) {
+            Enquiries enquiry = iterator.next();
+            if (enquiry.getEnquiryID() == enquiryNumber) {
+                iterator.remove(); // Safely remove the enquiry using the iterator
                 found = true;
+                System.out.println("Enquiry deleted successfully.");
                 break; // Stop searching after the first match
             }
         }
 
-        if (found) {
-            System.out.println("Enquiry deleted successfully.");
-        } else {
+        if (!found) {
             System.out.println("Enquiry not found.");
         }
     }
 
     public void viewOwnEnquiry() {
         System.out.println("Your Enquiries:");
-        for (int i = 0; i < enquiry.size(); i++) {
+        for (Enquiries enquiry : enquiries) {
             if (enquiry.getStudentID() == studentID) {
-                System.out.println(enquiry.getText());
+                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
+                System.out.println("Camp Name: " + enquiry.getCampName());
+                System.out.println("Enquiry: " + enquiry.getText());
             }
         }
     }

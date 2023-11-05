@@ -1,7 +1,7 @@
 package student;
 
-public class CampCommittee extends Student {
-    protected static int point = 0;
+public class CampCommittee extends Student implements IAddPoints {
+    private int points = 0;
 
     public CampCommittee(String name, String password, String facultyInformation, int studentID) {
         super();
@@ -17,11 +17,11 @@ public class CampCommittee extends Student {
         return false;
     }
 
-    public static void increasePoint() {
-        point++;
+    public void addPoints() {
+        points++;
     }
 
-    public int getPoint() {
-        return point;
+    public int getPoints() {
+        return points;
     }
 }

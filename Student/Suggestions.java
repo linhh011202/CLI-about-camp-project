@@ -1,13 +1,13 @@
-public class Enquiries {
-    private static int lastEnquiryID = 0; // Static variable to track the last assigned ID
-    private int enquiryID;
-    private int studentID; // Unique identifier for the student who sent the enquiry
-    private String text; // The text of the enquiry
-    private String replyText;
+public class Suggestions {
+    private static int lastSuggestionID = 0;
+    private int suggestionID;
+    private int studentID; // Unique identifier for the student who sent the suggestion
+    private String text; // The text of the suggestion
+    private String replyText; // The reply to the suggestion
     private String campName;
 
-    public Enquiries(int studentID, String text, String replyText, String campName) {
-        this.enquiryID = ++lastEnquiryID;
+    public Suggestions(int studentID, String text, String replyText, String campName) {
+        this.suggestionID = ++lastSuggestionID;
         this.studentID = studentID;
         this.text = text;
         this.replyText = replyText;
@@ -15,12 +15,12 @@ public class Enquiries {
     }
 
     // Getters and setters for the properties
-    public int getEnquiryID() {
-        return enquiryID;
+    public int getSuggestionID() {
+        return suggestionID;
     }
 
-    public void setEnquiryID(int enquiryID) {
-        this.enquiryID = enquiryID;
+    public void setSuggestionID(int suggestionID) {
+        this.suggestionID = suggestionID;
     }
 
     public int getStudentID() {
