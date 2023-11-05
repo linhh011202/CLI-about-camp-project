@@ -26,7 +26,7 @@ public class EnquiryCampCommittee extends CampCommittee implements IReplyEnquiri
         viewAllEnquiries();
         System.out.println("Input the enquiry ID you would like to reply to: ");
         int enquiryNumber = sc.nextInt();
-        sc.nextLine(); 
+        sc.nextLine();
 
         for (Enquiries enquiry : enquiries) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
@@ -35,7 +35,7 @@ public class EnquiryCampCommittee extends CampCommittee implements IReplyEnquiri
                 enquiry.setReplyText(reply);
                 super.increasePoint();
                 System.out.println("Enquiry replied successfully. ");
-                break; 
+                break;
             }
         }
 

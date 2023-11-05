@@ -14,7 +14,7 @@ public class SuggestionCampCommittee extends CampCommittee
         String text = sc.nextLine();
         Suggestions suggestion = new Suggestions(studentID, text, null, campName);
         suggestions.add(suggestion);
-        super.increasePoint(); //may need to change 
+        super.increasePoint(); // may need to change
         System.out.println("Suggestion sent successfully. ");
     }
 
@@ -39,7 +39,7 @@ public class SuggestionCampCommittee extends CampCommittee
     public void deleteSuggestion() {
         System.out.println("Enter the suggestionID you want to delete: ");
         int suggestionID = sc.nextInt();
-        sc.nextLine(); 
+        sc.nextLine();
         Suggestions suggestionToRemove = null;
         for (Suggestions suggestion : suggestions) {
             if (suggestion.getSuggestionID() == suggestionID) {
@@ -65,5 +65,5 @@ public class SuggestionCampCommittee extends CampCommittee
                 System.println("Suggestion: " + suggestion.getText());
             }
         }
-    }    
+    }
 }
