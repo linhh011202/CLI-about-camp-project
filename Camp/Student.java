@@ -3,12 +3,12 @@ package camp;
 public class Student extends User
 {
     private Faculty faculty;
-    private IViewAllCamps iViewAllCamps;
+    private IViewAllCamps StudentViewAllCamps;
 
-    public Student(String name,IViewAllCamps iViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps)
+    public Student(String name,IViewAllCamps StudentViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps)
     {
         super(name,iFilterCamps);
-        this.iViewAllCamps=iViewAllCamps;
+        this.StudentViewAllCamps=StudentViewAllCamps;
         this.faculty=faculty;
     }
 
@@ -24,7 +24,7 @@ public class Student extends User
 
     public void viewAllCamps()
     {
-        iViewAllCamps.viewAllCamps(this,super.getFilterCamps());
+        StudentViewAllCamps.viewAllCamps(this,super.getFilterCamps());
     }
 
 }

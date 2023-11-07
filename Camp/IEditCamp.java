@@ -7,7 +7,7 @@ public interface IEditCamp
     public boolean changeRegClosingDate(User user,String campName,String newRegClosingDate);
     public boolean changeVisibility(User user,String campName,boolean newVisibility);
     public boolean changeLocation(User user,String campName,String newLocation);
-    public boolean changeTotalSlots(User user,String campName,int newTotalSlots);
+    public boolean changeAttendeeSlots(User user,String campName,int newTotalSlots);
     public boolean changeCampComSlots(User user,String campName,int newCampComSlots);
     public boolean changeDescription(User user,String campName,String newDescription);
 

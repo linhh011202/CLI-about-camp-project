@@ -11,12 +11,15 @@ public class Camp
     private boolean visibility;
     private String location;
     private int totalSlots;
+    private int attendeeSlots;
     private int campComSlots;
+    private int availableCampComSlots;
+    private int availableAttendeeSlots;
     private String description;
     private String staffInCharge;
     private Faculty openTo;
 
-    public Camp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int totalSlots,int campComSlots,String description,User user,Faculty openTo)
+    public Camp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,User user,Faculty openTo)
     {
         //Consider error checking and throwing exception if dates not in proper format, or startDate>endDate, etc.
         LocalDate lStartDate=DateUtils.stringToDate(startDate);
@@ -28,11 +31,14 @@ public class Camp
         this.regClosingDate=lRegClosingDate;
         this.visibility=visibility;
         this.location=location;
-        this.totalSlots=totalSlots;
+        this.attendeeSlots=attendeeSlots;
         this.campComSlots=campComSlots;
         this.description=description;
         this.staffInCharge=user.getName();
         this.openTo=openTo;
+        this.availableAttendeeSlots=attendeeSlots;
+        this.availableCampComSlots=campComSlots;
+        this.totalSlots=campComSlots+attendeeSlots;
     }
     
     public void printCamp()
@@ -41,9 +47,13 @@ public class Camp
         System.out.printf("|| Start Date: %s | End Date: %s ||\n",this.getStringStartDate(),this.getStringEndDate());
         System.out.printf("|| Registration Closing Date: %s | Visibility: %b ||\n",this.getStringRegClosingDate(),this.getVisibility());
         System.out.printf("|| Location: %s | Total Slots: %d ||\n",this.getLocation(),this.getTotalSlots());
-        System.out.printf("|| Camp Committee Slots: %d ||\n",this.getCampComSlots());
+        System.out.printf("|| Total Camp Attendee Slots: %d ||\n",this.getAttendeeSlots());
+        System.out.printf("|| Total Camp Committee Slots: %d ||\n",this.getCampComSlots());
         System.out.printf("|| Description: %s ||\n",this.getDescription());
-        System.out.printf("|| Open To: %s ||\n\n",this.getOpenTo().toString());
+        System.out.printf("|| Open To: %s ||\n",this.getOpenTo().toString());
+        System.out.printf("|| Available Attendee Slots: %s ||\n",this.getAvailableAttendeeSlots());
+        System.out.printf("|| Available Camp Committee Slots: %s ||\n\n",this.getAvailableCampComSlots());
+
     }
 
     //Setters and getters
@@ -98,4 +108,13 @@ public class Camp
     public Faculty getOpenTo() { return openTo; }
     public String getStringOpenTo(){return openTo.toString();}
     public void setOpenTo(Faculty openTo) {this.openTo=openTo;}
+
+    public int getAvailableAttendeeSlots(){return availableAttendeeSlots;}
+    public void setAvailableAttendeeSlots(int availableAttendeeSlots ){this.availableAttendeeSlots=availableAttendeeSlots;}
+
+    public int getAvailableCampComSlots(){return availableCampComSlots;}
+    public void setAvailableCampComSlots(int availableCampComSlots){this.availableCampComSlots=availableCampComSlots;}
+
+    public int getAttendeeSlots(){return attendeeSlots;}
+    public void setAttendeeSlots(int newAttendeeSlots){attendeeSlots=newAttendeeSlots;}
 }
