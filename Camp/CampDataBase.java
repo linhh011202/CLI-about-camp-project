@@ -22,6 +22,8 @@ public class CampDataBase
     //Association with the manager classes related to registrationDB interfaces.
     private CampStudentSlotChecker campStudentSlotChecker;
     private CampStudentSlotReducer campStudentSlotReducer;
+    private CampStudentSlotIncreaser campStudentSlotIncreaser;
+    private CheckSchoolMatch checkSchoolMatch;
 
     public CampDataBase()
     {
@@ -42,6 +44,8 @@ public class CampDataBase
 
         campStudentSlotChecker=new CampStudentSlotChecker(this);
         campStudentSlotReducer=new CampStudentSlotReducer(this);
+        campStudentSlotIncreaser=new CampStudentSlotIncreaser(this);
+        checkSchoolMatch= new CheckSchoolMatch(this);
 
     }
     
@@ -59,6 +63,8 @@ public class CampDataBase
 
     public CampStudentSlotChecker getCampStudentSlotChecker(){return campStudentSlotChecker;}
     public CampStudentSlotReducer getCampStudentSlotReducer(){return campStudentSlotReducer;}
+    public CampStudentSlotIncreaser getCampStudentSlotIncreaser(){return campStudentSlotIncreaser;}
+    public CheckSchoolMatch getCheckSchoolMatch(){return checkSchoolMatch;}
 
     public ArrayList<Camp> getAllCamps() {return allCamps;}
 

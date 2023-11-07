@@ -8,20 +8,22 @@ public class RegistrationDataBase
 
     //Association with the manager classes.
     private StudentCampRegisterer studentCampRegisterer;
+    private StudentCampDeregisterer studentCampDeregisterer; 
 
-    public RegistrationDataBase(IGetCampSlots CampStudentSlotChecker,IReduceCampSlots CampStudentSlotReducer)
+    public RegistrationDataBase(IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,IIncreaseCampSlots campStudentSlotIncreaser)
     {
         //Probably read in the data from files, but for now we make it empty at the start every time.
         allRegistrations=new ArrayList<Registration>(1);
 
         //Initialise Associated classes. 
-        studentCampRegisterer=new StudentCampRegisterer(this,CampStudentSlotChecker,CampStudentSlotReducer);
-
+        studentCampRegisterer=new StudentCampRegisterer(this,campStudentSlotChecker,campStudentSlotReducer,checkSchoolMatch);
+        studentCampDeregisterer=new StudentCampDeregisterer(this,campStudentSlotIncreaser);
     }
     
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
     
-    public StudentCampRegisterer getStudentRegisterCamp(){return studentCampRegisterer;}
+    public StudentCampRegisterer getStudentCampRegisterer(){return studentCampRegisterer;}
+    public StudentCampDeregisterer getStudentCampDeregisterer(){return studentCampDeregisterer;}
 
     //debugging func
     public void printDataBase()

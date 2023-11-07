@@ -17,7 +17,7 @@ public class Registration
 
     public void printRegistration()
     {
-        System.out.printf("|| Camp Name: %s | Student Name: %s | Role: %s | Is this entry Deregistered: %b ||");
+        System.out.printf("|| Camp Name: %s | Student Name: %s | Role: %s | Is this entry Deregistered: %b ||\n",campName,studentName,role,deregistered);
         return;
     }
 
@@ -25,19 +25,35 @@ public class Registration
     {
         return studentName;
     }
+    public void setStudentName(String studentName)
+    {
+        this.studentName=studentName;
+    }
 
     public String getCampName()
     {
         return campName;
+    }
+    public void setCampName(String campName)
+    {
+        this.campName=campName;
     }
 
     public String getRole()
     {
         return role;
     }
+    public void setRole(String role)
+    {
+        this.role=role;
+    }
 
     public boolean getDeregistered()
     {
         return deregistered;
+    }
+    public void setDeregistered(boolean deregistered)
+    {
+       this.deregistered=deregistered;
     }
 }

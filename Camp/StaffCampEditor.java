@@ -128,4 +128,6 @@ public class StaffCampEditor implements IEditCamp
         return true;
     }
 
+    //Possibly add a ChangeOpenTo? Will need error checking if some peeps alr registered maybe... coz sch change might invalidate them
+
 }
