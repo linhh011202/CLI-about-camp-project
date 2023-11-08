@@ -22,6 +22,7 @@ public class StaffCampEditor implements IEditCamp
         return null;
     }
 
+    //TBC: PROBABLY NEED TO UPDATE the regsitrationDB if we change campName so go and change there too.
     public boolean changeCampName(User user,String campName,String newCampName)
     {
         Camp campToEdit=findCamp(user.getName(),campName);
@@ -76,12 +77,24 @@ public class StaffCampEditor implements IEditCamp
         return true;
     }
 
-    public boolean changeTotalSlots(User user,String campName,int newTotalSlots)
+    public boolean changeAttendeeSlots(User user,String campName,int newAttendeeSlots)
     {
         Camp campToEdit=findCamp(user.getName(),campName);
         if(campToEdit==null){return false;}//Unable to find camp under that editor to change.
 
-        campToEdit.setTotalSlots(newTotalSlots);
+        //If new attendee slots < number of students that already registered as attendees, fail.
+        int numAttendeesRegistered=campToEdit.getAttendeeSlots()-campToEdit.getAvailableAttendeeSlots();
+        if(newAttendeeSlots<numAttendeesRegistered)
+        {
+            System.out.println("Number of already registered attendees is greater than your new size! Edit failed.");
+            return false;
+        }
+        
+        //Error checks passed, set new slots.
+
+        campToEdit.setAttendeeSlots(newAttendeeSlots);
+        campToEdit.setAvailableAttendeeSlots(newAttendeeSlots-numAttendeesRegistered);
+        campToEdit.setTotalSlots(newAttendeeSlots+campToEdit.getCampComSlots());
         return true;
     }
 
@@ -90,7 +103,19 @@ public class StaffCampEditor implements IEditCamp
         Camp campToEdit=findCamp(user.getName(),campName);
         if(campToEdit==null){return false;}//Unable to find camp under that editor to change.
 
+        //If new attendee slots < number of students that already registered as attendees, fail.
+        int numCampComRegistered=campToEdit.getCampComSlots()-campToEdit.getAvailableCampComSlots();
+        if(newCampComSlots<numCampComRegistered)
+        {
+            System.out.println("Number of already registered Camp Committee members is greater than your new size! Edit failed.");
+            return false;
+        }
+        
+        //Error checks passed, set new slots.
+
         campToEdit.setCampComSlots(newCampComSlots);
+        campToEdit.setAvailableCampComSlots(newCampComSlots-numCampComRegistered);
+        campToEdit.setTotalSlots(newCampComSlots+campToEdit.getAttendeeSlots());
         return true;
     }
 
@@ -102,5 +127,7 @@ public class StaffCampEditor implements IEditCamp
         campToEdit.setDescription(newDescription);
         return true;
     }
+
+    //Possibly add a ChangeOpenTo? Will need error checking if some peeps alr registered maybe... coz sch change might invalidate them
 
 }

@@ -6,16 +6,26 @@ public class CampDataBase
 {
     private ArrayList<Camp> allCamps;
 
-    //Association with the manager classes.
+    //Association with the manager classes related to staff interfaces.
     private StaffCampCreator staffCampCreator;
     private StaffCampDeleter staffCampDeleter;
     private StaffCampEditor staffCampEditor;
     private StaffViewAllCamps staffViewAllCamps;
     private StaffViewOwnCamps staffViewOwnCamps;
 
+    //Association with the manager classes related to filter interfaces.
     private FilterManager filterManager;
 
+    //Association with the manager classes related to student interfaces.
     private StudentViewAllCamps studentViewAllCamps;
+
+    //Association with the manager classes related to registrationDB interfaces.
+    private CampStudentSlotChecker campStudentSlotChecker;
+    private CampStudentSlotReducer campStudentSlotReducer;
+    private CampStudentSlotIncreaser campStudentSlotIncreaser;
+    private CheckSchoolMatch checkSchoolMatch;
+    private ClashWithRegisteredChecker clashWithRegisteredChecker;
+    private RegistrationClosedChecker registrationClosedChecker;
 
     public CampDataBase()
     {
@@ -34,7 +44,14 @@ public class CampDataBase
 
         studentViewAllCamps=new StudentViewAllCamps(this);
 
+        campStudentSlotChecker=new CampStudentSlotChecker(this);
+        campStudentSlotReducer=new CampStudentSlotReducer(this);
+        campStudentSlotIncreaser=new CampStudentSlotIncreaser(this);
+        checkSchoolMatch= new CheckSchoolMatch(this);
+        clashWithRegisteredChecker=new ClashWithRegisteredChecker(this);
+        registrationClosedChecker=new RegistrationClosedChecker(this);
     }
+
     
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
     
@@ -47,6 +64,13 @@ public class CampDataBase
     public FilterManager getFilterManager(){return filterManager;}
 
     public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
+
+    public CampStudentSlotChecker getCampStudentSlotChecker(){return campStudentSlotChecker;}
+    public CampStudentSlotReducer getCampStudentSlotReducer(){return campStudentSlotReducer;}
+    public CampStudentSlotIncreaser getCampStudentSlotIncreaser(){return campStudentSlotIncreaser;}
+    public CheckSchoolMatch getCheckSchoolMatch(){return checkSchoolMatch;}
+    public ClashWithRegisteredChecker getClashWithRegisteredChecker(){return clashWithRegisteredChecker;}
+    public RegistrationClosedChecker getRegistrationClosedChecker(){return registrationClosedChecker;}
 
     public ArrayList<Camp> getAllCamps() {return allCamps;}
 

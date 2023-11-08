@@ -3,13 +3,17 @@ package camp;
 public class Student extends User
 {
     private Faculty faculty;
-    private IViewAllCamps iViewAllCamps;
+    private IViewAllCamps studentViewAllCamps;
+    private IRegisterCamp studentCampRegisterer;
+    private IDeregisterCamp studentCampDeregisterer;
 
-    public Student(String name,IViewAllCamps iViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps)
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer)
     {
         super(name,iFilterCamps);
-        this.iViewAllCamps=iViewAllCamps;
+        this.studentViewAllCamps=studentViewAllCamps;
         this.faculty=faculty;
+        this.studentCampRegisterer=studentCampRegisterer;
+        this.studentCampDeregisterer=studentCampDeregisterer;
     }
 
     public Faculty getFaculty()
@@ -24,7 +28,17 @@ public class Student extends User
 
     public void viewAllCamps()
     {
-        iViewAllCamps.viewAllCamps(this,super.getFilterCamps());
+        studentViewAllCamps.viewAllCamps(this,super.getFilterCamps());
+    }
+
+    public void registerCampStudent(String campName)
+    {
+        studentCampRegisterer.registerCamp(this,campName);
+    }
+
+    public void deregisterCamp(String campName)
+    {
+        studentCampDeregisterer.deregisterCamp(this, campName);
     }
 
 }

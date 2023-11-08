@@ -16,6 +16,9 @@ FilterManager
     private FilterCampByDescription filterCampByDescription;
     private FilterCampByStaffIC filterCampByStaffIC;
     private FilterCampByOpenTo filterCampByOpenTo;
+    private FilterCampByAttendeeSlots filterCampByAttendeeSlots;
+    private FilterCampByAvailableAttendeeSlots filterCampByAvailableAttendeeSlots;
+    private FilterCampByAvailableCampCommiteeSlots filterCampByAvailableCampCommiteeSlots;
 
     public FilterManager(CampDataBase campDataBase)
     {
@@ -31,6 +34,9 @@ FilterManager
         this.filterCampByDescription=new FilterCampByDescription(this);
         this.filterCampByStaffIC=new FilterCampByStaffIC(this);
         this.filterCampByOpenTo=new FilterCampByOpenTo(this);
+        this.filterCampByAttendeeSlots=new FilterCampByAttendeeSlots(this);
+        this.filterCampByAvailableAttendeeSlots=new FilterCampByAvailableAttendeeSlots(this);
+        this.filterCampByAvailableCampCommiteeSlots=new FilterCampByAvailableCampCommiteeSlots(this);
     }
 
     //Getters for these classes so User class can set their filters as these guys, and pass the param to the ViewCamps interface call
@@ -47,7 +53,9 @@ FilterManager
     public FilterCampByDescription getFilterCampByDescription(){return filterCampByDescription;}
     public FilterCampByStaffIC getFilterCampByStaffIC(){return filterCampByStaffIC;}
     public FilterCampByOpenTo getFilterCampByOpenTo(){return filterCampByOpenTo;}
-    
+    public FilterCampByAttendeeSlots getFilterCampByAttendeeSlots(){return filterCampByAttendeeSlots;}
+    public FilterCampByAvailableAttendeeSlots getFilterCampByAvailableAttendeeSlots(){return filterCampByAvailableAttendeeSlots;}
+    public FilterCampByAvailableCampCommiteeSlots getFilterCampByAvailableCampCommiteeSlots(){return filterCampByAvailableCampCommiteeSlots;}
     
 
     public CampDataBase getCampDataBase()
