@@ -9,14 +9,20 @@ public class StudentCampRegisterer implements IRegisterCamp
     private IGetCampSlots campStudentSlotChecker;
     private IReduceCampSlots campStudentSlotReducer;
     private ICheckSchoolMatch checkSchoolMatch;
+    private IGetCampsRegistered registeredCampNamesGetter;
+    private ICheckNoClash clashWithRegisteredChecker;
+    private ICheckRegistrationClosed registrationClosedChecker;
     
 
-    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch)
+    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,ICheckNoClash clashWithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker)
     {
         this.registrationDataBase=registrationDataBase;
         this.campStudentSlotChecker=campStudentSlotChecker;
         this.campStudentSlotReducer=campStudentSlotReducer;
         this.checkSchoolMatch=checkSchoolMatch;
+        this.registeredCampNamesGetter=registrationDataBase.getRegisteredCampNamesGetter();
+        this.clashWithRegisteredChecker=clashWithRegisteredChecker;
+        this.registrationClosedChecker=registrationClosedChecker;
     }
 
     public void registerCamp(Student student,String campName)
@@ -27,20 +33,6 @@ public class StudentCampRegisterer implements IRegisterCamp
         {
             return;
         }
-
-        //uses Interface from campDB to check to see if camp has enough REGULAR slots.
-        int slots=campStudentSlotChecker.getCampSlots(campName);
-        if(slots==IntErrorCodes.CAMP_NOT_FOUND)
-        {
-            System.out.println("Failed to register. There is no such camp with this camp name!");
-            return;
-        }
-        if(slots==IntErrorCodes.INSUFFICIENT_STUDENT_SLOTS)
-        {
-            System.out.println("Failed to register. There are no more student slots left!");
-            return;
-        }
-
 
 
         //Check existing registration database if student has already registered, or has deregistered before.
@@ -59,6 +51,36 @@ public class StudentCampRegisterer implements IRegisterCamp
                 }
                 return;
             }
+        }
+
+        //Checks if past register closing date.
+        if(registrationClosedChecker.isRegistrationClosed(campName))
+        {
+            System.out.println("Failed to register. Registration has already been closed!");
+            return;
+        }
+
+
+        //Checks if dates clash
+        ArrayList<String> allRegisteredCamps=registeredCampNamesGetter.getRegisteredCampNames(student.getName());
+        if(!clashWithRegisteredChecker.checkNoClash(allRegisteredCamps, campName))
+        {
+            System.out.println("Failed to register. Dates clash with existing registered camp!");
+            return;
+        }
+
+
+        //uses Interface from campDB to check to see if camp has enough REGULAR slots.
+        int slots=campStudentSlotChecker.getCampSlots(campName);
+        if(slots==IntErrorCodes.CAMP_NOT_FOUND)
+        {
+            System.out.println("Failed to register. There is no such camp with this camp name!");
+            return;
+        }
+        if(slots==IntErrorCodes.INSUFFICIENT_STUDENT_SLOTS)
+        {
+            System.out.println("Failed to register. There are no more student slots left!");
+            return;
         }
 
         //Slots avail since it passed error checking, registration created and added to database. Reduce avail camp attendee slots.

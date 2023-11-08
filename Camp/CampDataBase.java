@@ -24,6 +24,8 @@ public class CampDataBase
     private CampStudentSlotReducer campStudentSlotReducer;
     private CampStudentSlotIncreaser campStudentSlotIncreaser;
     private CheckSchoolMatch checkSchoolMatch;
+    private ClashWithRegisteredChecker clashWithRegisteredChecker;
+    private RegistrationClosedChecker registrationClosedChecker;
 
     public CampDataBase()
     {
@@ -46,8 +48,10 @@ public class CampDataBase
         campStudentSlotReducer=new CampStudentSlotReducer(this);
         campStudentSlotIncreaser=new CampStudentSlotIncreaser(this);
         checkSchoolMatch= new CheckSchoolMatch(this);
-
+        clashWithRegisteredChecker=new ClashWithRegisteredChecker(this);
+        registrationClosedChecker=new RegistrationClosedChecker(this);
     }
+
     
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
     
@@ -65,6 +69,8 @@ public class CampDataBase
     public CampStudentSlotReducer getCampStudentSlotReducer(){return campStudentSlotReducer;}
     public CampStudentSlotIncreaser getCampStudentSlotIncreaser(){return campStudentSlotIncreaser;}
     public CheckSchoolMatch getCheckSchoolMatch(){return checkSchoolMatch;}
+    public ClashWithRegisteredChecker getClashWithRegisteredChecker(){return clashWithRegisteredChecker;}
+    public RegistrationClosedChecker getRegistrationClosedChecker(){return registrationClosedChecker;}
 
     public ArrayList<Camp> getAllCamps() {return allCamps;}
 

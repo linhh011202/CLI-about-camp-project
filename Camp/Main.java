@@ -4,15 +4,26 @@ public class Main {
     public static void main(String[] args) 
     {
         CampDataBase campDataBase=new CampDataBase();
-        RegistrationDataBase registrationDataBase=new RegistrationDataBase(campDataBase.getCampStudentSlotChecker(), campDataBase.getCampStudentSlotReducer(),campDataBase.getCheckSchoolMatch(),campDataBase.getCampStudentSlotIncreaser());
+        RegistrationDataBase registrationDataBase=new RegistrationDataBase(campDataBase.getCampStudentSlotChecker(), campDataBase.getCampStudentSlotReducer(),campDataBase.getCheckSchoolMatch(),campDataBase.getCampStudentSlotIncreaser(),campDataBase.getClashWithRegisteredChecker(),campDataBase.getRegistrationClosedChecker());
 
         Staff currentStaff=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
-        currentStaff.createCamp("c", "01/12/1000","10/12/6000", "01/10/2050", true, "CLASSSY", 1, 2, "ZEST CAMP" , Faculty.NTU);
+        currentStaff.createCamp("c", "01/12/1000","10/12/6000", "01/10/2010", true, "CLASSSY", 1, 2, "ZEST CAMP" , Faculty.NTU);
 
         Staff nextStaff=new Staff("notanimal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
-        nextStaff.createCamp("b", "01/12/1990", "10/12/2000","01/10/2010", true, "ALIBABA", 10, 1, "BEST CAMP" , Faculty.SCSE);
-        nextStaff.createCamp("a", "01/12/2050","10/12/1000", "01/10/2012", true, "MOHOR B", 5, 3, "AEST CAMP" , Faculty.SBS);
-        
+        nextStaff.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 1, "BEST CAMP" , Faculty.SCSE);
+        nextStaff.createCamp("a", "09/12/2010","15/12/2010", "01/10/2050", true, "MOHOR B", 5, 3, "AEST CAMP" , Faculty.SCSE);
+       
+
+
+        /* 
+        //Testing if able to detect if user is trying to register to a camp that clashes with already registered camps.
+        Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer());
+        student.registerCampStudent("a");
+        student.registerCampStudent("b");
+
+        //Tests if able to detect if registration date is closed.
+        student.registerCampStudent("c");
+        */
 
 
         /*Testing reg/dereg functions for attendees
