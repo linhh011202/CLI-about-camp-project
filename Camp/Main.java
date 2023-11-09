@@ -4,43 +4,87 @@ public class Main {
     public static void main(String[] args) 
     {
         CampDataBase campDataBase=new CampDataBase();
-        RegistrationDataBase registrationDataBase=new RegistrationDataBase(campDataBase.getCampStudentSlotChecker(), campDataBase.getCampStudentSlotReducer(),campDataBase.getCheckSchoolMatch(),campDataBase.getCampStudentSlotIncreaser(),campDataBase.getClashWithRegisteredChecker(),campDataBase.getRegistrationClosedChecker());
+        RegistrationDataBase registrationDataBase=new RegistrationDataBase(campDataBase.getCampStudentSlotChecker(), campDataBase.getCampStudentSlotReducer(),campDataBase.getCheckSchoolMatch(),campDataBase.getCampStudentSlotIncreaser(),campDataBase.getClashWithRegisteredChecker(),campDataBase.getRegistrationClosedChecker(),campDataBase.getCampCommitteeSlotChecker(),campDataBase.getCampCommitteeSlotReducer());
 
         Staff currentStaff=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
         currentStaff.createCamp("c", "01/12/1000","10/12/6000", "01/10/2010", true, "CLASSSY", 1, 2, "ZEST CAMP" , Faculty.NTU);
 
         Staff nextStaff=new Staff("notanimal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
         nextStaff.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 1, "BEST CAMP" , Faculty.SCSE);
-        nextStaff.createCamp("a", "09/12/2010","15/12/2010", "01/10/2050", true, "MOHOR B", 5, 3, "AEST CAMP" , Faculty.SCSE);
+        nextStaff.createCamp("a", "11/12/2010","15/12/2010", "01/10/2050", true, "MOHOR B", 5, 1, "AEST CAMP" , Faculty.SCSE);
        
+        Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer());
+        
 
+
+        //Test try to be campCom for more than 1.
+        /* 
+        student=student.registerCampCommittee("a");
+        student=student.registerCampCommittee("b");
+        registrationDataBase.printDataBase();
+        */
+        //Test try to be campcom for 1, and attendee for other camps
+        /* 
+        nextStaff.viewAllCamps();
+        student=student.registerCampCommittee("a");
+        student.registerCampStudent("b");
+        nextStaff.viewAllCamps();
+        registrationDataBase.printDataBase();
+        /* 
+        //Test for no campCom slots
+        /* 
+        nextStaff.viewAllCamps();
+        student.registerCampCommittee("a");
+        registrationDataBase.printDataBase();
+        nextStaff.viewAllCamps();
+        */
+        //Test for school student is not in
+        /* 
+        student.registerCampCommittee("a");
+        registrationDataBase.printDataBase();
+        */
+        //Test for registration closed
+        /*
+        student.registerCampCommittee("c");
+        registrationDataBase.printDataBase();
+        */
+        //Test for clash
+        /* 
+        student.registerCampStudent("a");
+        student.registerCampCommittee("b");
+        registrationDataBase.printDataBase();
+        */
+        //Test if trying to register as attendeee after already being campComm.
+        /*
+        nextStaff.viewAllCamps();
+        student=student.registerCampCommittee("a");
+        student.registerCampStudent("a");
+        student.deregisterCamp("a");
+        nextStaff.viewAllCamps();
+        registrationDataBase.printDataBase();
+        //Check if we indeed managed to convert student to a campcom object. yes.
+        System.out.printf("%b, %s\n",student.getIsCommittee(),((CampCommittee)student).getCampName());
+        */
+    
 
         /* 
         //Testing if able to detect if user is trying to register to a camp that clashes with already registered camps.
         Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer());
         student.registerCampStudent("a");
         student.registerCampStudent("b");
-
         //Tests if able to detect if registration date is closed.
         student.registerCampStudent("c");
-        */
-
-
-        /*Testing reg/dereg functions for attendees
         //Case for wrong school but somehow he knows camp name
         nextStaff.viewAllCamps();
         registrationDataBase.printDataBase();
         Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer());
         student.registerCampStudent("a");
-
         //Case for able to accept,check avail slots updated correctly
         nextStaff.viewAllCamps();
         registrationDataBase.printDataBase();
         student.registerCampStudent("b");
-
         nextStaff.viewAllCamps();
         registrationDataBase.printDataBase();
-
         student.registerCampStudent("c");
         nextStaff.viewAllCamps();
         registrationDataBase.printDataBase();
@@ -48,13 +92,10 @@ public class Main {
         student.registerCampStudent("c");
         nextStaff.viewAllCamps();
         registrationDataBase.printDataBase();
-
         //Case for trying to re-register to a deregistered camp.
         student.deregisterCamp("c");
         nextStaff.viewAllCamps();
-
         student.registerCampStudent("c");
-
         //test case for nonsense bogus campName
         student.deregisterCamp("HIHIHIH");
        */

@@ -16,6 +16,17 @@ public class StudentCampDeregisterer implements IDeregisterCamp
     
     public void deregisterCamp(Student student,String campName)
     {
+
+        //Check if student is actually a campComm and is a campcomm of the camp he wants to register for
+        if(student instanceof CampCommittee)
+        {
+            if(((CampCommittee)student).getCampName().equals(campName))
+            {
+                System.out.printf("Failed to deregister! You are a camp committee member of this camp.\n");
+                return;
+            }
+        }
+
         //Finds the corresponding entry in the ArrayList. If not found, unable to deregister.
         ArrayList<Registration> allRegistrations=registrationDataBase.getAllRegistrations();
         for(int i=0;i<allRegistrations.size();++i)

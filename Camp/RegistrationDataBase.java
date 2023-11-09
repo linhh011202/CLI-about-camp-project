@@ -10,16 +10,17 @@ public class RegistrationDataBase
     private StudentCampRegisterer studentCampRegisterer;
     private StudentCampDeregisterer studentCampDeregisterer; 
     private RegisteredCampNamesGetter registeredCampNamesGetter; 
+    private CommitteeCampRegisterer committeeCampRegisterer;
 
-    public RegistrationDataBase(IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,IIncreaseCampSlots campStudentSlotIncreaser,ICheckNoClash clashwithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker)
+    public RegistrationDataBase(IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,IIncreaseCampSlots campStudentSlotIncreaser,ICheckNoClash clashwithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,IGetCampSlots campCommitteeSlotChecker,IReduceCampSlots campCommitteeSlotReducer)
     {
         //Probably read in the data from files, but for now we make it empty at the start every time.
         allRegistrations=new ArrayList<Registration>(1);
-
         //Initialise Associated classes. 
         registeredCampNamesGetter=new RegisteredCampNamesGetter(this);
         studentCampRegisterer=new StudentCampRegisterer(this,campStudentSlotChecker,campStudentSlotReducer,checkSchoolMatch,clashwithRegisteredChecker,registrationClosedChecker);
         studentCampDeregisterer=new StudentCampDeregisterer(this,campStudentSlotIncreaser);
+        committeeCampRegisterer=new CommitteeCampRegisterer(this,campCommitteeSlotChecker,checkSchoolMatch,registrationClosedChecker,registeredCampNamesGetter,clashwithRegisteredChecker,campCommitteeSlotReducer);
         
     }
     
@@ -28,6 +29,7 @@ public class RegistrationDataBase
     public StudentCampRegisterer getStudentCampRegisterer(){return studentCampRegisterer;}
     public StudentCampDeregisterer getStudentCampDeregisterer(){return studentCampDeregisterer;}
     public RegisteredCampNamesGetter getRegisteredCampNamesGetter(){return registeredCampNamesGetter;}
+    public CommitteeCampRegisterer getCommitteeCampRegisterer(){return committeeCampRegisterer;}
 
     //debugging func
     public void printDataBase()

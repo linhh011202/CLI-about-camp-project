@@ -26,6 +26,8 @@ public class CampDataBase
     private CheckSchoolMatch checkSchoolMatch;
     private ClashWithRegisteredChecker clashWithRegisteredChecker;
     private RegistrationClosedChecker registrationClosedChecker;
+    private CampCommitteeSlotChecker campCommitteeSlotChecker;
+    private CampCommitteeSlotReducer campCommitteeSlotReducer;
 
     public CampDataBase()
     {
@@ -50,6 +52,8 @@ public class CampDataBase
         checkSchoolMatch= new CheckSchoolMatch(this);
         clashWithRegisteredChecker=new ClashWithRegisteredChecker(this);
         registrationClosedChecker=new RegistrationClosedChecker(this);
+        campCommitteeSlotChecker=new CampCommitteeSlotChecker(this);
+        campCommitteeSlotReducer=new CampCommitteeSlotReducer(this);
     }
 
     
@@ -71,6 +75,8 @@ public class CampDataBase
     public CheckSchoolMatch getCheckSchoolMatch(){return checkSchoolMatch;}
     public ClashWithRegisteredChecker getClashWithRegisteredChecker(){return clashWithRegisteredChecker;}
     public RegistrationClosedChecker getRegistrationClosedChecker(){return registrationClosedChecker;}
+    public CampCommitteeSlotChecker getCampCommitteeSlotChecker(){return campCommitteeSlotChecker;}
+    public CampCommitteeSlotReducer getCampCommitteeSlotReducer(){return campCommitteeSlotReducer;}
 
     public ArrayList<Camp> getAllCamps() {return allCamps;}
 
