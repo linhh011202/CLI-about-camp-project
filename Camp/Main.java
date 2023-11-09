@@ -16,7 +16,12 @@ public class Main {
         Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer());
         
 
-
+        //Testing all campComRegistration cases
+        /* Test registration and dereg checks work properly. Only blocks dereg if he is campcom. Allows dereg if hes attendee.
+        student=student.registerCampCommittee("b");
+        student.registerCampStudent("a");
+        student.deregisterCamp("a");
+        student.deregisterCamp("b");
         //Test try to be campCom for more than 1.
         /* 
         student=student.registerCampCommittee("a");
@@ -67,6 +72,7 @@ public class Main {
         */
     
 
+        //Test registration as ATTENDEE funcs
         /* 
         //Testing if able to detect if user is trying to register to a camp that clashes with already registered camps.
         Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer());
