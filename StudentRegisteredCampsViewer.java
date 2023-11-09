@@ -14,7 +14,7 @@ public class StudentRegisteredCampsViewer implements IViewRegisteredCamps
         this.registeredCampNamesRolesGetter=registeredCampNamesRolesGetter;
         this.registeredCampsPrinter=registeredCampsPrinter;
     }
-    public void viewRegisteredCamps(Student student,IFilterCamps iFilterCamps)
+    public void viewRegisteredCamps(Student student,ISortCamps iSortCamps)
     {
         //Get string 2Darray of all camps registered under student from RegistrationDatabase, and respective roles, and query the CampDataBase to print
         //Those details in the user's filtered order.
@@ -28,7 +28,7 @@ public class StudentRegisteredCampsViewer implements IViewRegisteredCamps
         }
 
         //Use dependency of iFilterCamps to sort the camps in the database according to user's preferences before printing.
-        iFilterCamps.filterCamps();
+        iSortCamps.sortCamps();
 
         //Print the camps and the user's roles.
         registeredCampsPrinter.printRegisteredCamps(campRoleArray);

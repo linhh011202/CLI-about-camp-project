@@ -3,19 +3,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class FilterCampByOpenTo implements IFilterCamps
+public class SortCampByOpenTo implements ISortCamps
 {
-    private FilterManager filterManager;
+    private SortManager sortManager;
 
-    FilterCampByOpenTo(FilterManager filterManager)
+    SortCampByOpenTo(SortManager sortManager)
     {
-        this.filterManager=filterManager;
+        this.sortManager=sortManager;
     }
 
-    public void filterCamps()
+    public void sortCamps()
     {
         //get all camps in database and sort.
-        ArrayList<Camp> allCamps=filterManager.getCampDataBase().getAllCamps();
+        ArrayList<Camp> allCamps=sortManager.getCampDataBase().getAllCamps();
 
         Comparator<Camp> byCampName = Comparator.comparing(Camp::getStringOpenTo);
         // Sort the list using the custom Comparator

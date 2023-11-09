@@ -3,19 +3,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class FilterCampByAvailableCampCommiteeSlots implements IFilterCamps
+public class SortCampByAvailableCampCommiteeSlots implements ISortCamps
 {
-    private FilterManager filterManager;
+    private SortManager sortManager;
 
-    FilterCampByAvailableCampCommiteeSlots(FilterManager filterManager)
+    SortCampByAvailableCampCommiteeSlots(SortManager sortManager)
     {
-        this.filterManager=filterManager;
+        this.sortManager=sortManager;
     }
 
-    public void filterCamps()
+    public void sortCamps()
     {
         //get all camps in database and sort.
-        ArrayList<Camp> allCamps=filterManager.getCampDataBase().getAllCamps();
+        ArrayList<Camp> allCamps=sortManager.getCampDataBase().getAllCamps();
 
         Comparator<Camp> byCampName = Comparator.comparing(Camp::getAvailableCampComSlots);
         // Sort the list using the custom Comparator

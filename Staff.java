@@ -9,9 +9,9 @@ public class Staff extends User
     private IViewOwnCamps staffViewOwnCamps;
    
 
-    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,IFilterCamps iFilterCamps)
+    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps)
     {
-        super(name,iFilterCamps);
+        super(name,iSortCamps);
         this.staffCampCreator=staffCampCreator;
         this.staffCampDeleter=staffCampDeleter;
         this.staffCampEditor=staffCampEditor;
@@ -47,11 +47,11 @@ public class Staff extends User
     }
     public void viewAllCamps()
     {
-        staffViewAllCamps.viewAllCamps(this,super.getFilterCamps());
+        staffViewAllCamps.viewAllCamps(this,super.getSortCamps());
     }
     public void viewOwnCamps()
     {
-        staffViewOwnCamps.viewOwnCamps(this,super.getFilterCamps());
+        staffViewOwnCamps.viewOwnCamps(this,super.getSortCamps());
     }
 
 

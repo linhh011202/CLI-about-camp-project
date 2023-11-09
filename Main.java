@@ -6,23 +6,23 @@ public class Main {
         CampDataBase campDataBase=new CampDataBase();
         RegistrationDataBase registrationDataBase=new RegistrationDataBase(campDataBase.getCampStudentSlotChecker(), campDataBase.getCampStudentSlotReducer(),campDataBase.getCheckSchoolMatch(),campDataBase.getCampStudentSlotIncreaser(),campDataBase.getClashWithRegisteredChecker(),campDataBase.getRegistrationClosedChecker(),campDataBase.getCampCommitteeSlotChecker(),campDataBase.getCampCommitteeSlotReducer(),campDataBase.getRegisteredCampsPrinter());
 
-        Staff currentStaff=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
+        Staff currentStaff=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName());
         currentStaff.createCamp("c", "01/12/1000","10/12/1000", "01/10/2050", true, "CLASSSY", 1, 2, "ZEST CAMP" , Faculty.NTU);
 
-        Staff nextStaff=new Staff("notanimal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getFilterManager().getFilterCampByCampName());
+        Staff nextStaff=new Staff("notanimal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName());
         nextStaff.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 1, "BEST CAMP" , Faculty.SCSE);
         nextStaff.createCamp("a", "11/12/2010","15/12/2010", "01/10/2050", true, "MOHOR B", 5, 1, "AEST CAMP" , Faculty.SCSE);
        
-        Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getFilterManager().getFilterCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer());
+        Student student=new Student("TOMMY",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer());
         
 
         //Test view registered camps , with changing filter. 
         student.registerCampCommittee("a");
         student.registerCampStudent("b");
         student.registerCampStudent("c");
-        student.setCampFilter(campDataBase.getFilterManager().getFilterCampByLocation());
+        student.setCampFilter(campDataBase.getSortManager().getSortCampByLocation());
         student.viewRegisteredCamps();
-        student.setCampFilter(campDataBase.getFilterManager().getFilterCampByCampName());
+        student.setCampFilter(campDataBase.getSortManager().getSortCampByCampName());
         student.viewRegisteredCamps();
 
 

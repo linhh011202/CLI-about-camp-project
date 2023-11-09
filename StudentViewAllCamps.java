@@ -7,9 +7,9 @@ public class StudentViewAllCamps implements IViewAllCamps
     private CampDataBase campDataBase;
     public StudentViewAllCamps(CampDataBase campDataBase){this.campDataBase=campDataBase;}
 
-    public void viewAllCamps(User user,IFilterCamps iFilterCamps)
+    public void viewAllCamps(User user,ISortCamps iSortCamps)
     {
-        iFilterCamps.filterCamps();//Filter camps according to filter set by user.
+        iSortCamps.sortCamps();//Filter camps according to filter set by user.
 
         ArrayList<Camp> allCamps=campDataBase.getAllCamps();
         System.out.println("List of all camps visible to you:\n");

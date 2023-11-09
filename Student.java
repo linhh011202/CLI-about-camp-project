@@ -1,5 +1,6 @@
 package camp;
 
+
 public class Student extends User
 {
     private Faculty faculty;
@@ -12,9 +13,9 @@ public class Student extends User
     private IRegisterCommittee committeeCampRegisterer;
     private IViewRegisteredCamps studentRegisteredCampsViewer;
 
-    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer)
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer)
     {
-        super(name,iFilterCamps);
+        super(name,iSortCamps);
         this.isCommittee=false;
         this.studentViewAllCamps=studentViewAllCamps;
         this.faculty=faculty;
@@ -27,7 +28,7 @@ public class Student extends User
     //Copy constructor
     public Student(Student student)
     {
-        super(student.getName(),student.getFilterCamps());
+        super(student.getName(),student.getSortCamps());
         this.isCommittee=student.getIsCommittee();
         this.faculty=student.getFaculty();
         this.studentViewAllCamps=student.getStudentViewAllCamps();
@@ -82,7 +83,7 @@ public class Student extends User
     //Testing Functions:
     public void viewAllCamps()
     {
-        studentViewAllCamps.viewAllCamps(this,super.getFilterCamps());
+        studentViewAllCamps.viewAllCamps(this,super.getSortCamps());
     }
 
     public void registerCampStudent(String campName)
@@ -102,7 +103,7 @@ public class Student extends User
 
     public void viewRegisteredCamps()
     {
-        studentRegisteredCampsViewer.viewRegisteredCamps(this,super.getFilterCamps());
+        studentRegisteredCampsViewer.viewRegisteredCamps(this,super.getSortCamps());
     }
 
 

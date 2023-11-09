@@ -3,19 +3,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class FilterCampByEndDate implements IFilterCamps
+public class SortCampByEndDate implements ISortCamps
 {
-    private FilterManager filterManager;
+    private SortManager sortManager;
 
-    FilterCampByEndDate(FilterManager filterManager)
+    SortCampByEndDate(SortManager sortManager)
     {
-        this.filterManager=filterManager;
+        this.sortManager=sortManager;
     }
 
-    public void filterCamps()
+    public void sortCamps()
     {
         //get all camps in database and sort.
-        ArrayList<Camp> allCamps=filterManager.getCampDataBase().getAllCamps();
+        ArrayList<Camp> allCamps=sortManager.getCampDataBase().getAllCamps();
 
         Comparator<Camp> byCampName = Comparator.comparing(Camp::getEndDate);
         // Sort the list using the custom Comparator

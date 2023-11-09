@@ -7,11 +7,11 @@ public class StaffViewAllCamps implements IViewAllCamps
     private CampDataBase campDataBase;
     public StaffViewAllCamps(CampDataBase campDataBase){this.campDataBase=campDataBase;}
 
-    public void viewAllCamps(User user,IFilterCamps iFilterCamps)
+    public void viewAllCamps(User user,ISortCamps iSortCamps)
     {
         //Can potentially assert if user is staff here but shouldn't be needed!
 
-        iFilterCamps.filterCamps();//Filters camps according to filter set by user.
+        iSortCamps.sortCamps();//Filters camps according to filter set by user.
 
         ArrayList<Camp> allCamps=campDataBase.getAllCamps();
 
