@@ -14,13 +14,13 @@ public class StudentCampRegisterer implements IRegisterCamp
     private ICheckRegistrationClosed registrationClosedChecker;
     
 
-    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,ICheckNoClash clashWithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker)
+    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,ICheckNoClash clashWithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,RegisteredCampNamesGetter registeredCampNamesGetter)
     {
         this.registrationDataBase=registrationDataBase;
         this.campStudentSlotChecker=campStudentSlotChecker;
         this.campStudentSlotReducer=campStudentSlotReducer;
         this.checkSchoolMatch=checkSchoolMatch;
-        this.registeredCampNamesGetter=registrationDataBase.getRegisteredCampNamesGetter();
+        this.registeredCampNamesGetter=registeredCampNamesGetter;
         this.clashWithRegisteredChecker=clashWithRegisteredChecker;
         this.registrationClosedChecker=registrationClosedChecker;
     }

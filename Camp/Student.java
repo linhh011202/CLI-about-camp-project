@@ -10,8 +10,9 @@ public class Student extends User
     private IRegisterCamp studentCampRegisterer;
     private IDeregisterCamp studentCampDeregisterer;
     private IRegisterCommittee committeeCampRegisterer;
+    private IViewRegisteredCamps studentRegisteredCampsViewer;
 
-    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer )
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,IFilterCamps iFilterCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer)
     {
         super(name,iFilterCamps);
         this.isCommittee=false;
@@ -20,6 +21,7 @@ public class Student extends User
         this.studentCampRegisterer=studentCampRegisterer;
         this.studentCampDeregisterer=studentCampDeregisterer;
         this.committeeCampRegisterer=commiteeCampRegisterer;
+        this.studentRegisteredCampsViewer=studentRegisteredCampsViewer;
     }
 
     //Copy constructor
@@ -32,6 +34,7 @@ public class Student extends User
         this.studentCampRegisterer=student.getStudentCampRegisterer();
         this.studentCampDeregisterer=student.getStudentCampDeregisterer();
         this.committeeCampRegisterer=student.getCommitteeCampRegisterer();
+        this.studentRegisteredCampsViewer=student.getStudentRegisteredCampsViewer();
     }
 
 
@@ -70,6 +73,11 @@ public class Student extends User
         return committeeCampRegisterer;
     }
 
+    public IViewRegisteredCamps getStudentRegisteredCampsViewer()
+    {
+        return studentRegisteredCampsViewer;
+    }
+
 
     //Testing Functions:
     public void viewAllCamps()
@@ -90,6 +98,11 @@ public class Student extends User
     public Student registerCampCommittee(String campName)
     {
         return committeeCampRegisterer.registerCamp(this, campName);
+    }
+
+    public void viewRegisteredCamps()
+    {
+        studentRegisteredCampsViewer.viewRegisteredCamps(this,super.getFilterCamps());
     }
 
 

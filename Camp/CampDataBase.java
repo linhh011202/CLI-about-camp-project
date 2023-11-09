@@ -28,6 +28,7 @@ public class CampDataBase
     private RegistrationClosedChecker registrationClosedChecker;
     private CampCommitteeSlotChecker campCommitteeSlotChecker;
     private CampCommitteeSlotReducer campCommitteeSlotReducer;
+    private RegisteredCampsPrinter registeredCampsPrinter;
 
     public CampDataBase()
     {
@@ -54,6 +55,7 @@ public class CampDataBase
         registrationClosedChecker=new RegistrationClosedChecker(this);
         campCommitteeSlotChecker=new CampCommitteeSlotChecker(this);
         campCommitteeSlotReducer=new CampCommitteeSlotReducer(this);
+        registeredCampsPrinter=new RegisteredCampsPrinter(this);
     }
 
     
@@ -77,6 +79,7 @@ public class CampDataBase
     public RegistrationClosedChecker getRegistrationClosedChecker(){return registrationClosedChecker;}
     public CampCommitteeSlotChecker getCampCommitteeSlotChecker(){return campCommitteeSlotChecker;}
     public CampCommitteeSlotReducer getCampCommitteeSlotReducer(){return campCommitteeSlotReducer;}
+    public RegisteredCampsPrinter getRegisteredCampsPrinter(){return registeredCampsPrinter;}
 
     public ArrayList<Camp> getAllCamps() {return allCamps;}
 

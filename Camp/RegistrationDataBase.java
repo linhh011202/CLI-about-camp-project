@@ -11,16 +11,20 @@ public class RegistrationDataBase
     private StudentCampDeregisterer studentCampDeregisterer; 
     private RegisteredCampNamesGetter registeredCampNamesGetter; 
     private CommitteeCampRegisterer committeeCampRegisterer;
+    private RegisteredCampNamesRolesGetter registeredCampNamesRolesGetter;
+    private StudentRegisteredCampsViewer studentRegisteredCampsViewer;
 
-    public RegistrationDataBase(IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,IIncreaseCampSlots campStudentSlotIncreaser,ICheckNoClash clashwithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,IGetCampSlots campCommitteeSlotChecker,IReduceCampSlots campCommitteeSlotReducer)
+    public RegistrationDataBase(IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,IIncreaseCampSlots campStudentSlotIncreaser,ICheckNoClash clashwithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,IGetCampSlots campCommitteeSlotChecker,IReduceCampSlots campCommitteeSlotReducer,IPrintRegisteredCamps registeredCampsPrinter)
     {
         //Probably read in the data from files, but for now we make it empty at the start every time.
         allRegistrations=new ArrayList<Registration>(1);
         //Initialise Associated classes. 
         registeredCampNamesGetter=new RegisteredCampNamesGetter(this);
-        studentCampRegisterer=new StudentCampRegisterer(this,campStudentSlotChecker,campStudentSlotReducer,checkSchoolMatch,clashwithRegisteredChecker,registrationClosedChecker);
+        studentCampRegisterer=new StudentCampRegisterer(this,campStudentSlotChecker,campStudentSlotReducer,checkSchoolMatch,clashwithRegisteredChecker,registrationClosedChecker,registeredCampNamesGetter);
         studentCampDeregisterer=new StudentCampDeregisterer(this,campStudentSlotIncreaser);
         committeeCampRegisterer=new CommitteeCampRegisterer(this,campCommitteeSlotChecker,checkSchoolMatch,registrationClosedChecker,registeredCampNamesGetter,clashwithRegisteredChecker,campCommitteeSlotReducer);
+        registeredCampNamesRolesGetter=new RegisteredCampNamesRolesGetter(this);
+        studentRegisteredCampsViewer=new StudentRegisteredCampsViewer(this,registeredCampNamesRolesGetter,registeredCampsPrinter);
         
     }
     
@@ -30,6 +34,8 @@ public class RegistrationDataBase
     public StudentCampDeregisterer getStudentCampDeregisterer(){return studentCampDeregisterer;}
     public RegisteredCampNamesGetter getRegisteredCampNamesGetter(){return registeredCampNamesGetter;}
     public CommitteeCampRegisterer getCommitteeCampRegisterer(){return committeeCampRegisterer;}
+    public RegisteredCampNamesRolesGetter getRegisteredCampNamesRolesGetter(){return registeredCampNamesRolesGetter;}
+    public StudentRegisteredCampsViewer getStudentRegisteredCampsViewer(){return studentRegisteredCampsViewer;}
 
     //debugging func
     public void printDataBase()
