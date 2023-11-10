@@ -12,6 +12,7 @@ public class CampDataBase
     private StaffCampEditor staffCampEditor;
     private StaffViewAllCamps staffViewAllCamps;
     private StaffViewOwnCamps staffViewOwnCamps;
+    private StaffStudentReportGenerator staffStudentReportGenerator;
 
     //Association with the manager classes related to Sorting Interfaces.
     private SortManager sortManager;
@@ -21,6 +22,7 @@ public class CampDataBase
 
     //Association with the manager classes related to student interfaces.
     private StudentViewAllCamps studentViewAllCamps;
+    private CampComStudentReportGenerator campComStudentReportGenerator;
 
     //Association with the manager classes related to registrationDB interfaces.
     private CampStudentSlotChecker campStudentSlotChecker;
@@ -38,7 +40,6 @@ public class CampDataBase
     {
         //Probably read in the data from files, but for now we make it empty at the start every time.
         allCamps=new ArrayList<Camp>(1);
-        //add lists to each row (diff staff=diff rows)
 
         //Initialise Associated classes. (maybe its a composition now then)
         staffCampCreator=new StaffCampCreator(this);
@@ -48,8 +49,6 @@ public class CampDataBase
         staffViewOwnCamps=new StaffViewOwnCamps(this);
 
         sortManager=new SortManager(this);
-
-        filterManager=new FilterManager(this);
 
         studentViewAllCamps=new StudentViewAllCamps(this);
 
@@ -65,6 +64,13 @@ public class CampDataBase
         campVisibilityChecker=new CampVisibilityChecker(this);
     }
 
+    public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker,IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter, IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter)
+    {
+        filterManager=new FilterManager(this,attendeeRegistrationChecker,committeeRegistrationChecker);  
+        staffStudentReportGenerator= new StaffStudentReportGenerator(this,registeredStudentNamesRolesGetter);
+        campComStudentReportGenerator= new CampComStudentReportGenerator(this,registeredStudentNamesRolesGetter,listOfCampsIsCommiteeOfGetter);
+    }
+
     
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
     
@@ -73,12 +79,14 @@ public class CampDataBase
     public StaffCampEditor getStaffCampEditor(){return staffCampEditor;}
     public StaffViewAllCamps getStaffViewAllCamps(){return staffViewAllCamps;}
     public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
+    public StaffStudentReportGenerator getStaffStudentReportGenerator(){return staffStudentReportGenerator;}
 
     public SortManager getSortManager(){return sortManager;}
 
     public FilterManager getFilterManager(){return filterManager;}
 
     public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
+    public CampComStudentReportGenerator getCampComStudentReportGenerator(){return campComStudentReportGenerator;}
 
     public CampStudentSlotChecker getCampStudentSlotChecker(){return campStudentSlotChecker;}
     public CampStudentSlotReducer getCampStudentSlotReducer(){return campStudentSlotReducer;}

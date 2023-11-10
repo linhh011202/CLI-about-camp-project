@@ -7,9 +7,10 @@ public class Staff extends User
     private IEditCamp staffCampEditor;
     private IViewAllCamps staffViewAllCamps;
     private IViewOwnCamps staffViewOwnCamps;
+    private IGenerateStudentReport staffStudentReportGenerator;
    
 
-    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps)
+    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator)
     {
         super(name,iSortCamps,iFilterCamps);
         this.staffCampCreator=staffCampCreator;
@@ -17,6 +18,7 @@ public class Staff extends User
         this.staffCampEditor=staffCampEditor;
         this.staffViewAllCamps=staffViewAllCamps;
         this.staffViewOwnCamps=staffViewOwnCamps;
+        this.staffStudentReportGenerator=staffStudentReportGenerator;
     }
 
     public void createCamp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,Faculty openTo)
@@ -50,6 +52,10 @@ public class Staff extends User
     public void viewOwnCamps()
     {
         staffViewOwnCamps.viewOwnCamps(this,super.getSortCamps(),getFilterCamps(),getFilterString());
+    }
+    public void generateStudentReport()
+    {
+        staffStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
     }
 
 

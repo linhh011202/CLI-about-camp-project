@@ -12,8 +12,9 @@ public class Student extends User
     private IDeregisterCamp studentCampDeregisterer;
     private IRegisterCommittee committeeCampRegisterer;
     private IViewRegisteredCamps studentRegisteredCampsViewer;
+    private IGenerateStudentReport campComStudentReportGenerator;
 
-    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps)
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps,IGenerateStudentReport campComStudentReportGenerator)
     {
         super(name,iSortCamps,iFilterCamps);
         this.isCommittee=false;
@@ -23,6 +24,7 @@ public class Student extends User
         this.studentCampDeregisterer=studentCampDeregisterer;
         this.committeeCampRegisterer=commiteeCampRegisterer;
         this.studentRegisteredCampsViewer=studentRegisteredCampsViewer;
+        this.campComStudentReportGenerator=campComStudentReportGenerator;
     }
 
     //Copy constructor
@@ -36,6 +38,7 @@ public class Student extends User
         this.studentCampDeregisterer=student.getStudentCampDeregisterer();
         this.committeeCampRegisterer=student.getCommitteeCampRegisterer();
         this.studentRegisteredCampsViewer=student.getStudentRegisteredCampsViewer();
+        this.campComStudentReportGenerator=student.getCampComStudentReportGenerator();
     }
 
 
@@ -79,6 +82,11 @@ public class Student extends User
         return studentRegisteredCampsViewer;
     }
 
+    public IGenerateStudentReport getCampComStudentReportGenerator()
+    {
+        return campComStudentReportGenerator;
+    }
+
 
     //Testing Functions:
     public void viewAllCamps()
@@ -104,6 +112,11 @@ public class Student extends User
     public void viewRegisteredCamps()
     {
         studentRegisteredCampsViewer.viewRegisteredCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
+    }
+
+    public void generateCampComReport()
+    {
+        campComStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
     }
 
 

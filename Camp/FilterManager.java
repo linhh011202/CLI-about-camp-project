@@ -24,7 +24,7 @@ public class FilterManager
     private FilterCampByCommitteeName filterCampByCommitteeName;
     private FilterCampByDescription filterCampByDescription;
 
-    public FilterManager(CampDataBase campDataBase)
+    public FilterManager(CampDataBase campDataBase,ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker)
     {
         this.campDataBase=campDataBase;
         this.filterCampByCampName=new FilterCampByCampName(this);
@@ -42,11 +42,6 @@ public class FilterManager
         this.filterCampByStaffIC=new FilterCampByStaffIC(this);
         this.filterCampByOpenTo=new FilterCampByOpenTo(this);
         this.filterCampByDescription=new FilterCampByDescription(this);
-    }
-
-    //Initialise the manager classes that needs interfaces from other classes. Function called in CRDBInterfaceInitialiser
-    public void initialiseFilterManager(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker)
-    {
         this.filterCampByAttendeeName=new FilterCampByAttendeeName(this,attendeeRegistrationChecker);
         this.filterCampByCommitteeName=new FilterCampByCommitteeName(this,committeeRegistrationChecker);
     }

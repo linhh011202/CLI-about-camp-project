@@ -15,6 +15,8 @@ public class RegistrationDataBase
     private StudentRegisteredCampsViewer studentRegisteredCampsViewer;
     private AttendeeRegistrationChecker attendeeRegistrationChecker;
     private CommitteeRegistrationChecker committeeRegistrationChecker;
+    private RegisteredStudentNamesRolesGetter registeredStudentNamesRolesGetter;
+    private ListOfCampsIsCommiteeOfGetter listOfCampsIsCommiteeOfGetter;
 
     public RegistrationDataBase()
     {
@@ -32,6 +34,8 @@ public class RegistrationDataBase
         studentRegisteredCampsViewer=new StudentRegisteredCampsViewer(this,registeredCampNamesRolesGetter,registeredCampsPrinter);
         attendeeRegistrationChecker=new AttendeeRegistrationChecker(this);
         committeeRegistrationChecker=new CommitteeRegistrationChecker(this);
+        registeredStudentNamesRolesGetter=new RegisteredStudentNamesRolesGetter(this);
+        listOfCampsIsCommiteeOfGetter=new ListOfCampsIsCommiteeOfGetter(this);
 
     }
     
@@ -45,6 +49,8 @@ public class RegistrationDataBase
     public StudentRegisteredCampsViewer getStudentRegisteredCampsViewer(){return studentRegisteredCampsViewer;}
     public AttendeeRegistrationChecker getAttendeeRegistrationChecker(){return attendeeRegistrationChecker;}
     public CommitteeRegistrationChecker getCommitteeRegistrationChecker(){return committeeRegistrationChecker;}
+    public RegisteredStudentNamesRolesGetter getRegisteredStudentNamesRolesGetter(){return registeredStudentNamesRolesGetter;}
+    public ListOfCampsIsCommiteeOfGetter getListOfCampsIsCommiteeOfGetter(){return listOfCampsIsCommiteeOfGetter;}
 
     //debugging func
     public void printDataBase()

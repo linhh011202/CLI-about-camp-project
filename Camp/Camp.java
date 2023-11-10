@@ -1,6 +1,9 @@
 package camp;
 
 import java.time.LocalDate;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Camp 
 {
@@ -56,6 +59,20 @@ public class Camp
         System.out.printf("|| Available Attendee Slots: %s ||\n",this.getAvailableAttendeeSlots());
         System.out.printf("|| Available Camp Committee Slots: %s ||\n\n",this.getAvailableCampComSlots());
 
+    }
+
+    public void printCampToFile(PrintWriter printWriter)
+    {
+        printWriter.printf("|| Camp name: %s | Staff in charge: %s ||\n",this.getCampName(),this.getStaffInCharge());
+        printWriter.printf("|| Start Date: %s | End Date: %s ||\n",this.getStringStartDate(),this.getStringEndDate());
+        printWriter.printf("|| Registration Closing Date: %s | Visibility: %b ||\n",this.getStringRegClosingDate(),this.getVisibility());
+        printWriter.printf("|| Location: %s | Total Slots: %d ||\n",this.getLocation(),this.getTotalSlots());
+        printWriter.printf("|| Total Camp Attendee Slots: %d ||\n",this.getAttendeeSlots());
+        printWriter.printf("|| Total Camp Committee Slots: %d ||\n",this.getCampComSlots());
+        printWriter.printf("|| Description: %s ||\n",this.getDescription());
+        printWriter.printf("|| Open To: %s ||\n",this.getOpenTo().toString());
+        printWriter.printf("|| Available Attendee Slots: %s ||\n",this.getAvailableAttendeeSlots());
+        printWriter.printf("|| Available Camp Committee Slots: %s ||\n\n",this.getAvailableCampComSlots());
     }
 
     //Setters and getters
