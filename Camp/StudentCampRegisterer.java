@@ -12,9 +12,10 @@ public class StudentCampRegisterer implements IRegisterCamp
     private IGetCampsRegistered registeredCampNamesGetter;
     private ICheckNoClash clashWithRegisteredChecker;
     private ICheckRegistrationClosed registrationClosedChecker;
+    private ICheckCampVisibility campvisibilityChecker;
     
 
-    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,ICheckNoClash clashWithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,RegisteredCampNamesGetter registeredCampNamesGetter)
+    public StudentCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campStudentSlotChecker,IReduceCampSlots campStudentSlotReducer,ICheckSchoolMatch checkSchoolMatch,ICheckNoClash clashWithRegisteredChecker,ICheckRegistrationClosed registrationClosedChecker,RegisteredCampNamesGetter registeredCampNamesGetter,ICheckCampVisibility campvisibilityChecker)
     {
         this.registrationDataBase=registrationDataBase;
         this.campStudentSlotChecker=campStudentSlotChecker;
@@ -23,12 +24,20 @@ public class StudentCampRegisterer implements IRegisterCamp
         this.registeredCampNamesGetter=registeredCampNamesGetter;
         this.clashWithRegisteredChecker=clashWithRegisteredChecker;
         this.registrationClosedChecker=registrationClosedChecker;
+        this.campvisibilityChecker=campvisibilityChecker;
     }
 
     public void registerCamp(Student student,String campName)
     {
-        //Error checks if the camp is even open to the student, or exists.
-        boolean returnVal=checkSchoolMatch.checkSchoolMatch(student, campName);
+
+        //Check if camp is even visible to student, or exists.
+        boolean returnVal=campvisibilityChecker.isCampVisible(campName);
+        if(!returnVal)//means Camp isn't visible. Error message printed by campVisibilityChecker
+        {
+            return;
+        }
+        //Error checks if the camp is open to the student
+        returnVal=checkSchoolMatch.checkSchoolMatch(student, campName);
         if(!returnVal)//means mismatch occured, or school doesn't exist. Error message printed by checkSchoolMatch.
         {
             return;

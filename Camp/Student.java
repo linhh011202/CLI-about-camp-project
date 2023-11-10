@@ -13,9 +13,9 @@ public class Student extends User
     private IRegisterCommittee committeeCampRegisterer;
     private IViewRegisteredCamps studentRegisteredCampsViewer;
 
-    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer)
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps)
     {
-        super(name,iSortCamps);
+        super(name,iSortCamps,iFilterCamps);
         this.isCommittee=false;
         this.studentViewAllCamps=studentViewAllCamps;
         this.faculty=faculty;
@@ -28,7 +28,7 @@ public class Student extends User
     //Copy constructor
     public Student(Student student)
     {
-        super(student.getName(),student.getSortCamps());
+        super(student.getName(),student.getSortCamps(),student.getFilterCamps());
         this.isCommittee=student.getIsCommittee();
         this.faculty=student.getFaculty();
         this.studentViewAllCamps=student.getStudentViewAllCamps();
@@ -83,7 +83,7 @@ public class Student extends User
     //Testing Functions:
     public void viewAllCamps()
     {
-        studentViewAllCamps.viewAllCamps(this,super.getSortCamps());
+        studentViewAllCamps.viewAllCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
     }
 
     public void registerCampStudent(String campName)
@@ -103,7 +103,7 @@ public class Student extends User
 
     public void viewRegisteredCamps()
     {
-        studentRegisteredCampsViewer.viewRegisteredCamps(this,super.getSortCamps());
+        studentRegisteredCampsViewer.viewRegisteredCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
     }
 
 

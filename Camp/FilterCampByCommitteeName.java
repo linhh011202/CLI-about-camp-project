@@ -2,13 +2,15 @@ package camp;
 
 import java.util.ArrayList;
 
-public class FilterCampByStaffIC implements IFilterCamps
+public class FilterCampByCommitteeName implements IFilterCamps
 {
     private FilterManager filterManager;
+    private ICheckRegistration committeeRegistrationChecker;
 
-    public FilterCampByStaffIC(FilterManager filterManager)
+    public FilterCampByCommitteeName(FilterManager filterManager,ICheckRegistration committeeRegistrationChecker)
     {
         this.filterManager=filterManager;
+        this.committeeRegistrationChecker=committeeRegistrationChecker;
     }
 
     public void filterCamps(String filterString)
@@ -16,8 +18,8 @@ public class FilterCampByStaffIC implements IFilterCamps
         ArrayList<Camp> allCamps=filterManager.getCampDataBase().getAllCamps();
         for(int i=0;i<allCamps.size();++i)
         {
-            //Set filtered marker on camps according to whether they match the description or not.
-            if(allCamps.get(i).getStaffInCharge().equals(filterString))
+            //Set filtered marker on camps according to whether there is said student in camp or not.
+            if(committeeRegistrationChecker.checkRegistration(filterString, allCamps.get(i).getCampName()))
             {
                 allCamps.get(i).setIsFilteredOut(false);
             }
@@ -25,6 +27,7 @@ public class FilterCampByStaffIC implements IFilterCamps
             {
                 allCamps.get(i).setIsFilteredOut(true);
             }
+
         }
     }
 

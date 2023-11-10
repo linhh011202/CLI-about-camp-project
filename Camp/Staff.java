@@ -9,16 +9,14 @@ public class Staff extends User
     private IViewOwnCamps staffViewOwnCamps;
    
 
-    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps)
+    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps)
     {
-        super(name,iSortCamps);
+        super(name,iSortCamps,iFilterCamps);
         this.staffCampCreator=staffCampCreator;
         this.staffCampDeleter=staffCampDeleter;
         this.staffCampEditor=staffCampEditor;
         this.staffViewAllCamps=staffViewAllCamps;
         this.staffViewOwnCamps=staffViewOwnCamps;
-        
-        
     }
 
     public void createCamp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,Faculty openTo)
@@ -47,11 +45,11 @@ public class Staff extends User
     }
     public void viewAllCamps()
     {
-        staffViewAllCamps.viewAllCamps(this,super.getSortCamps());
+        staffViewAllCamps.viewAllCamps(this,super.getSortCamps(),getFilterCamps(),getFilterString());
     }
     public void viewOwnCamps()
     {
-        staffViewOwnCamps.viewOwnCamps(this,super.getSortCamps());
+        staffViewOwnCamps.viewOwnCamps(this,super.getSortCamps(),getFilterCamps(),getFilterString());
     }
 
 

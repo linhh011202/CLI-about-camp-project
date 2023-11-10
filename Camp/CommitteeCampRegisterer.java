@@ -18,8 +18,9 @@ public class CommitteeCampRegisterer implements IRegisterCommittee
     private IGetCampsRegistered registeredCampNamesGetter;
     private ICheckNoClash clashWithRegisteredChecker;
     private IReduceCampSlots campCommitteeSlotReducer;
+    private ICheckCampVisibility campvisibilityChecker;
 
-    public CommitteeCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campCommitteeSlotChecker, ICheckSchoolMatch checkSchoolMatch,ICheckRegistrationClosed registrationClosedChecker, IGetCampsRegistered registeredCampNamesGetter,ICheckNoClash clashWithRegisteredChecker,IReduceCampSlots campCommitteeSlotReducer)
+    public CommitteeCampRegisterer(RegistrationDataBase registrationDataBase,IGetCampSlots campCommitteeSlotChecker, ICheckSchoolMatch checkSchoolMatch,ICheckRegistrationClosed registrationClosedChecker, IGetCampsRegistered registeredCampNamesGetter,ICheckNoClash clashWithRegisteredChecker,IReduceCampSlots campCommitteeSlotReducer,ICheckCampVisibility campvisibilityChecker)
     {
         this.registrationDataBase=registrationDataBase;
         this.campCommitteeSlotChecker=campCommitteeSlotChecker;
@@ -28,6 +29,7 @@ public class CommitteeCampRegisterer implements IRegisterCommittee
         this.registeredCampNamesGetter=registeredCampNamesGetter;
         this.clashWithRegisteredChecker=clashWithRegisteredChecker;
         this.campCommitteeSlotReducer=campCommitteeSlotReducer;
+        this.campvisibilityChecker=campvisibilityChecker;
     }
 
     //We return a new CampCommittee object but with a student reference upon success. 
@@ -37,26 +39,33 @@ public class CommitteeCampRegisterer implements IRegisterCommittee
         /*
          * Error checks:
          * 1.Check IF HES ALR A CAMPCOMM
-         * 2.Check its open to his school
-         * 3.Check if he alr registered to camp/dereged before
-         * 4.Check if closed reg
-         * 5.Check if clash
-         * 6.Check if have campcom slot
+         * 2.Check if its visible.
+         * 3.Check its open to his school
+         * 4.Check if he alr registered to camp/dereged before
+         * 5.Check if closed reg
+         * 6.Check if clash
+         * 7.Check if have campcom slot
          * 
          * Any of the above fails, return student himself.
          * Else Register Campcom by creating the registration entry and put into DB, 
          * then create and return a CAMPCOM object with said string and IsCampCommittee=true.
          */
         
-         //If already a campcom,can't register to be another
-         if(student.getIsCommittee()==true)
-         {
-            System.out.println("Registration failed! You cannot be a Camp Committee member for more than one camp!");
+        //If already a campcom,can't register to be another
+        if(student.getIsCommittee()==true)
+        {
+        System.out.println("Registration failed! You cannot be a Camp Committee member for more than one camp!");
+        return student;
+        }
+
+        boolean returnVal=campvisibilityChecker.isCampVisible(campName);
+        if(!returnVal)
+        {
             return student;
-         }
+        }
 
         //Error checks if the camp is even open to the student, or exists.
-        boolean returnVal=checkSchoolMatch.checkSchoolMatch(student, campName);
+        returnVal=checkSchoolMatch.checkSchoolMatch(student, campName);
         if(!returnVal)//means mismatch occured, or school doesn't exist. Error message printed by checkSchoolMatch.
         {
             return student;

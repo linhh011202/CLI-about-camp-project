@@ -1,5 +1,7 @@
 package camp;
 
+//Student shouldnt have access to interfaces for filters that he shouldn't be able to know. Like attendeename, etc.
+
 public class FilterManager 
 {
     private CampDataBase campDataBase;
@@ -18,6 +20,9 @@ public class FilterManager
     private FilterCampByAvailableAttendeeSlots filterCampByAvailableAttendeeSlots;
     private FilterCampByStaffIC filterCampByStaffIC;
     private FilterCampByOpenTo filterCampByOpenTo;
+    private FilterCampByAttendeeName filterCampByAttendeeName;
+    private FilterCampByCommitteeName filterCampByCommitteeName;
+    private FilterCampByDescription filterCampByDescription;
 
     public FilterManager(CampDataBase campDataBase)
     {
@@ -36,6 +41,14 @@ public class FilterManager
         this.filterCampByAvailableAttendeeSlots=new FilterCampByAvailableAttendeeSlots(this);
         this.filterCampByStaffIC=new FilterCampByStaffIC(this);
         this.filterCampByOpenTo=new FilterCampByOpenTo(this);
+        this.filterCampByDescription=new FilterCampByDescription(this);
+    }
+
+    //Initialise the manager classes that needs interfaces from other classes. Function called in CRDBInterfaceInitialiser
+    public void initialiseFilterManager(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker)
+    {
+        this.filterCampByAttendeeName=new FilterCampByAttendeeName(this,attendeeRegistrationChecker);
+        this.filterCampByCommitteeName=new FilterCampByCommitteeName(this,committeeRegistrationChecker);
     }
 
     public CampDataBase getCampDataBase()
@@ -111,6 +124,21 @@ public class FilterManager
     public FilterCampByOpenTo getFilterCampByOpenTo()
     {
         return filterCampByOpenTo;
+    }
+
+    public FilterCampByAttendeeName getFilterCampByAttendeeName()
+    {
+        return filterCampByAttendeeName;
+    }
+
+    public FilterCampByCommitteeName getFilterCampByCommitteeName()
+    {
+        return filterCampByCommitteeName;
+    }
+
+    public FilterCampByDescription getFilterCampByDescription()
+    {
+        return filterCampByDescription;
     }
 
 }

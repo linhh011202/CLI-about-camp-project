@@ -44,14 +44,14 @@ public class StudentCampDeregisterer implements IDeregisterCamp
                 //Check if campCom
                 if(allRegistrations.get(i).getRole().equals("Camp Committee"))
                 {
-                    System.out.printf("Deregistration failed! You are a camp commoittee member and cannot withdraw from this camp!\n");
+                    System.out.printf("Deregistration failed! You are a camp committee member and cannot withdraw from this camp!\n");
                     return;
                 }
 
                 //Passed error checks, so we deregister student and increase back the available slots.
                 allRegistrations.get(i).setDeregistered(true);
                 campStudentSlotIncreaser.increaseCampSlots(campName);
-                System.out.printf("Successfully deregistered from camp! Camp name: %s\n",campName);
+                System.out.printf("Successfully deregistered from camp! Camp name: %s\n",allRegistrations.get(i).getCampName());
                 return;
             }
         }

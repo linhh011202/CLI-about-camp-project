@@ -21,9 +21,13 @@ public class RegisteredCampsPrinter implements IPrintRegisteredCamps
             {
                 if(allCamps.get(i).getCampName().equals(registeredCampsRoles.get(j).get(0)))//index 0 means campName of registered list, index 1 is corresponding role.
                 {
-                    allCamps.get(i).printCamp();
-                    System.out.printf("Your role in the above camp is %s.\n------------------------------------\n\n",registeredCampsRoles.get(j).get(1));
-                    break;
+                    //Only print if it's not filtered out.
+                    if(!allCamps.get(i).getIsFilteredOut())
+                    {
+                        allCamps.get(i).printCamp();
+                        System.out.printf("Your role in the above camp is %s.\n------------------------------------\n\n",registeredCampsRoles.get(j).get(1));
+                        break;
+                    }
                 }
             }
         }

@@ -7,29 +7,30 @@ public class StaffViewOwnCamps implements IViewOwnCamps
     private CampDataBase campDataBase;
     public StaffViewOwnCamps(CampDataBase campDataBase){this.campDataBase=campDataBase;}
 
-    public void viewOwnCamps(User user,ISortCamps iSortCamps)
+    public void viewOwnCamps(User user,ISortCamps iSortCamps,IFilterCamps iFilterCamps,String filterString)
     {
         //Can potentially assert if user is staff here but shouldn't be needed!
 
-        iSortCamps.sortCamps();//Filter camps according to filter set by user.
+        iSortCamps.sortCamps();//Sorts camps according to sorting set by user.
+        iFilterCamps.filterCamps(filterString);//Filter camps according to filter set by user.
 
         ArrayList<Camp> allCamps=campDataBase.getAllCamps();
 
+        //print staff's camps
+        System.out.printf("List of camps created by you:\n");
+        
         //If no camps
         if(allCamps.size()==0)
         {
-                System.out.printf("There are no camps that you own to display!\n");
+                System.out.printf("There are no camps to display!\n");
                 return;
         }
-
-        //print staff's camps
-        System.out.printf("List of camps created by you:\n");
 
         boolean noCamps=true;
         for(int i=0;i<allCamps.size();++i)
         {
-            //Check if row has any camps, or if the row belongs to said staff. If yes, print the whole row and return
-            if(allCamps.get(i).getStaffInCharge().equals(user.getName()))
+            //Print if camp is owned by staff, and is NOT filtered out.
+            if(allCamps.get(i).getStaffInCharge().equals(user.getName()) && !allCamps.get(i).getIsFilteredOut())
             {
                 Camp curCamp=allCamps.get(i);
                 curCamp.printCamp();
