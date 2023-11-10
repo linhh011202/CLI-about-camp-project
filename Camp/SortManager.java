@@ -1,7 +1,6 @@
 package camp;
 
-public class 
-SortManager 
+public class SortManager 
 {
     private CampDataBase campDataBase;
 

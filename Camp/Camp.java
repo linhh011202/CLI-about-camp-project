@@ -18,6 +18,7 @@ public class Camp
     private String description;
     private String staffInCharge;
     private Faculty openTo;
+    private boolean isFilteredOut;
 
     public Camp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,User user,Faculty openTo)
     {
@@ -39,6 +40,7 @@ public class Camp
         this.availableAttendeeSlots=attendeeSlots;
         this.availableCampComSlots=campComSlots;
         this.totalSlots=campComSlots+attendeeSlots;
+        this.isFilteredOut=false;
     }
     
     public void printCamp()
@@ -117,4 +119,7 @@ public class Camp
 
     public int getAttendeeSlots(){return attendeeSlots;}
     public void setAttendeeSlots(int newAttendeeSlots){attendeeSlots=newAttendeeSlots;}
+
+    public boolean getIsFilteredOut(){return isFilteredOut;}
+    public void setIsFilteredOut(boolean isFilteredOut){this.isFilteredOut=isFilteredOut;}
 }

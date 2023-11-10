@@ -13,8 +13,11 @@ public class CampDataBase
     private StaffViewAllCamps staffViewAllCamps;
     private StaffViewOwnCamps staffViewOwnCamps;
 
-    //Association with the manager classes related to filter interfaces.
+    //Association with the manager classes related to Sorting Interfaces.
     private SortManager sortManager;
+
+    //Manager class related to filter interface
+    private FilterManager filterManager;
 
     //Association with the manager classes related to student interfaces.
     private StudentViewAllCamps studentViewAllCamps;
@@ -45,6 +48,8 @@ public class CampDataBase
 
         sortManager=new SortManager(this);
 
+        filterManager=new FilterManager(this);
+
         studentViewAllCamps=new StudentViewAllCamps(this);
 
         campStudentSlotChecker=new CampStudentSlotChecker(this);
@@ -68,6 +73,8 @@ public class CampDataBase
     public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
 
     public SortManager getSortManager(){return sortManager;}
+
+    public FilterManager getFilterManager(){return filterManager;}
 
     public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
 
