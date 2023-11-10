@@ -14,7 +14,7 @@ public class SuggestionCampCommittee extends CampCommittee
         String text = sc.nextLine();
         Suggestions suggestion = new Suggestions(studentID, text, null, campName);
         suggestions.add(suggestion);
-        super.increasePoint(); // may need to change
+        super.addPoints(); // may need to change
         System.out.println("Suggestion sent successfully. ");
     }
 

@@ -33,7 +33,7 @@ public class EnquiryCampCommittee extends CampCommittee implements IReplyEnquiri
                 System.out.println("Input your reply here: ");
                 String reply = sc.nextLine();
                 enquiry.setReplyText(reply);
-                super.increasePoint();
+                super.addPoints();
                 System.out.println("Enquiry replied successfully. ");
                 break;
             }
