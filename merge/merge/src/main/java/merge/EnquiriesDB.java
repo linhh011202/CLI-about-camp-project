@@ -8,7 +8,12 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
     //Scanner sc = new Scanner(System.in);
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
     private static int enquiryIdCounter = 1;
-
+    private ICheckSchoolMatch checkSchoolMatch;
+    private ICheckCampVisibility CampVisibilityChecker;
+    public EnquiriesDB(ICheckSchoolMatch checkSchoolMatch, ICheckCampVisibility campvisibilityChecker) {
+        this.checkSchoolMatch=checkSchoolMatch;
+        this.campvisibilityChecker=campvisibilityChecker;
+    }
     public void addReply(int enquiryNumber, String replyText, List<String> campList) {
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
@@ -25,15 +30,31 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         System.out.println("The specified comment does not exist.");
     }
 
-    public void sendEnquiry(String camp, String text, String user) {
+    public void sendEnquiry(String camp, String text, User user) {
         //add parser to get input
         //add error checking as students can only submit enquiries to any camp he/she can see
-        Enquiry enquiry = new Enquiry(enquiryIdCounter++, camp, text, user);
+        boolean returnVal=campvisibilityChecker.isCampVisible(camp);
+        if (!returnVal){
+            return;
+        }
+        returnVal = checkSchoolMatch.checkSchoolMatch(user, camp);
+        if (!returnVal){
+            return;
+        }
+        Enquiry enquiry = new Enquiry(enquiryIdCounter++, camp, text, user.getName);
         enquiriesDB.add(enquiry);
         System.out.println("Enquiry sent successfully. ");
     }
 
     public void editEnquiry(int enquiryNumber, String newText, String newCamp, String user) {
+        boolean returnVal=campvisibilityChecker.isCampVisible(camp);
+        if (!returnVal){
+            return;
+        }
+        returnVal = checkSchoolMatch.checkSchoolMatch(user, camp);
+        if (!returnVal){
+            return;
+        }
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
                 if (enquiry.getUser().equals(user) && enquiry.getReplies().isEmpty()) {
