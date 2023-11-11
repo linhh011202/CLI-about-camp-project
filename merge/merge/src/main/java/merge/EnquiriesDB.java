@@ -9,10 +9,10 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
     private static int enquiryIdCounter = 1;
     private ICheckSchoolMatch checkSchoolMatch;
-    private ICheckCampVisibility CampVisibilityChecker;
-    public EnquiriesDB(ICheckSchoolMatch checkSchoolMatch, ICheckCampVisibility campvisibilityChecker) {
+    private ICheckCampVisibility campVisibilityChecker;
+    public EnquiriesDB(ICheckSchoolMatch checkSchoolMatch, ICheckCampVisibility campVisibilityChecker) {
         this.checkSchoolMatch=checkSchoolMatch;
-        this.campvisibilityChecker=campvisibilityChecker;
+        this.campVisibilityChecker=campVisibilityChecker;
     }
     public void addReply(int enquiryNumber, String replyText, List<String> campList) {
         for (Enquiry enquiry : enquiriesDB) {
@@ -30,34 +30,34 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         System.out.println("The specified comment does not exist.");
     }
 
-    public void sendEnquiry(String camp, String text, User user) {
+    public void sendEnquiry(String camp, String text, Student student) {
         //add parser to get input
         //add error checking as students can only submit enquiries to any camp he/she can see
-        boolean returnVal=campvisibilityChecker.isCampVisible(camp);
+        boolean returnVal=campVisibilityChecker.isCampVisible(camp);
         if (!returnVal){
             return;
         }
-        returnVal = checkSchoolMatch.checkSchoolMatch(user, camp);
+        returnVal = checkSchoolMatch.checkSchoolMatch(student, camp);
         if (!returnVal){
             return;
         }
-        Enquiry enquiry = new Enquiry(enquiryIdCounter++, camp, text, user.getName);
+        Enquiry enquiry = new Enquiry(enquiryIdCounter++, camp, text, student.getName());
         enquiriesDB.add(enquiry);
         System.out.println("Enquiry sent successfully. ");
     }
 
-    public void editEnquiry(int enquiryNumber, String newText, String newCamp, String user) {
-        boolean returnVal=campvisibilityChecker.isCampVisible(camp);
+    public void editEnquiry(int enquiryNumber, String newText, String newCamp, Student student) {
+        boolean returnVal=campVisibilityChecker.isCampVisible(newCamp);
         if (!returnVal){
             return;
         }
-        returnVal = checkSchoolMatch.checkSchoolMatch(user, camp);
+        returnVal = checkSchoolMatch.checkSchoolMatch(student, newCamp);
         if (!returnVal){
             return;
         }
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
-                if (enquiry.getUser().equals(user) && enquiry.getReplies().isEmpty()) {
+                if (enquiry.getUser().equals(student.getName()) && enquiry.getReplies().isEmpty()) {
                     enquiry.setText(newText);
                     enquiry.setCamp(newCamp);
                     System.out.println("Enquiry edited successfully.");
@@ -77,6 +77,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
                     toRemove = enquiry;
                 } else {
                     System.out.println("You can only delete your own enquires that are not processed.");
+                    return;
                 }
             }
         }
@@ -92,7 +93,15 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         }
     }
     private void displayEnquiry(Enquiry enquiry, int level) {
-        System.out.println(" ".repeat(level * 2) + "Enquiry #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
+        if(level==0)
+        {
+            System.out.println("Reply: ".repeat(level) + "Enquiry #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
+        }
+        if(level==1)
+        {
+            System.out.println("  Reply: ".repeat(level) + enquiry.getText());
+        }
+        
         for (Enquiry reply : enquiry.getReplies()) {
             displayEnquiry(reply, level + 1);
         }

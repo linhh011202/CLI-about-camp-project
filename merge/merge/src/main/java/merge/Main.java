@@ -1,5 +1,9 @@
 package merge;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 //WHole thing is case sensitive for consistency atm, can be altered as we wish.
 
 public class Main {
@@ -9,7 +13,7 @@ public class Main {
         RegistrationDataBase registrationDataBase=new RegistrationDataBase();
         CRDBInterfaceInitialiser.InitialiseCRDataBaseInterfaces(campDataBase, registrationDataBase);
 
-        EnquiriesDB enquiriesDB=new EnquiriesDB();
+        EnquiriesDB enquiriesDB=new EnquiriesDB(campDataBase.getCheckSchoolMatch(),campDataBase.getCampVisibilityChecker());
 
         Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter());
         staff0.createCamp("d", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
@@ -25,9 +29,18 @@ public class Main {
         Student student4=new Student("timothy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
         Student student5=new Student("marly",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
 
-        enquiriesDB.sendEnquiry("b", "HOW TO GO", student1.getName());
-        enquiriesDB.sendEnquiry("ldsfhsdf", "CRY", student1.getName());
-        enquiriesDB.viewOwnEnquiry(student1.getName());
+        student3=student3.registerCampCommittee("a");
+
+        enquiriesDB.sendEnquiry("b", "HOW TO GO", student1);
+        enquiriesDB.sendEnquiry("c", "HOW TO GO", student1);
+        enquiriesDB.sendEnquiry("c", "WHY THS CAMP SO GOOD", student5);
+
+        enquiriesDB.addReply(1, "DUNNO", staff0.getCampsCreated());
+
+        ArrayList<String> camps=staff1.getCampsCreated();
+        Collections.sort(camps);
+        enquiriesDB.viewByCamp(camps);
+        
 
         /* 
         student1.registerCampCommittee("a");

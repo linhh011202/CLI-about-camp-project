@@ -19,14 +19,14 @@ public class CampVisibilityChecker implements ICheckCampVisibility
                 }
                 else
                 {
-                    System.out.println("Registration failed! Unable to find camp.\n");
+                    System.out.println("Error! Unable to find camp.\n");
                     return false;
                 }
             }
         }
 
         //Camp doesnt exist. return false.
-        System.out.println("Registration failed! Unable to find camp.\n");
+        System.out.println("Error! Unable to find camp.\n");
         return false;
     }
 
