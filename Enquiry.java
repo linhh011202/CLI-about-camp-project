@@ -19,6 +19,10 @@ public class Enquiry {
         return enquiryID;
     }
 
+    public String getCamp() {
+        return camp;
+    }
+    
     public String getText() {
         return text;
     }
