@@ -1,11 +1,11 @@
-package staff;
+//package staff;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
     //Scanner sc = new Scanner(System.in);
-    private ArrayList<Enquiries> enquiries = new ArrayList<Enquiries>();
+    private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
 
     public void sendEnquiry(User user) {
         //add parser to get input
@@ -14,13 +14,13 @@ public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, 
         String campName = sc.nextLine();
         System.out.println("Type your enquiry: ");
         String text = sc.nextLine();
-        Enquiries enquiry = new Enquiries(user.getName(), text, null, campName); // Assign null to replyText initially
+        Enquiry enquiry = new Enquiry(user.getName(), text, null, campName); // Assign null to replyText initially
         enquiries.add(enquiry);
         System.out.println("Enquiry sent successfully. ");
     }
 
     public void editEnquiry(int enquiryNumber, String newText, int newCamp, String user) {
-        for (Enquiries enquiry : enquiries) {
+        for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
                 if (enquiry.getUser().equals(user) && enquiry.getReplies().isEmpty()) {
                     enquiry.setText(newText);
@@ -36,7 +36,7 @@ public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, 
     }
     public void deleteEnquiry(int enquiryNumber, String user) {
         Enquiry toRemove = null;
-        for (Enquiries enquiry : enquiries) {
+        for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
                 if (enquiry.getUser().equals(user) && enquiry.getReplies().isEmpty()) {
                     toRemove = enquiry;
@@ -51,14 +51,22 @@ public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, 
         }
         System.out.println("Enquiry not found.");
     }
-
-    public void viewOwnEnquiry(User user) {
+    public void displayEnquiries() {
+        for (Enquiry enquiry : enquiriesDB) {
+            displayEnquiry(enquiry, 0);
+        }
+    }
+    private void displayEnquiry(Enquiry enquiry, int level) {
+        System.out.println(" ".repeat(level * 2) + "Comment #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
+        for (Enquiry reply : enquiry.getReplies()) {
+            displayComment(reply, level + 1);
+        }
+    }
+    public void viewOwnEnquiry(String user) {
         System.out.println("Your Enquiries:");
-        for (Enquiries enquiry : enquiries) {
-            if (enquiry.getStudentID() == user.getName()) {
-                System.out.println("Enquiry ID: " + enquiry.getEnquiryID());
-                System.out.println("Camp Name: " + enquiry.getCampName());
-                System.out.println("Enquiry: " + enquiry.getText());
+        for (Enquiry enquiry : enquiriesDB) {
+            if (enquiry.getUser().equals(user)) {
+                displayEnquiry(enquiry, 0);
             }
         }
     }
