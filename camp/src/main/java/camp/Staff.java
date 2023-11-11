@@ -1,5 +1,6 @@
 package camp;
 
+
 public class Staff extends User
 {
     private ICreateCamp staffCampCreator;

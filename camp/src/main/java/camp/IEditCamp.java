@@ -13,5 +13,8 @@ public interface IEditCamp
 
     /*  DO WE ALLOW TO CHANGE WHO ITS OPEN TO?? what if alr registered then change away.
     public boolean changeOpenTo()
+
+    Also probably need error checks for many of this. Shd be allow editing once people have signed up?
     */
+    
 }
