@@ -12,7 +12,7 @@ public class SuggestionCampCommittee extends CampCommittee
         String campName = sc.nextLine();
         System.out.println("Type your suggestion: ");
         String text = sc.nextLine();
-        Suggestions suggestion = new Suggestions(studentID, text, null, campName);
+        Suggestions suggestion = new Suggestions(this.getStudentID(), text, null, campName);
         suggestions.add(suggestion);
         super.addPoints(); // may need to change
         System.out.println("Suggestion sent successfully. ");
@@ -59,10 +59,10 @@ public class SuggestionCampCommittee extends CampCommittee
     public void viewOwnSuggestion() {
         System.out.println("Your Suggestions:");
         for (Suggestions suggestion : suggestions) {
-            if (suggestion.getStudentID() == studentID) {
+            if (suggestion.getStudentID() == this.getStudentID()) {
                 System.out.println("Suggestion ID: " + suggestion.getSuggestionID());
                 System.out.println("Camp Name: " + suggestion.getCampName());
-                System.println("Suggestion: " + suggestion.getText());
+                System.out.println("Suggestion: " + suggestion.getText());
             }
         }
     }

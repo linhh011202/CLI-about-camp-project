@@ -1,3 +1,4 @@
+package student;
 public class Suggestions {
     private static int lastSuggestionID = 0;
     private int suggestionID;

@@ -1,3 +1,5 @@
+package student;
+
 public class Enquiries {
     private static int lastEnquiryID = 0; // Static variable to track the last assigned ID
     private int enquiryID;

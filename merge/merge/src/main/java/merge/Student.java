@@ -3,41 +3,41 @@ package merge;
 import java.util.ArrayList;
 
 public class Student extends User {
-    private boolean isCommittee = false;
-    private int studentID;
+    protected boolean isCommittee = false;
+    protected int studentID;
+    protected IViewAllCamps studentViewAllCamps;
+    protected IViewRegisteredCamps studentRegisteredCampsViewer; 
 
-    public Student(String name, String password, String facultyInformation, int studentID) {
-        super();
+
+    public Student(String name, String password, String facultyInformation, int studentID, IViewAllCamps studentViewAllCamps, ISortCamps iSortCamps, IFilterCamps iFilterCamps, String filterString, IViewRegisteredCamps studentRegisteredCampsViewer) {
+        super(name, password, facultyInformation, iSortCamps, iFilterCamps, filterString);
         this.studentID = studentID;
-        this.allCamps = new ArrayList<>();
-        this.registeredCamps = new ArrayList<>();
+        this.studentViewAllCamps = studentViewAllCamps;
+        this.studentRegisteredCampsViewer = studentRegisteredCampsViewer;
+
     }
 
     public String getName() {
-        return super.name;
+        return super.getName();
     }
 
     public String getFacultyInformation() {
-        return super.facultyInformation;
+        return super.getFacultyInformation();
     }
 
     public String getStudentID() {
-        return this.studentID;
+        return this.getStudentID;
     }
 
-    public void viewAllCamps(Student student) {
-        // havent implement
+    public void viewAllCamps() {
+        this.studentViewAllCamps.viewAllCamps(this, iSortCamps, iFilterCamps, filterString);
     }
 
-    public void viewSlots() {
-        // havent implement
+    public void viewRegisteredCamps() {
+        this.studentRegisteredCampsViewer.viewRegisteredCamps(this, iSortCamps, iFilterCamps, filterString);
     }
 
-    public void viewRegisteredCamps(Student student) {
-        // havent implement
-    }
-
-    public void setCommittee(boolean isCommittee) {
+    public void setCommittee() {
         this.isCommittee = true;
     }
 

@@ -3,11 +3,11 @@ package student;
 import java.util.ArrayList;
 
 public class Student extends User {
-    private boolean isCommittee = false;
-    private int studentID;
+    protected boolean isCommittee = false;
+    protected int studentID;
 
     public Student(String name, String password, String facultyInformation, int studentID) {
-        super();
+        super(name, password, facultyInformation);
         this.studentID = studentID;
         this.allCamps = new ArrayList<>();
         this.registeredCamps = new ArrayList<>();
@@ -21,7 +21,7 @@ public class Student extends User {
         return super.facultyInformation;
     }
 
-    public String getStudentID() {
+    public int getStudentID() {
         return this.studentID;
     }
 
@@ -29,12 +29,8 @@ public class Student extends User {
         // havent implement
     }
 
-    public void viewSlots() {
-        // havent implement
-    }
-
     public void viewRegisteredCamps(Student student) {
-        // havent implement
+        //havent implement 
     }
 
     public void setCommittee(boolean isCommittee) {
@@ -59,7 +55,7 @@ public class Student extends User {
         return false;
     }
 
-    public String viewRole(boolean isCommittee) {
+    public String viewRole(Camp camp) {
         if (isCommittee) {
             System.out.println("Role: Committee");
         } else

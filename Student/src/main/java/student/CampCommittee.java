@@ -4,8 +4,8 @@ public class CampCommittee extends Student implements IAddPoints {
     private int points = 0;
     private String campName;
 
-    public CampCommittee(String name, String password, String facultyInformation, int studentID, string campName) {
-        super();
+    public CampCommittee(String name, String password, String facultyInformation, int studentID, String campName) {
+        super(name,password,facultyInformation,studentID);
         super.isCommittee = true;
         this.campName = campName;
     }
