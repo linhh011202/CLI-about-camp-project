@@ -3,19 +3,16 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
+public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
     //Scanner sc = new Scanner(System.in);
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
+    private static int enquiryIdCounter = 1;
 
-    public void sendEnquiry(User user) {
+    public void sendEnquiry(String camp, String text, String user) {
         //add parser to get input
         //add error checking as students can only submit enquiries to any camp he/she can see
-        System.out.println("Enter camp name: ");
-        String campName = sc.nextLine();
-        System.out.println("Type your enquiry: ");
-        String text = sc.nextLine();
-        Enquiry enquiry = new Enquiry(user.getName(), text, null, campName); // Assign null to replyText initially
-        enquiries.add(enquiry);
+        Enquiry enquiry = new Enquiry(enquiryIdCounter++, camp, text, user);
+        enquiriesDB.add(enquiry);
         System.out.println("Enquiry sent successfully. ");
     }
 
