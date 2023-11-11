@@ -1,6 +1,6 @@
 //package staff;
 package merge;
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
