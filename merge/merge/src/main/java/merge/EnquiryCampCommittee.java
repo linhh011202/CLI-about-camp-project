@@ -1,3 +1,5 @@
+/* 
+
 package merge;
 
 import java.util.*;
@@ -42,3 +44,4 @@ public class EnquiryCampCommittee extends CampCommittee implements IReplyEnquiri
         System.out.println("Enquiry not found.");
     }
 }
+*/

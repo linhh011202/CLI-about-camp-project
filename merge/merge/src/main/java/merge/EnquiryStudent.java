@@ -1,3 +1,4 @@
+/* 
 package merge;
 
 import java.util.*;
@@ -72,3 +73,4 @@ public class EnquiryStudent implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         }
     }
 }
+*/

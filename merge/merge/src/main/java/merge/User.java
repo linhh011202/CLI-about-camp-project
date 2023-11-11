@@ -1,57 +1,43 @@
 package merge;
-import java.util.Objects;
 
 public class User {
-    protected String name;
-    protected String password;
-    protected String facultyInformation;
-    protected ISortCamps iSortCamps;
-    protected IFilterCamps iFilterCamps;
-    protected String filterString;
+    private String name;
+    private ISortCamps iSortCamps;
+    private String filterString;
+    private IFilterCamps iFilterCamps;
 
-    public User(String name, String password, String facultyInformation, ISortCamps iSortCamps, IFilterCamps iFilterCamps, String filterString) {
-        this.name = name;
-        this.password = password;
-        this.facultyInformation = facultyInformation;
-        this.iFilterCamps = iFilterCamps;
-        this.iSortCamps = iSortCamps;
-        this.filterString = filterString;
+    public User(String name,ISortCamps iSortCamps,IFilterCamps iFilterCamps)
+    {
+        this.name=name;
+        this.iSortCamps=iSortCamps; //default is by campName, maybe need to add some logic to set it to that if there isnt any prexisting info in DB? 
+                                        //Or maybe in DB preset is alr Alpha so error checking should be here anyways??..
+
+        this.filterString=null;
+        this.iFilterCamps=iFilterCamps;
     }
 
-    public void setISortCamps(ISortCamps iSortCamps) {
-        this.iSortCamps = iSortCamps; 
-    }
-
-    public void setIFilterCamps(IFilterCamps iFilterCamps) {
-        this.iFilterCamps = iFilterCamps; 
-    }
-
-    public void setFilterString(String filterString) {
-        this.filterString = filterString; 
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFacultyInformation() {
-        return this.facultyInformation;
-    }
-
-    public void setFacultyInformation(String facultyInformation) {
-        this.facultyInformation = facultyInformation;
-    }
     
+    public ISortCamps getSortCamps()
+    {
+        return iSortCamps;
+    }
+
+    public void setCampSorter(ISortCamps iSortCamps)
+    {
+        this.iSortCamps=iSortCamps;
+    }
+
+    public IFilterCamps getFilterCamps()
+    {
+        return iFilterCamps;
+    }
+    public void setCampFilter(IFilterCamps iFilterCamps)
+    {
+        this.iFilterCamps=iFilterCamps;
+    }
+
+    public String getName(){return name;}
+
+    public String getFilterString(){return filterString;}
+    public void setFilterString(String filterString){this.filterString=filterString;}
 }

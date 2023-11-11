@@ -1,3 +1,5 @@
+/* 
+
 package merge;
 
 public class Suggestions {
@@ -57,3 +59,5 @@ public class Suggestions {
         this.campName = campName;
     }
 }
+
+*/

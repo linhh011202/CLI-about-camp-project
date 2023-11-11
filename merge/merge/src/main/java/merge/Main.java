@@ -9,11 +9,12 @@ public class Main {
         RegistrationDataBase registrationDataBase=new RegistrationDataBase();
         CRDBInterfaceInitialiser.InitialiseCRDataBaseInterfaces(campDataBase, registrationDataBase);
 
+        EnquiriesDB enquiriesDB=new EnquiriesDB();
 
-        Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator());
+        Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter());
         staff0.createCamp("d", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
 
-        Staff staff1=new Staff("kaixuan",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator());
+        Staff staff1=new Staff("kaixuan",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter());
         staff1.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
         staff1.createCamp("a", "14/12/2010","15/12/2010", "09/11/2050", true, "MOHOR B", 5, 1, "AEST CAMP" , Faculty.SCSE);
         staff1.createCamp("c", "15/12/2012","20/12/2020", "01/10/2050", true, "CLASSSY", 1, 2, "BEST CAMP" , Faculty.NTU);
@@ -24,21 +25,9 @@ public class Main {
         Student student4=new Student("timothy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
         Student student5=new Student("marly",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
 
-        student1=student1.registerCampCommittee("c");
-        student1.registerCampStudent("b");
-        student1.registerCampStudent("a");
-
-        student2.registerCampStudent("a");
-        student3.registerCampStudent("a");
-        student4.registerCampStudent("c");
-        student4.registerCampStudent("b");
-        student5.registerCampStudent("b");
-
-        staff1.setCampFilter(campDataBase.getFilterManager().getFilterCampByAttendeeName());
-        staff1.setFilterString("tommy");
-        staff1.generateStudentReport();
-
-
+        enquiriesDB.sendEnquiry("b", "HOW TO GO", student1.getName());
+        enquiriesDB.sendEnquiry("ldsfhsdf", "CRY", student1.getName());
+        enquiriesDB.viewOwnEnquiry(student1.getName());
 
         /* 
         student1.registerCampCommittee("a");

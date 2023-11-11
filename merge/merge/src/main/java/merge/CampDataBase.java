@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class CampDataBase 
 {
     private ArrayList<Camp> allCamps;
-    //Manager classes related to EnquiryDB
-    private ListOfCampsIsCommiteeOfGetter listOfCampsIsCommiteeOfGetter;
 
     //Association with the manager classes related to staff interfaces.
     private StaffCampCreator staffCampCreator;
@@ -15,6 +13,7 @@ public class CampDataBase
     private StaffViewAllCamps staffViewAllCamps;
     private StaffViewOwnCamps staffViewOwnCamps;
     private StaffStudentReportGenerator staffStudentReportGenerator;
+    private ListCampsStaffCreatedGetter listCampsStaffCreatedGetter;
 
     //Association with the manager classes related to Sorting Interfaces.
     private SortManager sortManager;
@@ -30,6 +29,7 @@ public class CampDataBase
     private CampStudentSlotChecker campStudentSlotChecker;
     private CampStudentSlotReducer campStudentSlotReducer;
     private CampStudentSlotIncreaser campStudentSlotIncreaser;
+
     private CheckSchoolMatch checkSchoolMatch;
     private ClashWithRegisteredChecker clashWithRegisteredChecker;
     private RegistrationClosedChecker registrationClosedChecker;
@@ -49,6 +49,8 @@ public class CampDataBase
         staffCampEditor=new StaffCampEditor(this);
         staffViewAllCamps=new StaffViewAllCamps(this);
         staffViewOwnCamps=new StaffViewOwnCamps(this);
+        listCampsStaffCreatedGetter=new ListCampsStaffCreatedGetter(this);
+
 
         sortManager=new SortManager(this);
 
@@ -64,7 +66,6 @@ public class CampDataBase
         campCommitteeSlotReducer=new CampCommitteeSlotReducer(this);
         registeredCampsPrinter=new RegisteredCampsPrinter(this);
         campVisibilityChecker=new CampVisibilityChecker(this);
-        listOfCampsIsCommiteeOfGetter=new ListOfCampsIsCommiteeOfGetter(this);
     }
 
     public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker,IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter, IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter)
@@ -77,7 +78,6 @@ public class CampDataBase
     
 
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
-    public ListOfCampsIsCommiteeOfGetter getListOfCampsIsCommiteeOfGetter(){return listOfCampsIsCommiteeOfGetter;}
 
     public StaffCampCreator getStaffCampCreator(){return staffCampCreator;}
     public StaffCampDeleter getStaffCampDeleter(){return staffCampDeleter;}
@@ -85,6 +85,7 @@ public class CampDataBase
     public StaffViewAllCamps getStaffViewAllCamps(){return staffViewAllCamps;}
     public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
     public StaffStudentReportGenerator getStaffStudentReportGenerator(){return staffStudentReportGenerator;}
+    public ListCampsStaffCreatedGetter getListCampsStaffCreatedGetter(){return listCampsStaffCreatedGetter;}
 
     public SortManager getSortManager(){return sortManager;}
 

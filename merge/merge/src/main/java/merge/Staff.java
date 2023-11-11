@@ -1,5 +1,6 @@
 package merge;
 
+import java.util.ArrayList;
 
 public class Staff extends User
 {
@@ -9,9 +10,10 @@ public class Staff extends User
     private IViewAllCamps staffViewAllCamps;
     private IViewOwnCamps staffViewOwnCamps;
     private IGenerateStudentReport staffStudentReportGenerator;
+    private IGetCampsCreated listCampsStaffCreatedGetter;
    
 
-    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator)
+    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator,IGetCampsCreated listCampsStaffCreatedGetter)
     {
         super(name,iSortCamps,iFilterCamps);
         this.staffCampCreator=staffCampCreator;
@@ -20,6 +22,7 @@ public class Staff extends User
         this.staffViewAllCamps=staffViewAllCamps;
         this.staffViewOwnCamps=staffViewOwnCamps;
         this.staffStudentReportGenerator=staffStudentReportGenerator;
+        this.listCampsStaffCreatedGetter=listCampsStaffCreatedGetter;
     }
 
     public void createCamp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,Faculty openTo)
@@ -57,6 +60,10 @@ public class Staff extends User
     public void generateStudentReport()
     {
         staffStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
+    }
+    public ArrayList<String> getCampsCreated()
+    {
+        return listCampsStaffCreatedGetter.getListCampStaffCreated(this.getName());
     }
 
 

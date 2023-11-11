@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class ListOfCampsIsCommiteeOfGetter implements IGetCampsIsCommittee
 {
-    private CampDataBase campDataBase;
+    private RegistrationDataBase registrationDataBase;
 
-    public ListOfCampsIsCommiteeOfGetter(CampDataBase campDataBase)
+    public ListOfCampsIsCommiteeOfGetter(RegistrationDataBase registrationDataBase)
     {
-        this.campDataBase=campDataBase;
+        this.registrationDataBase=registrationDataBase;
     }
 
     public ArrayList<String> getCampsIsCommittee(Student student)

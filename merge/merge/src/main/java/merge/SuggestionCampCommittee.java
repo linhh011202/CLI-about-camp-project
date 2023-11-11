@@ -1,3 +1,5 @@
+/* 
+
 package merge;
 
 import java.util.*;
@@ -67,3 +69,4 @@ public class SuggestionCampCommittee extends CampCommittee
         }
     }
 }
+*/

@@ -1,68 +1,123 @@
 package merge;
 
-import java.util.ArrayList;
 
-public class Student extends User {
-    protected boolean isCommittee = false;
-    protected int studentID;
-    protected IViewAllCamps studentViewAllCamps;
-    protected IViewRegisteredCamps studentRegisteredCampsViewer; 
+public class Student extends User
+{
+    private Faculty faculty;
+    private boolean isCommittee;
 
+    //Interfaces it uses
+    private IViewAllCamps studentViewAllCamps;
+    private IRegisterCamp studentCampRegisterer;
+    private IDeregisterCamp studentCampDeregisterer;
+    private IRegisterCommittee committeeCampRegisterer;
+    private IViewRegisteredCamps studentRegisteredCampsViewer;
+    private IGenerateStudentReport campComStudentReportGenerator;
 
-    public Student(String name, String password, String facultyInformation, int studentID, IViewAllCamps studentViewAllCamps, ISortCamps iSortCamps, IFilterCamps iFilterCamps, String filterString, IViewRegisteredCamps studentRegisteredCampsViewer) {
-        super(name, password, facultyInformation, iSortCamps, iFilterCamps, filterString);
-        this.studentID = studentID;
-        this.studentViewAllCamps = studentViewAllCamps;
-        this.studentRegisteredCampsViewer = studentRegisteredCampsViewer;
-
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps,IGenerateStudentReport campComStudentReportGenerator)
+    {
+        super(name,iSortCamps,iFilterCamps);
+        this.isCommittee=false;
+        this.studentViewAllCamps=studentViewAllCamps;
+        this.faculty=faculty;
+        this.studentCampRegisterer=studentCampRegisterer;
+        this.studentCampDeregisterer=studentCampDeregisterer;
+        this.committeeCampRegisterer=commiteeCampRegisterer;
+        this.studentRegisteredCampsViewer=studentRegisteredCampsViewer;
+        this.campComStudentReportGenerator=campComStudentReportGenerator;
     }
 
-    public String getName() {
-        return super.getName();
+    //Copy constructor
+    public Student(Student student)
+    {
+        super(student.getName(),student.getSortCamps(),student.getFilterCamps());
+        this.isCommittee=student.getIsCommittee();
+        this.faculty=student.getFaculty();
+        this.studentViewAllCamps=student.getStudentViewAllCamps();
+        this.studentCampRegisterer=student.getStudentCampRegisterer();
+        this.studentCampDeregisterer=student.getStudentCampDeregisterer();
+        this.committeeCampRegisterer=student.getCommitteeCampRegisterer();
+        this.studentRegisteredCampsViewer=student.getStudentRegisteredCampsViewer();
+        this.campComStudentReportGenerator=student.getCampComStudentReportGenerator();
     }
 
-    public String getFacultyInformation() {
-        return super.getFacultyInformation();
+
+    //Getters and Setters
+    public Faculty getFaculty()
+    {
+        return faculty;
     }
 
-    public String getStudentID() {
-        return this.getStudentID;
+    public void setFaculty(Faculty faculty)
+    {
+        this.faculty=faculty;
     }
 
-    public void viewAllCamps() {
-        this.studentViewAllCamps.viewAllCamps(this, iSortCamps, iFilterCamps, filterString);
+    public boolean getIsCommittee(){return isCommittee;}
+
+    public void setIsCommittee(boolean isCommittee){this.isCommittee=isCommittee;}
+
+    public IViewAllCamps getStudentViewAllCamps()
+    {
+        return studentViewAllCamps;
     }
 
-    public void viewRegisteredCamps() {
-        this.studentRegisteredCampsViewer.viewRegisteredCamps(this, iSortCamps, iFilterCamps, filterString);
+    public IRegisterCamp getStudentCampRegisterer()
+    {
+        return studentCampRegisterer;
     }
 
-    public void setCommittee() {
-        this.isCommittee = true;
+    public IDeregisterCamp getStudentCampDeregisterer()
+    {
+        return studentCampDeregisterer;
     }
 
-    public boolean registerCamp(Camp camp) {
-        if (camp.registerStudent(this)) { // conditions must be met eg date, headcount, and need to choose which role to
-                                          // sign up for
-            registeredCamps.add(camp);
-            setCommittee(isCommittee);
-            return true;
-        }
-        return false;
+    public IRegisterCommittee getCommitteeCampRegisterer()
+    {
+        return committeeCampRegisterer;
     }
 
-    public boolean withdrawCamp(Camp camp) {
-        if (camp.unregisterStudent(this)) {
-            registeredCamps.remove(camp);
-            return true;
-        }
-        return false;
+    public IViewRegisteredCamps getStudentRegisteredCampsViewer()
+    {
+        return studentRegisteredCampsViewer;
     }
 
-    public String viewRole(boolean isCommittee) {
-        if (isCommittee) {
-            System.out.println("Role: Committee");
-        } else
-            System.out.println("Role: Participant");
+    public IGenerateStudentReport getCampComStudentReportGenerator()
+    {
+        return campComStudentReportGenerator;
     }
+
+
+    //Testing Functions:
+    public void viewAllCamps()
+    {
+        studentViewAllCamps.viewAllCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
+    }
+
+    public void registerCampStudent(String campName)
+    {
+        studentCampRegisterer.registerCamp(this,campName);
+    }
+
+    public void deregisterCamp(String campName)
+    {
+        studentCampDeregisterer.deregisterCamp(this, campName);
+    }
+
+    public Student registerCampCommittee(String campName)
+    {
+        return committeeCampRegisterer.registerCamp(this, campName);
+    }
+
+    public void viewRegisteredCamps()
+    {
+        studentRegisteredCampsViewer.viewRegisteredCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
+    }
+
+    public void generateCampComReport()
+    {
+        campComStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
+    }
+
+
 }
