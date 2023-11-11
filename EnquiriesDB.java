@@ -8,6 +8,17 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
     private static int enquiryIdCounter = 1;
 
+    public void addReply(int enquiryNumber, String replyText) {
+        for (Enquiry enquiry : enquiriesDB) {
+            if (enquiry.getEnquiryID() == enquiryNumber) {
+                Enquiry reply = new Enquiry(enquiryIdCounter++, enquiry.getCamp(), replyText, enquiry.getUser());
+                enquiry.addReply(reply);
+                return;
+            }
+        }
+        System.out.println("The specified comment does not exist.");
+    }
+
     public void sendEnquiry(String camp, String text, String user) {
         //add parser to get input
         //add error checking as students can only submit enquiries to any camp he/she can see
