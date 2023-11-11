@@ -16,7 +16,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         System.out.println("Enquiry sent successfully. ");
     }
 
-    public void editEnquiry(int enquiryNumber, String newText, int newCamp, String user) {
+    public void editEnquiry(int enquiryNumber, String newText, String newCamp, String user) {
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
                 if (enquiry.getUser().equals(user) && enquiry.getReplies().isEmpty()) {
@@ -43,7 +43,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
             }
         }
         if (toRemove != null) {
-            enquiries.remove(toRemove);
+            enquiriesDB.remove(toRemove);
             return;
         }
         System.out.println("Enquiry not found.");
@@ -56,7 +56,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
     private void displayEnquiry(Enquiry enquiry, int level) {
         System.out.println(" ".repeat(level * 2) + "Comment #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
         for (Enquiry reply : enquiry.getReplies()) {
-            displayComment(reply, level + 1);
+            displayEnquiry(reply, level + 1);
         }
     }
     public void viewOwnEnquiry(String user) {
