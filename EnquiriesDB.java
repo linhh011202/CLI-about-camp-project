@@ -4,8 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class EnquiriesDB implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
-    Scanner sc = new Scanner(System.in);
-    ArrayList<Enquiries> enquiries = new ArrayList<Enquiries>();
+    //Scanner sc = new Scanner(System.in);
+    private ArrayList<Enquiries> enquiries = new ArrayList<Enquiries>();
 
     public void sendEnquiry(User user) {
         //add parser to get input
