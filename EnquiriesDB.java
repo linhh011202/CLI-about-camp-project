@@ -2,18 +2,24 @@
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
     //Scanner sc = new Scanner(System.in);
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
     private static int enquiryIdCounter = 1;
 
-    public void addReply(int enquiryNumber, String replyText) {
+    public void addReply(int enquiryNumber, String replyText, List<String> campList) {
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
-                Enquiry reply = new Enquiry(enquiryIdCounter++, enquiry.getCamp(), replyText, enquiry.getUser());
-                enquiry.addReply(reply);
-                return;
+                if (campList.contains(enquiry.getCamp())) {
+                    Enquiry reply = new Enquiry(enquiryIdCounter++, enquiry.getCamp(), replyText, enquiry.getUser());
+                    enquiry.addReply(reply);
+                    return;
+                } else {
+                    System.out.println("The specified comment is not for a camp managed by you.");
+                    return;
+                }
             }
         }
         System.out.println("The specified comment does not exist.");
@@ -75,6 +81,16 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getUser().equals(user)) {
                 displayEnquiry(enquiry, 0);
+            }
+        }
+    }
+    public void viewByCamp(List<String> campList) {
+        for (String camp : campList) {
+            System.out.println("Enquiries for camp " + camp + ":");
+            for (Enquiry enquiry : enquiriesDB) {
+                if (enquiry.getCamp().equals(camp)) {
+                    displayEnquiry(enquiry, 0);
+                }
             }
         }
     }
