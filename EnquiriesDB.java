@@ -54,7 +54,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         }
     }
     private void displayEnquiry(Enquiry enquiry, int level) {
-        System.out.println(" ".repeat(level * 2) + "Comment #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
+        System.out.println(" ".repeat(level * 2) + "Enquiry #" + enquiry.getEnquiryID() + " (by " + enquiry.getUser() + " about camp " + enquiry.getCamp() + "): " + enquiry.getText());
         for (Enquiry reply : enquiry.getReplies()) {
             displayEnquiry(reply, level + 1);
         }
