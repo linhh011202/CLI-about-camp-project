@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class CampDataBase 
 {
     private ArrayList<Camp> allCamps;
+    //Manager classes related to EnquiryDB
+    private ListOfCampsIsCommiteeOfGetter listOfCampsIsCommiteeOfGetter;
 
     //Association with the manager classes related to staff interfaces.
     private StaffCampCreator staffCampCreator;
@@ -62,6 +64,7 @@ public class CampDataBase
         campCommitteeSlotReducer=new CampCommitteeSlotReducer(this);
         registeredCampsPrinter=new RegisteredCampsPrinter(this);
         campVisibilityChecker=new CampVisibilityChecker(this);
+        listOfCampsIsCommiteeOfGetter=new ListOfCampsIsCommiteeOfGetter(this);
     }
 
     public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker,IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter, IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter)
@@ -72,8 +75,10 @@ public class CampDataBase
     }
 
     
+
     //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
-    
+    public ListOfCampsIsCommiteeOfGetter getListOfCampsIsCommiteeOfGetter(){return listOfCampsIsCommiteeOfGetter;}
+
     public StaffCampCreator getStaffCampCreator(){return staffCampCreator;}
     public StaffCampDeleter getStaffCampDeleter(){return staffCampDeleter;}
     public StaffCampEditor getStaffCampEditor(){return staffCampEditor;}
