@@ -15,7 +15,7 @@ public class Enquiry {
         this.replies = new ArrayList<>();
     }
 
-    public int getenquiryID() {
+    public int getEnquiryID() {
         return enquiryID;
     }
 
