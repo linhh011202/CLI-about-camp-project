@@ -7,6 +7,7 @@ public class Suggestion {
     private int suggestionID;
     private boolean approved;
     private LocalDate date;
+    private LocalDate lastEditDate;
     private String camp;
     private String text;
     private String user;
@@ -15,6 +16,7 @@ public class Suggestion {
         this.suggestionID = suggestionID;
         this.approved = false;
         this.date = LocalDate.now();
+        this.lastEditDate = LocalDate.now();
         this.camp = camp;
         this.text = text;
         this.user = user;
@@ -51,7 +53,12 @@ public class Suggestion {
     public void setCamp(String newCamp) {
         camp = newCamp;
     }
+    
     public void setText(String newText) {
         text = newText;
+    }
+    
+    public void setLastEditDate(LocalDate newLastEditDate) {
+        lastEditDate = newLastEditDate;
     }
 }
