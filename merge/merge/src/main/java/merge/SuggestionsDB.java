@@ -22,7 +22,7 @@ public class SuggestionsDB {
         System.out.println("Suggestion sent successfully. ");
     }
 
-    public void editEnquiry(int suggestionNumber, String newText, String user) {
+    public void editSuggestion(int suggestionNumber, String newText, String user) {
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getSuggestionID() == suggestionNumber) {
                 if (!suggestion.getUser().equals(user)) {
