@@ -8,6 +8,7 @@ public class Suggestion {
     private boolean approved;
     private LocalDate date;
     private LocalDate lastEditDate;
+    private LocalDate approveBy;
     private String camp;
     private String text;
     private String user;
@@ -17,6 +18,7 @@ public class Suggestion {
         this.approved = false;
         this.date = LocalDate.now();
         this.lastEditDate = LocalDate.now();
+        this.approveBy = this.date.plusDays(5);
         this.camp = camp;
         this.text = text;
         this.user = user;
@@ -36,6 +38,10 @@ public class Suggestion {
 
     public LocalDate getLastEditDate() {
         return lastEditDate;
+    }
+
+    public LocalDate getApproveBy() {
+        return approveBy;
     }
 
     public String getCamp() {
