@@ -15,7 +15,7 @@ public class SuggestionsDB {
         this.campVisibilityChecker=campVisibilityChecker;
     }
     */
-    public void sendSuggestion(String camp, String user, String text) {
+    public void sendSuggestion(String camp, String text, String user) {
         //add parser to get input
         Suggestion suggestion = new Suggestion(suggestionIdCounter++, camp, text, user);
         suggestionsDB.add(suggestion);
@@ -83,7 +83,7 @@ public class SuggestionsDB {
     }
     public void viewOwnSuggestion(String user) {
         System.out.println("Your Suggestions:");
-        for (Suggestion suggestion : enquiriesDB) {
+        for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getUser().equals(user)) {
                 displaySuggestion(suggestion);
                 System.out.println();
@@ -121,5 +121,7 @@ public class SuggestionsDB {
                 }
             }
         }
+        System.out.println("Suggestion not found.");
+        return null;
     }
 }
