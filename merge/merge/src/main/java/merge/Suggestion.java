@@ -1,24 +1,35 @@
 package merge;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Suggestion {
     private int suggestionID;
+    private boolean approved;
+    private LocalDate date;
     private String camp;
     private String text;
     private String user;
-    private ArrayList<Enquiry> replies;
-
-    public Enquiry(int enquiryID, String camp, String text, String user) {
-        this.enquiryID = enquiryID;
-        this.text = text;
+    
+    public Suggestion(int suggestionID, String camp, String text, String user) {
+        this.suggestionID = suggestionID;
+        this.approved = false;
+        this.date = LocalDate.now();
         this.camp = camp;
+        this.text = text;
         this.user = user;
-        this.replies = new ArrayList<>();
     }
 
-    public int getEnquiryID() {
-        return enquiryID;
+    public int getSuggestionID() {
+        return suggestionID;
+    }
+    
+    public int getApproved() {
+        return approved;
+    }
+    
+    public int getDate() {
+        return date;
     }
 
     public String getCamp() {
@@ -33,12 +44,8 @@ public class Suggestion {
         return user;
     }
 
-    public ArrayList<Enquiry> getReplies() {
-        return replies;
-    }
-
-    public void addReply(Enquiry reply) {
-        replies.add(reply);
+    public int setApproved(boolean newApproved) {
+        approved = newApproved;
     }
 
     public void setCamp(String newCamp) {
