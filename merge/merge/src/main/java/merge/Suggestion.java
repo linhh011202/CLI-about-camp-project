@@ -56,7 +56,7 @@ public class Suggestion {
         return user;
     }
 
-    public int setApproved(boolean newApproved) {
+    public void setApproved(boolean newApproved) {
         approved = newApproved;
     }
 
