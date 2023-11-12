@@ -11,11 +11,12 @@ public class Staff extends User
     private IViewOwnCamps staffViewOwnCamps;
     private IGenerateStudentReport staffStudentReportGenerator;
     private IGetCampsCreated listCampsStaffCreatedGetter;
+    private IGeneratePerformanceReport staffPerformanceReportGenerator;
    
 
-    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator,IGetCampsCreated listCampsStaffCreatedGetter)
+    public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator,IGetCampsCreated listCampsStaffCreatedGetter,UserDataBase userDataBase,IGeneratePerformanceReport staffPerformanceReportGenerator)
     {
-        super(name,iSortCamps,iFilterCamps);
+        super(name,iSortCamps,iFilterCamps,userDataBase);
         this.staffCampCreator=staffCampCreator;
         this.staffCampDeleter=staffCampDeleter;
         this.staffCampEditor=staffCampEditor;
@@ -23,6 +24,7 @@ public class Staff extends User
         this.staffViewOwnCamps=staffViewOwnCamps;
         this.staffStudentReportGenerator=staffStudentReportGenerator;
         this.listCampsStaffCreatedGetter=listCampsStaffCreatedGetter;
+        this.staffPerformanceReportGenerator=staffPerformanceReportGenerator;
     }
 
     public void createCamp(String campName,String startDate,String endDate, String regClosingDate,boolean visibility, String location, int attendeeSlots,int campComSlots,String description,Faculty openTo)
@@ -64,6 +66,10 @@ public class Staff extends User
     public ArrayList<String> getCampsCreated()
     {
         return listCampsStaffCreatedGetter.getListCampStaffCreated(this.getName());
+    }
+    public void generatePerformanceReport()
+    {
+        staffPerformanceReportGenerator.generatePerformanceReport(getUserDataBase(), this, getSortCamps(), getFilterCamps(), getFilterString());
     }
 
 

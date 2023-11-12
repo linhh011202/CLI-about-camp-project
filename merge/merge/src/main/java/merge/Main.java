@@ -9,37 +9,55 @@ import java.util.Collections;
 public class Main {
     public static void main(String[] args) 
     {
+        UserDataBase userDataBase=new UserDataBase();
         CampDataBase campDataBase=new CampDataBase();
         RegistrationDataBase registrationDataBase=new RegistrationDataBase();
         CRDBInterfaceInitialiser.InitialiseCRDataBaseInterfaces(campDataBase, registrationDataBase);
 
         EnquiriesDB enquiriesDB=new EnquiriesDB(campDataBase.getCheckSchoolMatch(),campDataBase.getCampVisibilityChecker());
 
-        Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter());
+        Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
         staff0.createCamp("d", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
 
-        Staff staff1=new Staff("kaixuan",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter());
+        Staff staff1=new Staff("kaixuan",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
         staff1.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
-        staff1.createCamp("a", "14/12/2010","15/12/2010", "09/11/2050", true, "MOHOR B", 5, 1, "AEST CAMP" , Faculty.SCSE);
+        staff1.createCamp("a", "14/12/2010","15/12/2010", "09/11/2050", true, "MOHOR B", 5, 2, "AEST CAMP" , Faculty.SCSE);
         staff1.createCamp("c", "15/12/2012","20/12/2020", "01/10/2050", true, "CLASSSY", 1, 2, "BEST CAMP" , Faculty.NTU);
         
-        Student student1=new Student("tommy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
-        Student student2=new Student("bob",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
-        Student student3=new Student("sam",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
-        Student student4=new Student("timothy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
-        Student student5=new Student("marly",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator());
+        userDataBase.addUser(new Student("tommy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
+        userDataBase.addUser(new Student("bob",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
+        userDataBase.addUser(new Student("sam",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
+        userDataBase.addUser(new Student("timothy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
+        userDataBase.addUser(new Student("marly",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
+        
+        User currentUser=userDataBase.getUser("tommy");
+        currentUser=userDataBase.updateUser("tommy",((Student)currentUser).registerCampCommittee("a"));
 
-        student3=student3.registerCampCommittee("a");
+        currentUser=userDataBase.getUser("bob");
+        currentUser=userDataBase.updateUser("bob",((Student)currentUser).registerCampCommittee("a"));
 
+        currentUser=userDataBase.getUser("sam");
+        currentUser=userDataBase.updateUser("sam",((Student)currentUser).registerCampCommittee("b"));
+
+        currentUser=userDataBase.getUser("timothy");
+        currentUser=userDataBase.updateUser("timothy",((Student)currentUser).registerCampCommittee("b"));
+        staff1.generatePerformanceReport();
+
+
+
+        /* 
+        Testing kx enquiries
         enquiriesDB.sendEnquiry("b", "HOW TO GO", student1);
         enquiriesDB.sendEnquiry("c", "HOW TO GO", student1);
         enquiriesDB.sendEnquiry("c", "WHY THS CAMP SO GOOD", student5);
 
         enquiriesDB.addReply(1, "DUNNO", staff0.getCampsCreated());
 
+
         ArrayList<String> camps=staff1.getCampsCreated();
         Collections.sort(camps);
         enquiriesDB.viewByCamp(camps);
+        */
         
 
         /* 

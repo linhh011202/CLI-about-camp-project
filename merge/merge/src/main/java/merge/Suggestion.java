@@ -1,3 +1,4 @@
+/* 
 package merge;
 
 import java.util.ArrayList;
@@ -48,3 +49,5 @@ public class Suggestion {
         text = newText;
     }
 }
+
+*/

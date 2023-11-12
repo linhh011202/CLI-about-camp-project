@@ -1,12 +1,13 @@
 package merge;
 
 public class User {
+    private UserDataBase userDataBase;
     private String name;
     private ISortCamps iSortCamps;
     private String filterString;
     private IFilterCamps iFilterCamps;
 
-    public User(String name,ISortCamps iSortCamps,IFilterCamps iFilterCamps)
+    public User(String name,ISortCamps iSortCamps,IFilterCamps iFilterCamps,UserDataBase userDataBase)
     {
         this.name=name;
         this.iSortCamps=iSortCamps; //default is by campName, maybe need to add some logic to set it to that if there isnt any prexisting info in DB? 
@@ -14,6 +15,7 @@ public class User {
 
         this.filterString=null;
         this.iFilterCamps=iFilterCamps;
+        this.userDataBase=userDataBase;
     }
 
     
@@ -40,4 +42,6 @@ public class User {
 
     public String getFilterString(){return filterString;}
     public void setFilterString(String filterString){this.filterString=filterString;}
+
+    public UserDataBase getUserDataBase(){return userDataBase;}
 }

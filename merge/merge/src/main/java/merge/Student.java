@@ -14,9 +14,9 @@ public class Student extends User
     private IViewRegisteredCamps studentRegisteredCampsViewer;
     private IGenerateStudentReport campComStudentReportGenerator;
 
-    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps,IGenerateStudentReport campComStudentReportGenerator)
+    public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps,IGenerateStudentReport campComStudentReportGenerator,UserDataBase userDataBase)
     {
-        super(name,iSortCamps,iFilterCamps);
+        super(name,iSortCamps,iFilterCamps,userDataBase);
         this.isCommittee=false;
         this.studentViewAllCamps=studentViewAllCamps;
         this.faculty=faculty;
@@ -30,7 +30,7 @@ public class Student extends User
     //Copy constructor
     public Student(Student student)
     {
-        super(student.getName(),student.getSortCamps(),student.getFilterCamps());
+        super(student.getName(),student.getSortCamps(),student.getFilterCamps(),student.getUserDataBase());
         this.isCommittee=student.getIsCommittee();
         this.faculty=student.getFaculty();
         this.studentViewAllCamps=student.getStudentViewAllCamps();
@@ -118,6 +118,5 @@ public class Student extends User
     {
         campComStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
     }
-
 
 }

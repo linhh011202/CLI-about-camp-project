@@ -17,4 +17,12 @@ public class CampCommittee extends Student
         return campName;
     }
 
+    public void addPoints() {
+        points++;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
 }

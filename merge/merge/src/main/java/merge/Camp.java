@@ -1,8 +1,6 @@
 package merge;
 
 import java.time.LocalDate;
-import java.io.File;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Camp 

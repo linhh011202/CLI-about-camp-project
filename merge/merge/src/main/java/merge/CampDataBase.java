@@ -14,6 +14,7 @@ public class CampDataBase
     private StaffViewOwnCamps staffViewOwnCamps;
     private StaffStudentReportGenerator staffStudentReportGenerator;
     private ListCampsStaffCreatedGetter listCampsStaffCreatedGetter;
+    private StaffPerformanceReportGenerator staffPerformanceReportGenerator;
 
     //Association with the manager classes related to Sorting Interfaces.
     private SortManager sortManager;
@@ -73,6 +74,7 @@ public class CampDataBase
         filterManager=new FilterManager(this,attendeeRegistrationChecker,committeeRegistrationChecker);  
         staffStudentReportGenerator= new StaffStudentReportGenerator(this,registeredStudentNamesRolesGetter);
         campComStudentReportGenerator= new CampComStudentReportGenerator(this,registeredStudentNamesRolesGetter,listOfCampsIsCommiteeOfGetter);
+        staffPerformanceReportGenerator= new StaffPerformanceReportGenerator(this,registeredStudentNamesRolesGetter);
     }
 
     
@@ -86,6 +88,7 @@ public class CampDataBase
     public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
     public StaffStudentReportGenerator getStaffStudentReportGenerator(){return staffStudentReportGenerator;}
     public ListCampsStaffCreatedGetter getListCampsStaffCreatedGetter(){return listCampsStaffCreatedGetter;}
+    public StaffPerformanceReportGenerator getStaffPerformanceReportGenerator(){return staffPerformanceReportGenerator;}
 
     public SortManager getSortManager(){return sortManager;}
 
