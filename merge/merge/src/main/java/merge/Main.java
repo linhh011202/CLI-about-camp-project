@@ -10,10 +10,10 @@ public class Main {
     public static void main(String[] args) 
     {
         UserDataBase userDataBase=new UserDataBase();
+        SuggestionsDB suggestionsDB=new SuggestionsDB();
         CampDataBase campDataBase=new CampDataBase();
         RegistrationDataBase registrationDataBase=new RegistrationDataBase();
         CRDBInterfaceInitialiser.InitialiseCRDataBaseInterfaces(campDataBase, registrationDataBase);
-
         EnquiriesDB enquiriesDB=new EnquiriesDB(campDataBase.getCheckSchoolMatch(),campDataBase.getCampVisibilityChecker());
 
         Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
@@ -29,19 +29,41 @@ public class Main {
         userDataBase.addUser(new Student("sam",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
         userDataBase.addUser(new Student("timothy",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
         userDataBase.addUser(new Student("marly",campDataBase.getStudentViewAllCamps(),Faculty.SCSE,campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),userDataBase));
-        
-        User currentUser=userDataBase.getUser("tommy");
-        currentUser=userDataBase.updateUser("tommy",((Student)currentUser).registerCampCommittee("a"));
 
-        currentUser=userDataBase.getUser("bob");
-        currentUser=userDataBase.updateUser("bob",((Student)currentUser).registerCampCommittee("a"));
+        User tommy=userDataBase.getUser("tommy");
+        tommy=userDataBase.updateUser("tommy",((Student)tommy).registerCampCommittee("a"));
 
-        currentUser=userDataBase.getUser("sam");
-        currentUser=userDataBase.updateUser("sam",((Student)currentUser).registerCampCommittee("b"));
+        User bob=userDataBase.getUser("bob");
+        bob=userDataBase.updateUser("bob",((Student)bob).registerCampCommittee("a"));
 
-        currentUser=userDataBase.getUser("timothy");
-        currentUser=userDataBase.updateUser("timothy",((Student)currentUser).registerCampCommittee("b"));
+        User sam=userDataBase.getUser("sam");
+        sam=userDataBase.updateUser("sam",((Student)sam).registerCampCommittee("b"));
+
+        User timothy=userDataBase.getUser("timothy");
+        timothy=userDataBase.updateUser("timothy",((Student)timothy).registerCampCommittee("b"));
+
+        suggestionsDB.sendSuggestion("a", "MAKE IT LONGER", "bob");
+        userDataBase.addPoints("bob");
+        userDataBase.addPoints(suggestionsDB.approveSuggestion(1, staff1.getCampsCreated()));
+
+        suggestionsDB.viewByCamp(staff1.getCampsCreated());
+
         staff1.generatePerformanceReport();
+
+
+        /* 
+        enquiriesDB.addReply(1, "I DUNNO",new ArrayList<String>(Arrays.asList("b")) );
+        userDataBase.addPoints("sam");
+        enquiriesDB.viewOwnEnquiry("sam");
+        */
+        /*
+        suggestionsDB.sendSuggestion(((CampCommittee)currentUser).getCampName(),"ADD MORE FISHBALLS", currentUser.getName());
+        suggestionsDB.deleteSuggestion(1, "sam");
+        suggestionsDB.viewOwnSuggestion(currentUser.getName());
+        */
+
+        
+
 
 
 

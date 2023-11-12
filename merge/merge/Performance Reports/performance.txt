@@ -1,0 +1,54 @@
+PERFORMANCE REPORT FOR STAFF: kaixuan
+**************************************************
+
+|| Camp name: a | Staff in charge: kaixuan ||
+|| Start Date: 14/12/2010 | End Date: 15/12/2010 ||
+|| Registration Closing Date: 09/11/2050 | Visibility: true ||
+|| Location: MOHOR B | Total Slots: 7 ||
+|| Total Camp Attendee Slots: 5 ||
+|| Total Camp Committee Slots: 2 ||
+|| Description: AEST CAMP ||
+|| Open To: SCSE ||
+|| Available Attendee Slots: 5 ||
+|| Available Camp Committee Slots: 0 ||
+
+List of Camp committee Members and their points for the above camp:
+|| Camp Committee Member Name: tommy | Points: 0||
+|| Camp Committee Member Name: bob | Points: 2||
+----------------------------------------
+
+
+|| Camp name: b | Staff in charge: kaixuan ||
+|| Start Date: 01/12/2010 | End Date: 10/12/2010 ||
+|| Registration Closing Date: 01/10/2050 | Visibility: true ||
+|| Location: ALIBABA | Total Slots: 14 ||
+|| Total Camp Attendee Slots: 10 ||
+|| Total Camp Committee Slots: 4 ||
+|| Description: BEST CAMP ||
+|| Open To: SCSE ||
+|| Available Attendee Slots: 10 ||
+|| Available Camp Committee Slots: 2 ||
+
+List of Camp committee Members and their points for the above camp:
+|| Camp Committee Member Name: sam | Points: 0||
+|| Camp Committee Member Name: timothy | Points: 0||
+----------------------------------------
+
+
+|| Camp name: c | Staff in charge: kaixuan ||
+|| Start Date: 15/12/2012 | End Date: 20/12/2020 ||
+|| Registration Closing Date: 01/10/2050 | Visibility: true ||
+|| Location: CLASSSY | Total Slots: 3 ||
+|| Total Camp Attendee Slots: 1 ||
+|| Total Camp Committee Slots: 2 ||
+|| Description: BEST CAMP ||
+|| Open To: NTU ||
+|| Available Attendee Slots: 1 ||
+|| Available Camp Committee Slots: 2 ||
+
+List of Camp committee Members and their points for the above camp:
+No Camp Committee members registered for this camp!
+----------------------------------------
+
+
+-------------END OF REPORT--------------

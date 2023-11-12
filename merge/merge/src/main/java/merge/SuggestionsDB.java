@@ -7,14 +7,7 @@ import java.util.List;
 public class SuggestionsDB {
     private /*static*/ ArrayList<Suggestion> suggestionsDB = new ArrayList<Suggestion>();
     private static int suggestionIdCounter = 1;
-    /*
-    private ICheckSchoolMatch checkSchoolMatch;
-    private ICheckCampVisibility campVisibilityChecker;
-    public EnquiriesDB(ICheckSchoolMatch checkSchoolMatch, ICheckCampVisibility campVisibilityChecker) {
-        this.checkSchoolMatch=checkSchoolMatch;
-        this.campVisibilityChecker=campVisibilityChecker;
-    }
-    */
+    
     public void sendSuggestion(String camp, String text, String user) {
         //add parser to get input
         Suggestion suggestion = new Suggestion(suggestionIdCounter++, camp, text, user);

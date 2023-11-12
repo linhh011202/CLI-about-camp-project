@@ -1,8 +1,6 @@
-/* 
 package merge;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Suggestion {
     private int suggestionID;
@@ -73,5 +71,3 @@ public class Suggestion {
         lastEditDate = newLastEditDate;
     }
 }
-
-*/
