@@ -1,11 +1,9 @@
-//package staff;
 package merge;
-//import java.util.Scanner;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquiry, IViewOwnEnquiry {
-    //Scanner sc = new Scanner(System.in);
     private ArrayList<Enquiry> enquiriesDB = new ArrayList<Enquiry>();
     private static int enquiryIdCounter = 1;
     private ICheckSchoolMatch checkSchoolMatch;
@@ -14,20 +12,23 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         this.checkSchoolMatch=checkSchoolMatch;
         this.campVisibilityChecker=campVisibilityChecker;
     }
-    public void addReply(int enquiryNumber, String replyText, List<String> campList) {
+    
+    public boolean addReply(int enquiryNumber, String replyText, List<String> campList) {
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
                 if (campList.contains(enquiry.getCamp())) {
                     Enquiry reply = new Enquiry(enquiryIdCounter++, enquiry.getCamp(), replyText, enquiry.getUser());
                     enquiry.addReply(reply);
-                    return;
+                    System.out.println("Reply added.");
+                    return true;
                 } else {
-                    System.out.println("The specified comment is not for a camp managed by you.");
-                    return;
+                    System.out.println("The specified enquiry is not about a camp managed by you.");
+                    return false;
                 }
             }
         }
-        System.out.println("The specified comment does not exist.");
+        System.out.println("The specified enquiry does not exist.");
+        return false;
     }
 
     public void sendEnquiry(String camp, String text, Student student) {
@@ -83,6 +84,7 @@ public class EnquiriesDB {//implements IEditEnquiry, IDeleteEnquiry, ISendEnquir
         }
         if (toRemove != null) {
             enquiriesDB.remove(toRemove);
+            System.out.println("Enquiry deleted successfully.");
             return;
         }
         System.out.println("Enquiry not found.");
