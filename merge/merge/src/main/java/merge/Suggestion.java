@@ -30,8 +30,12 @@ public class Suggestion {
         return approved;
     }
     
-    public int getDate() {
+    public LocalDate getDate() {
         return date;
+    }
+
+    public LocalDate getLastEditDate() {
+        return lastEditDate;
     }
 
     public String getCamp() {
