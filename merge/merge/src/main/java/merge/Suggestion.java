@@ -26,7 +26,7 @@ public class Suggestion {
         return suggestionID;
     }
     
-    public int getApproved() {
+    public boolean getApproved() {
         return approved;
     }
     
