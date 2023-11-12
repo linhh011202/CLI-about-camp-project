@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuggestionsDB {
-    private /*static*/ ArrayList<Suggestion> suggestionsDB = new ArrayList<Suggestion>();
+    private static ArrayList<Suggestion> suggestionsDB = new ArrayList<Suggestion>();
     private static int suggestionIdCounter = 1;
     
-    public void sendSuggestion(String camp, String text, String user) {
+    public static void sendSuggestion(String camp, String text, String user) {
         //add parser to get input
         Suggestion suggestion = new Suggestion(suggestionIdCounter++, camp, text, user);
         suggestionsDB.add(suggestion);
         System.out.println("Suggestion sent successfully. ");
     }
 
-    public void editSuggestion(int suggestionNumber, String newText, String user) {
+    public static void editSuggestion(int suggestionNumber, String newText, String user) {
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getSuggestionID() == suggestionNumber) {
                 if (!suggestion.getUser().equals(user)) {
@@ -39,7 +39,7 @@ public class SuggestionsDB {
         System.out.println("Suggestion not found.");
     }
     
-    public void deleteSuggestion(int suggestionNumber, String user) {
+    public static void deleteSuggestion(int suggestionNumber, String user) {
         Suggestion toRemove = null;
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getSuggestionID() == suggestionNumber) {
@@ -66,15 +66,15 @@ public class SuggestionsDB {
         System.out.println("Suggestion not found.");
     }
     
-    private void displaySuggestion(Suggestion s) {
+    private static void displaySuggestion(Suggestion s) {
         System.out.println("Suggestion #" + s.getSuggestionID() + " for camp " + s.getCamp() + " by " + s.getUser() + ":");
         System.out.println("  Date suggested: " + s.getDate());
         System.out.println("  Date of last edit: " + s.getLastEditDate());
         System.out.println("  Date to be approved: " + s.getApproveBy());
-         System.out.println("  Approved: " + s.getApproved());
+        System.out.println("  Approved: " + s.getApproved());
         System.out.println("  Suggestion: " + s.getText());
     }
-    public void viewOwnSuggestion(String user) {
+    public static void viewOwnSuggestion(String user) {
         System.out.println("Your Suggestions:");
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getUser().equals(user)) {
@@ -83,7 +83,7 @@ public class SuggestionsDB {
             }
         }
     }
-    public void viewByCamp(List<String> campList) {
+    public static void viewByCamp(List<String> campList) {
         for (String camp : campList) {
             System.out.println("Suggestions for camp " + camp + ":");
             for (Suggestion suggestion : suggestionsDB) {
@@ -94,7 +94,7 @@ public class SuggestionsDB {
             }
         }
     }
-    public String approveSuggestion(int suggestionNumber, List<String> campList) {
+    public static String approveSuggestion(int suggestionNumber, List<String> campList) {
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getSuggestionID() == suggestionNumber) {
                 if (campList.contains(suggestion.getCamp())) {
