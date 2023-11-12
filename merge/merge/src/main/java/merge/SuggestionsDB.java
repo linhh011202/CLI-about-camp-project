@@ -114,6 +114,7 @@ public class SuggestionsDB {
                     return null;
                     }
                     suggestion.setApproved(true);
+                    System.out.println("Suggestion approved successfully.");
                     return suggestion.getUser();
                 } else {
                     System.out.println("The specified suggestion is not for a camp managed by you.");
