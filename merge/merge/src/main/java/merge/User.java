@@ -1,6 +1,6 @@
 package merge;
 
-public class User {
+public abstract class User {
     private UserDataBase userDataBase;
     private String name;
     private ISortCamps iSortCamps;
