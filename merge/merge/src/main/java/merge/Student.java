@@ -7,7 +7,6 @@ public class Student extends User
     private boolean isCommittee;
 
     //Interfaces it uses
-    private IViewAllCamps studentViewAllCamps;
     private IRegisterCamp studentCampRegisterer;
     private IDeregisterCamp studentCampDeregisterer;
     private IRegisterCommittee committeeCampRegisterer;
@@ -16,9 +15,8 @@ public class Student extends User
 
     public Student(String name,IViewAllCamps studentViewAllCamps,Faculty faculty,ISortCamps iSortCamps, IRegisterCamp studentCampRegisterer,IDeregisterCamp studentCampDeregisterer,IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,IFilterCamps iFilterCamps,IGenerateStudentReport campComStudentReportGenerator,UserDataBase userDataBase)
     {
-        super(name,iSortCamps,iFilterCamps,userDataBase);
+        super(name,iSortCamps,iFilterCamps,userDataBase,studentViewAllCamps);
         this.isCommittee=false;
-        this.studentViewAllCamps=studentViewAllCamps;
         this.faculty=faculty;
         this.studentCampRegisterer=studentCampRegisterer;
         this.studentCampDeregisterer=studentCampDeregisterer;
@@ -30,10 +28,9 @@ public class Student extends User
     //Copy constructor
     public Student(Student student)
     {
-        super(student.getName(),student.getSortCamps(),student.getFilterCamps(),student.getUserDataBase());
+        super(student.getName(),student.getSortCamps(),student.getFilterCamps(),student.getUserDataBase(),student.getIViewAllCamps());
         this.isCommittee=student.getIsCommittee();
         this.faculty=student.getFaculty();
-        this.studentViewAllCamps=student.getStudentViewAllCamps();
         this.studentCampRegisterer=student.getStudentCampRegisterer();
         this.studentCampDeregisterer=student.getStudentCampDeregisterer();
         this.committeeCampRegisterer=student.getCommitteeCampRegisterer();
@@ -56,11 +53,6 @@ public class Student extends User
     public boolean getIsCommittee(){return isCommittee;}
 
     public void setIsCommittee(boolean isCommittee){this.isCommittee=isCommittee;}
-
-    public IViewAllCamps getStudentViewAllCamps()
-    {
-        return studentViewAllCamps;
-    }
 
     public IRegisterCamp getStudentCampRegisterer()
     {
@@ -89,11 +81,6 @@ public class Student extends User
 
 
     //Testing Functions:
-    public void viewAllCamps()
-    {
-        studentViewAllCamps.viewAllCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
-    }
-
     public void registerCampStudent(String campName)
     {
         studentCampRegisterer.registerCamp(this,campName);

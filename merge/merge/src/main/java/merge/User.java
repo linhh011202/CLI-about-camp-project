@@ -6,16 +6,17 @@ public class User {
     private ISortCamps iSortCamps;
     private String filterString;
     private IFilterCamps iFilterCamps;
+    private IViewAllCamps iViewAllCamps;
 
-    public User(String name,ISortCamps iSortCamps,IFilterCamps iFilterCamps,UserDataBase userDataBase)
+    public User(String name,ISortCamps iSortCamps,IFilterCamps iFilterCamps,UserDataBase userDataBase,IViewAllCamps iViewAllCamps)
     {
         this.name=name;
         this.iSortCamps=iSortCamps; //default is by campName, maybe need to add some logic to set it to that if there isnt any prexisting info in DB? 
                                         //Or maybe in DB preset is alr Alpha so error checking should be here anyways??..
-
         this.filterString=null;
         this.iFilterCamps=iFilterCamps;
         this.userDataBase=userDataBase;
+        this.iViewAllCamps=iViewAllCamps;
     }
 
     
@@ -37,6 +38,11 @@ public class User {
     {
         this.iFilterCamps=iFilterCamps;
     }
+    public void viewAllCamps()
+    {
+        iViewAllCamps.viewAllCamps(this,getSortCamps(),getFilterCamps(),getFilterString());
+    }
+   
 
     public String getName(){return name;}
 
@@ -44,4 +50,6 @@ public class User {
     public void setFilterString(String filterString){this.filterString=filterString;}
 
     public UserDataBase getUserDataBase(){return userDataBase;}
+    public IViewAllCamps getIViewAllCamps(){return iViewAllCamps;}
+    
 }

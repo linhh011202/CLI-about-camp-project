@@ -7,7 +7,6 @@ public class Staff extends User
     private ICreateCamp staffCampCreator;
     private IDeleteCamp staffCampDeleter;
     private IEditCamp staffCampEditor;
-    private IViewAllCamps staffViewAllCamps;
     private IViewOwnCamps staffViewOwnCamps;
     private IGenerateStudentReport staffStudentReportGenerator;
     private IGetCampsCreated listCampsStaffCreatedGetter;
@@ -16,11 +15,10 @@ public class Staff extends User
 
     public Staff(String name,ICreateCamp staffCampCreator,IDeleteCamp staffCampDeleter,IEditCamp staffCampEditor,IViewAllCamps staffViewAllCamps,IViewOwnCamps staffViewOwnCamps,ISortCamps iSortCamps,IFilterCamps iFilterCamps,IGenerateStudentReport staffStudentReportGenerator,IGetCampsCreated listCampsStaffCreatedGetter,UserDataBase userDataBase,IGeneratePerformanceReport staffPerformanceReportGenerator)
     {
-        super(name,iSortCamps,iFilterCamps,userDataBase);
+        super(name,iSortCamps,iFilterCamps,userDataBase,staffViewAllCamps);
         this.staffCampCreator=staffCampCreator;
         this.staffCampDeleter=staffCampDeleter;
         this.staffCampEditor=staffCampEditor;
-        this.staffViewAllCamps=staffViewAllCamps;
         this.staffViewOwnCamps=staffViewOwnCamps;
         this.staffStudentReportGenerator=staffStudentReportGenerator;
         this.listCampsStaffCreatedGetter=listCampsStaffCreatedGetter;
@@ -50,10 +48,6 @@ public class Staff extends User
     public void changeAttendeeSlots(String campName,int newAttendeeSlots)
     {
         staffCampEditor.changeAttendeeSlots(this,campName,newAttendeeSlots);
-    }
-    public void viewAllCamps()
-    {
-        staffViewAllCamps.viewAllCamps(this,super.getSortCamps(),getFilterCamps(),getFilterString());
     }
     public void viewOwnCamps()
     {
