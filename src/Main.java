@@ -6,7 +6,7 @@ import java.util.Scanner;
 import FileLoader;
 import user.DataList;// Import DataList definition
 
-public class Main {
+public class Driver {
 
 
     // Define the instance of the DataList as this will be used by the Main program

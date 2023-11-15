@@ -7,8 +7,7 @@ import registration.*;
 import suggestions.*;
 
 import java.util.ArrayList;
-
-public class UserDataBase {
+public class UserDataBase { 
     private ArrayList<User> allUsers;
 
     public UserDataBase()
