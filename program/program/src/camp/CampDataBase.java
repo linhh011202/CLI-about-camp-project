@@ -1,12 +1,17 @@
-package merge;
+package camp;
+
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
 
 import java.util.ArrayList;
 
-public class CampDataBase 
-{
+public class CampDataBase {
     private ArrayList<Camp> allCamps;
 
-    //Association with the manager classes related to staff interfaces.
+    // Association with the manager classes related to staff interfaces.
     private StaffCampCreator staffCampCreator;
     private StaffCampDeleter staffCampDeleter;
     private StaffCampEditor staffCampEditor;
@@ -16,17 +21,17 @@ public class CampDataBase
     private ListCampsStaffCreatedGetter listCampsStaffCreatedGetter;
     private StaffPerformanceReportGenerator staffPerformanceReportGenerator;
 
-    //Association with the manager classes related to Sorting Interfaces.
+    // Association with the manager classes related to Sorting Interfaces.
     private SortManager sortManager;
 
-    //Manager class related to filter interface
+    // Manager class related to filter interface
     private FilterManager filterManager;
 
-    //Association with the manager classes related to student interfaces.
+    // Association with the manager classes related to student interfaces.
     private StudentViewAllCamps studentViewAllCamps;
     private CampComStudentReportGenerator campComStudentReportGenerator;
 
-    //Association with the manager classes related to registrationDB interfaces.
+    // Association with the manager classes related to registrationDB interfaces.
     private CampStudentSlotChecker campStudentSlotChecker;
     private CampStudentSlotReducer campStudentSlotReducer;
     private CampStudentSlotIncreaser campStudentSlotIncreaser;
@@ -39,77 +44,139 @@ public class CampDataBase
     private RegisteredCampsPrinter registeredCampsPrinter;
     private CampVisibilityChecker campVisibilityChecker;
 
-    public CampDataBase()
-    {
-        //Probably read in the data from files, but for now we make it empty at the start every time.
-        allCamps=new ArrayList<Camp>(1);
+    public CampDataBase() {
+        // Probably read in the data from files, but for now we make it empty at the
+        // start every time.
+        allCamps = new ArrayList<Camp>(1);
 
-        //Initialise Associated classes. (maybe its a composition now then)
-        staffCampCreator=new StaffCampCreator(this);
-        staffCampDeleter=new StaffCampDeleter(this);
-        staffCampEditor=new StaffCampEditor(this);
-        staffViewAllCamps=new StaffViewAllCamps(this);
-        staffViewOwnCamps=new StaffViewOwnCamps(this);
-        listCampsStaffCreatedGetter=new ListCampsStaffCreatedGetter(this);
+        // Initialise Associated classes. (maybe its a composition now then)
+        staffCampCreator = new StaffCampCreator(this);
+        staffCampDeleter = new StaffCampDeleter(this);
+        staffCampEditor = new StaffCampEditor(this);
+        staffViewAllCamps = new StaffViewAllCamps(this);
+        staffViewOwnCamps = new StaffViewOwnCamps(this);
+        listCampsStaffCreatedGetter = new ListCampsStaffCreatedGetter(this);
 
+        sortManager = new SortManager(this);
 
-        sortManager=new SortManager(this);
+        studentViewAllCamps = new StudentViewAllCamps(this);
 
-        studentViewAllCamps=new StudentViewAllCamps(this);
-
-        campStudentSlotChecker=new CampStudentSlotChecker(this);
-        campStudentSlotReducer=new CampStudentSlotReducer(this);
-        campStudentSlotIncreaser=new CampStudentSlotIncreaser(this);
-        checkSchoolMatch= new CheckSchoolMatch(this);
-        clashWithRegisteredChecker=new ClashWithRegisteredChecker(this);
-        registrationClosedChecker=new RegistrationClosedChecker(this);
-        campCommitteeSlotChecker=new CampCommitteeSlotChecker(this);
-        campCommitteeSlotReducer=new CampCommitteeSlotReducer(this);
-        registeredCampsPrinter=new RegisteredCampsPrinter(this);
-        campVisibilityChecker=new CampVisibilityChecker(this);
+        campStudentSlotChecker = new CampStudentSlotChecker(this);
+        campStudentSlotReducer = new CampStudentSlotReducer(this);
+        campStudentSlotIncreaser = new CampStudentSlotIncreaser(this);
+        checkSchoolMatch = new CheckSchoolMatch(this);
+        clashWithRegisteredChecker = new ClashWithRegisteredChecker(this);
+        registrationClosedChecker = new RegistrationClosedChecker(this);
+        campCommitteeSlotChecker = new CampCommitteeSlotChecker(this);
+        campCommitteeSlotReducer = new CampCommitteeSlotReducer(this);
+        registeredCampsPrinter = new RegisteredCampsPrinter(this);
+        campVisibilityChecker = new CampVisibilityChecker(this);
     }
 
-    public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker,IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter, IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter)
-    {
-        filterManager=new FilterManager(this,attendeeRegistrationChecker,committeeRegistrationChecker);  
-        staffStudentReportGenerator= new StaffStudentReportGenerator(this,registeredStudentNamesRolesGetter);
-        campComStudentReportGenerator= new CampComStudentReportGenerator(this,registeredStudentNamesRolesGetter,listOfCampsIsCommiteeOfGetter);
-        staffPerformanceReportGenerator= new StaffPerformanceReportGenerator(this,registeredStudentNamesRolesGetter);
+    public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,
+            ICheckRegistration committeeRegistrationChecker,
+            IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter,
+            IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter) {
+        filterManager = new FilterManager(this, attendeeRegistrationChecker, committeeRegistrationChecker);
+        staffStudentReportGenerator = new StaffStudentReportGenerator(this, registeredStudentNamesRolesGetter);
+        campComStudentReportGenerator = new CampComStudentReportGenerator(this, registeredStudentNamesRolesGetter,
+                listOfCampsIsCommiteeOfGetter);
+        staffPerformanceReportGenerator = new StaffPerformanceReportGenerator(this, registeredStudentNamesRolesGetter);
     }
 
-    
+    // Getters for the manager classes, to be used to initialise User classes in
+    // Main.java so they can utilise said interface functions.
 
-    //Getters for the manager classes, to be used to initialise User classes in Main.java so they can utilise said interface functions.
+    public StaffCampCreator getStaffCampCreator() {
+        return staffCampCreator;
+    }
 
-    public StaffCampCreator getStaffCampCreator(){return staffCampCreator;}
-    public StaffCampDeleter getStaffCampDeleter(){return staffCampDeleter;}
-    public StaffCampEditor getStaffCampEditor(){return staffCampEditor;}
-    public StaffViewAllCamps getStaffViewAllCamps(){return staffViewAllCamps;}
-    public StaffViewOwnCamps getStaffViewOwnCamps(){return staffViewOwnCamps;}
-    public StaffStudentReportGenerator getStaffStudentReportGenerator(){return staffStudentReportGenerator;}
-    public ListCampsStaffCreatedGetter getListCampsStaffCreatedGetter(){return listCampsStaffCreatedGetter;}
-    public StaffPerformanceReportGenerator getStaffPerformanceReportGenerator(){return staffPerformanceReportGenerator;}
+    public StaffCampDeleter getStaffCampDeleter() {
+        return staffCampDeleter;
+    }
 
-    public SortManager getSortManager(){return sortManager;}
+    public StaffCampEditor getStaffCampEditor() {
+        return staffCampEditor;
+    }
 
-    public FilterManager getFilterManager(){return filterManager;}
+    public StaffViewAllCamps getStaffViewAllCamps() {
+        return staffViewAllCamps;
+    }
 
-    public StudentViewAllCamps getStudentViewAllCamps(){return studentViewAllCamps;}
-    public CampComStudentReportGenerator getCampComStudentReportGenerator(){return campComStudentReportGenerator;}
+    public StaffViewOwnCamps getStaffViewOwnCamps() {
+        return staffViewOwnCamps;
+    }
 
-    public CampStudentSlotChecker getCampStudentSlotChecker(){return campStudentSlotChecker;}
-    public CampStudentSlotReducer getCampStudentSlotReducer(){return campStudentSlotReducer;}
-    public CampStudentSlotIncreaser getCampStudentSlotIncreaser(){return campStudentSlotIncreaser;}
-    public CheckSchoolMatch getCheckSchoolMatch(){return checkSchoolMatch;}
-    public ClashWithRegisteredChecker getClashWithRegisteredChecker(){return clashWithRegisteredChecker;}
-    public RegistrationClosedChecker getRegistrationClosedChecker(){return registrationClosedChecker;}
-    public CampCommitteeSlotChecker getCampCommitteeSlotChecker(){return campCommitteeSlotChecker;}
-    public CampCommitteeSlotReducer getCampCommitteeSlotReducer(){return campCommitteeSlotReducer;}
-    public RegisteredCampsPrinter getRegisteredCampsPrinter(){return registeredCampsPrinter;}
-    public CampVisibilityChecker getCampVisibilityChecker(){return campVisibilityChecker;}
+    public StaffStudentReportGenerator getStaffStudentReportGenerator() {
+        return staffStudentReportGenerator;
+    }
 
-    public ArrayList<Camp> getAllCamps() {return allCamps;}
+    public ListCampsStaffCreatedGetter getListCampsStaffCreatedGetter() {
+        return listCampsStaffCreatedGetter;
+    }
 
+    public StaffPerformanceReportGenerator getStaffPerformanceReportGenerator() {
+        return staffPerformanceReportGenerator;
+    }
 
+    public SortManager getSortManager() {
+        return sortManager;
+    }
+
+    public FilterManager getFilterManager() {
+        return filterManager;
+    }
+
+    public StudentViewAllCamps getStudentViewAllCamps() {
+        return studentViewAllCamps;
+    }
+
+    public CampComStudentReportGenerator getCampComStudentReportGenerator() {
+        return campComStudentReportGenerator;
+    }
+
+    public CampStudentSlotChecker getCampStudentSlotChecker() {
+        return campStudentSlotChecker;
+    }
+
+    public CampStudentSlotReducer getCampStudentSlotReducer() {
+        return campStudentSlotReducer;
+    }
+
+    public CampStudentSlotIncreaser getCampStudentSlotIncreaser() {
+        return campStudentSlotIncreaser;
+    }
+
+    public CheckSchoolMatch getCheckSchoolMatch() {
+        return checkSchoolMatch;
+    }
+
+    public ClashWithRegisteredChecker getClashWithRegisteredChecker() {
+        return clashWithRegisteredChecker;
+    }
+
+    public RegistrationClosedChecker getRegistrationClosedChecker() {
+        return registrationClosedChecker;
+    }
+
+    public CampCommitteeSlotChecker getCampCommitteeSlotChecker() {
+        return campCommitteeSlotChecker;
+    }
+
+    public CampCommitteeSlotReducer getCampCommitteeSlotReducer() {
+        return campCommitteeSlotReducer;
+    }
+
+    public RegisteredCampsPrinter getRegisteredCampsPrinter() {
+        return registeredCampsPrinter;
+    }
+
+    public CampVisibilityChecker getCampVisibilityChecker() {
+        return campVisibilityChecker;
+    }
+
+    public ArrayList<Camp> getAllCamps() {
+        return allCamps;
+    }
 
 }

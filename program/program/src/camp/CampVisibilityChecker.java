@@ -1,31 +1,32 @@
-package merge;
+package camp;
 
-public class CampVisibilityChecker implements ICheckCampVisibility
-{
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+
+public class CampVisibilityChecker implements ICheckCampVisibility {
     private CampDataBase campDataBase;
-    
-    public CampVisibilityChecker(CampDataBase campDataBase){this.campDataBase=campDataBase;}
 
-    public boolean isCampVisible(String campName)
-    {
-        //Check if camp is visible.
-        for(int i=0;i<campDataBase.getAllCamps().size();++i)
-        {
-            if(campDataBase.getAllCamps().get(i).getCampName().equals(campName))
-            {
-                if(campDataBase.getAllCamps().get(i).getVisibility())
-                {
+    public CampVisibilityChecker(CampDataBase campDataBase) {
+        this.campDataBase = campDataBase;
+    }
+
+    public boolean isCampVisible(String campName) {
+        // Check if camp is visible.
+        for (int i = 0; i < campDataBase.getAllCamps().size(); ++i) {
+            if (campDataBase.getAllCamps().get(i).getCampName().equals(campName)) {
+                if (campDataBase.getAllCamps().get(i).getVisibility()) {
                     return true;
-                }
-                else
-                {
+                } else {
                     System.out.println("Error! Unable to find camp.\n");
                     return false;
                 }
             }
         }
 
-        //Camp doesnt exist. return false.
+        // Camp doesnt exist. return false.
         System.out.println("Error! Unable to find camp.\n");
         return false;
     }

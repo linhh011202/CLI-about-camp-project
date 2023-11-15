@@ -1,10 +1,10 @@
 package suggestions;
 
-import camp;
-import enquiries;
-import misc;
-import registration;
-import user;
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import user.*;
 
 import java.time.LocalDate;
 
@@ -17,7 +17,7 @@ public class Suggestion {
     private String camp;
     private String text;
     private String user;
-    
+
     public Suggestion(int suggestionID, String camp, String text, String user) {
         this.suggestionID = suggestionID;
         this.approved = false;
@@ -32,11 +32,11 @@ public class Suggestion {
     public int getSuggestionID() {
         return suggestionID;
     }
-    
+
     public boolean getApproved() {
         return approved;
     }
-    
+
     public LocalDate getDate() {
         return date;
     }
@@ -52,7 +52,7 @@ public class Suggestion {
     public String getCamp() {
         return camp;
     }
-    
+
     public String getText() {
         return text;
     }
@@ -68,11 +68,11 @@ public class Suggestion {
     public void setCamp(String newCamp) {
         camp = newCamp;
     }
-    
+
     public void setText(String newText) {
         text = newText;
     }
-    
+
     public void setLastEditDate(LocalDate newLastEditDate) {
         lastEditDate = newLastEditDate;
     }

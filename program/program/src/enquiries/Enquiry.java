@@ -1,10 +1,10 @@
 package enquiries;
 
-import camp;
-import misc;
-import registration;
-import suggestions;
-import user;
+import camp.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class Enquiry {
     public String getCamp() {
         return camp;
     }
-    
+
     public String getText() {
         return text;
     }
@@ -50,6 +50,7 @@ public class Enquiry {
     public void setCamp(String newCamp) {
         camp = newCamp;
     }
+
     public void setText(String newText) {
         text = newText;
     }

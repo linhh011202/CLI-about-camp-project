@@ -1,4 +1,10 @@
-package merge;
+package user;
+
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
 
 import java.util.ArrayList;
 

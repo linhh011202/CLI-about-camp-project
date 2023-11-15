@@ -1,6 +1,11 @@
-package merge;
+package camp;
 
-public interface IReduceCampSlots 
-{
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+
+public interface IReduceCampSlots {
     public void reduceCampSlots(String CampName);
 }

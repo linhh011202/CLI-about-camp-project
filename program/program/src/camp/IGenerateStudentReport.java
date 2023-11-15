@@ -1,6 +1,11 @@
-package merge;
+package camp;
 
-public interface IGenerateStudentReport 
-{
-    public void generateStudentReport(User user,ISortCamps iSortCamps,IFilterCamps iFilterCamps,String filterString);
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+
+public interface IGenerateStudentReport {
+    public void generateStudentReport(User user, ISortCamps iSortCamps, IFilterCamps iFilterCamps, String filterString);
 }
