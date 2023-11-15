@@ -1,4 +1,10 @@
-package merge;
+package suggestions;
+
+import camp;
+import enquiries;
+import misc;
+import registration;
+import user;
 
 import java.time.LocalDate;
 

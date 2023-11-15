@@ -1,4 +1,10 @@
-package merge;
+package misc;
+
+import camp;
+import enquiries;
+import registration;
+import suggestions;
+import user;
 
 public class CRDBInterfaceInitialiser {
     public static void InitialiseCRDataBaseInterfaces(CampDataBase campDataBase,RegistrationDataBase registrationDataBase)
