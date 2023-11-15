@@ -8,7 +8,7 @@ import suggestions.*;
 
 //NOT IN UMLYET
 
-enum Faculty {
+public enum Faculty {
     SCSE,
     SBS,
     NTU,
