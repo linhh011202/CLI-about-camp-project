@@ -29,7 +29,7 @@ public class StaffPerformanceReportGenerator implements IGeneratePerformanceRepo
     private File createFile(String fileName) {
         try {
             // Try to create a \Reports output directory if it doesnt exist.
-            Path reportsDirectory = Paths.get("Performance Reports");
+            Path reportsDirectory = Paths.get("project\\src\\Performance Reports");
             if (!Files.exists(reportsDirectory)) {
                 try {
                     Files.createDirectories(reportsDirectory);

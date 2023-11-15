@@ -8,8 +8,10 @@ import user.*;
 
 import java.time.LocalDate;
 import java.io.PrintWriter;
+import java.io.*;
 
-public class Camp {
+public class Camp implements Serializable
+{
     private String campName;
     private LocalDate startDate;
     private LocalDate endDate;

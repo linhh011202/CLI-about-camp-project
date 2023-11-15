@@ -6,7 +6,11 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+import java.io.*;
 import java.util.ArrayList;
+
+//Once constructed, will read from storage.
+//Before app closes, remember to call writeToStorage to store the info of camps.
 
 public class CampDataBase {
     private ArrayList<Camp> allCamps;
@@ -45,10 +49,9 @@ public class CampDataBase {
     private CampVisibilityChecker campVisibilityChecker;
 
     public CampDataBase() {
-        // Probably read in the data from files, but for now we make it empty at the
-        // start every time.
-        allCamps = new ArrayList<Camp>(1);
-
+        //Make it empty, then we read in automatically using readFromStorage at the end of constructor.
+        allCamps = new ArrayList<Camp>(0);
+        
         // Initialise Associated classes. (maybe its a composition now then)
         staffCampCreator = new StaffCampCreator(this);
         staffCampDeleter = new StaffCampDeleter(this);
@@ -71,6 +74,13 @@ public class CampDataBase {
         campCommitteeSlotReducer = new CampCommitteeSlotReducer(this);
         registeredCampsPrinter = new RegisteredCampsPrinter(this);
         campVisibilityChecker = new CampVisibilityChecker(this);
+
+        try{
+            readFromStorage();
+        }catch(Exception exception)
+        {
+            System.out.printf("No existing Camp information to retrieve from storage!\n");
+        }
     }
 
     public void InitialiseCampDB(ICheckRegistration attendeeRegistrationChecker,
@@ -83,6 +93,41 @@ public class CampDataBase {
                 listOfCampsIsCommiteeOfGetter);
         staffPerformanceReportGenerator = new StaffPerformanceReportGenerator(this, registeredStudentNamesRolesGetter);
     }
+
+    //Provides functions to read in from storage, and write to storage.
+    public void writeToStorage() throws IOException {
+        File directory = new File("project\\src\\CampInfo");
+    
+        // Create the necessary directories if they don't exist
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\CampInfo\\CampInfo.txt");
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+    
+            for (int i = 0; i < allCamps.size(); ++i) {
+                objectOutputStream.writeObject(allCamps.get(i));
+            }
+    
+            objectOutputStream.flush();
+        }
+    }
+
+    public void readFromStorage() throws IOException, ClassNotFoundException {
+        try (
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\CampInfo\\CampInfo.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
+        ) 
+        {
+            while (fileInputStream.available() > 0) {
+                Camp camp = (Camp) objectInputStream.readObject();
+                allCamps.add(camp);
+            }
+        }
+    }
+
+
 
     // Getters for the manager classes, to be used to initialise User classes in
     // Main.java so they can utilise said interface functions.

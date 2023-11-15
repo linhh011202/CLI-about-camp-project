@@ -1,12 +1,15 @@
 package registration;
 
+import java.io.Serializable;
+
 import camp.*;
 import enquiries.*;
 import misc.*;
 import suggestions.*;
 import user.*;
 
-public class Registration {
+public class Registration implements Serializable
+{
     private String studentName;
     private String campName;
     private String role;

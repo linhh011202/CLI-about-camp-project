@@ -6,9 +6,10 @@ import misc.*;
 import registration.*;
 import user.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Suggestion {
+public class Suggestion implements Serializable{
     private int suggestionID;
     private boolean approved;
     private LocalDate date;

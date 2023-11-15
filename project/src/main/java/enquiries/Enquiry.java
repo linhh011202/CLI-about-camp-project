@@ -6,9 +6,10 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Enquiry {
+public class Enquiry implements Serializable{
     private int enquiryID;
     private String camp;
     private String text;

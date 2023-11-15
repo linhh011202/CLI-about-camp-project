@@ -6,6 +6,12 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +24,54 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
     public EnquiriesDB(ICheckSchoolMatch checkSchoolMatch, ICheckCampVisibility campVisibilityChecker) {
         this.checkSchoolMatch = checkSchoolMatch;
         this.campVisibilityChecker = campVisibilityChecker;
+        try{
+            readFromStorage();
+        }catch(Exception exception)
+        {
+            System.out.printf("No existing Enquiries information to retrieve from storage!\n");
+        }
+
+        enquiryIdCounter=enquiriesDB.size()+1;
     }
 
+    //Functions to read and write to file for storage and retrieval of information
+    //Read and write to storage
+    public void writeToStorage() throws IOException {
+        File directory = new File("project\\src\\EnquiryInfo");
+    
+        // Create the necessary directories if they don't exist
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\EnquiryInfo\\EnquiryInfo.txt");
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+    
+            for (int i = 0; i < enquiriesDB.size(); ++i) {
+                objectOutputStream.writeObject(enquiriesDB.get(i));
+            }
+    
+            objectOutputStream.flush();
+        }
+    }
+
+    public void readFromStorage() throws IOException, ClassNotFoundException {
+        try (
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\EnquiryInfo\\EnquiryInfo.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
+        ) 
+        {
+            while (fileInputStream.available() > 0) {
+                Enquiry enquiry = (Enquiry) objectInputStream.readObject();
+                enquiriesDB.add(enquiry);
+            }
+        }
+    }
+
+
+
+
+    //Functions for users to interact with DB.
     public boolean addReply(int enquiryNumber, String replyText, List<String> campList) {
         for (Enquiry enquiry : enquiriesDB) {
             if (enquiry.getEnquiryID() == enquiryNumber) {
