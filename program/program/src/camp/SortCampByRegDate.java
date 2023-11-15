@@ -1,4 +1,4 @@
-package camp;
+package merge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

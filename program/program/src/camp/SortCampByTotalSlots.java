@@ -1,19 +1,21 @@
-package camp;
-
+package merge;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SortCampByTotalSlots implements ISortCamps {
+public class SortCampByTotalSlots implements ISortCamps
+{
     private SortManager sortManager;
 
-    SortCampByTotalSlots(SortManager sortManager) {
-        this.sortManager = sortManager;
+    SortCampByTotalSlots(SortManager sortManager)
+    {
+        this.sortManager=sortManager;
     }
 
-    public void sortCamps() {
-        // get all camps in database and sort.
-        ArrayList<Camp> allCamps = sortManager.getCampDataBase().getAllCamps();
+    public void sortCamps()
+    {
+        //get all camps in database and sort.
+        ArrayList<Camp> allCamps=sortManager.getCampDataBase().getAllCamps();
 
         Comparator<Camp> byCampName = Comparator.comparing(Camp::getTotalSlots);
         // Sort the list using the custom Comparator

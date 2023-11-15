@@ -1,4 +1,4 @@
-package user;
+package merge;
 
 import java.util.ArrayList;
 

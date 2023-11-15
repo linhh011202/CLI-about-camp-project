@@ -1,5 +1,6 @@
-package camp;
+package merge;
 
-public interface IGetCampSlots {
+public interface IGetCampSlots 
+{
     public int getCampSlots(String campName);
 }

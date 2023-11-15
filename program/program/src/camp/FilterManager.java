@@ -1,8 +1,9 @@
-package camp;
+package merge;
 
 //Student shouldnt have access to interfaces for filters that he shouldn't be able to know. Like attendeename, etc.
 
-public class FilterManager {
+public class FilterManager 
+{
     private CampDataBase campDataBase;
 
     private FilterCampByCampName filterCampByCampName;
@@ -23,97 +24,115 @@ public class FilterManager {
     private FilterCampByCommitteeName filterCampByCommitteeName;
     private FilterCampByDescription filterCampByDescription;
 
-    public FilterManager(CampDataBase campDataBase, ICheckRegistration attendeeRegistrationChecker,
-            ICheckRegistration committeeRegistrationChecker) {
-        this.campDataBase = campDataBase;
-        this.filterCampByCampName = new FilterCampByCampName(this);
-        this.filterCampByNothing = new FilterCampByNothing(this);
-        this.filterCampByStartDate = new FilterCampByStartDate(this);
-        this.filterCampByEndDate = new FilterCampByEndDate(this);
-        this.filterCampByRegClosingDate = new FilterCampByRegClosingDate(this);
-        this.filterCampByVisibility = new FilterCampByVisibility(this);
-        this.filterCampByLocation = new FilterCampByLocation(this);
-        this.filterCampByTotalSlots = new FilterCampByTotalSlots(this);
-        this.filterCampByAttendeeSlots = new FilterCampByAttendeeSlots(this);
-        this.filterCampByCampComSlots = new FilterCampByCampComSlots(this);
-        this.filterCampByAvailableCampComSlots = new FilterCampByAvailableCampComSlots(this);
-        this.filterCampByAvailableAttendeeSlots = new FilterCampByAvailableAttendeeSlots(this);
-        this.filterCampByStaffIC = new FilterCampByStaffIC(this);
-        this.filterCampByOpenTo = new FilterCampByOpenTo(this);
-        this.filterCampByDescription = new FilterCampByDescription(this);
-        this.filterCampByAttendeeName = new FilterCampByAttendeeName(this, attendeeRegistrationChecker);
-        this.filterCampByCommitteeName = new FilterCampByCommitteeName(this, committeeRegistrationChecker);
+    public FilterManager(CampDataBase campDataBase,ICheckRegistration attendeeRegistrationChecker,ICheckRegistration committeeRegistrationChecker)
+    {
+        this.campDataBase=campDataBase;
+        this.filterCampByCampName=new FilterCampByCampName(this);
+        this.filterCampByNothing=new FilterCampByNothing(this);
+        this.filterCampByStartDate=new FilterCampByStartDate(this);
+        this.filterCampByEndDate=new FilterCampByEndDate(this);
+        this.filterCampByRegClosingDate=new FilterCampByRegClosingDate(this);
+        this.filterCampByVisibility=new FilterCampByVisibility(this);
+        this.filterCampByLocation=new FilterCampByLocation(this);
+        this.filterCampByTotalSlots=new FilterCampByTotalSlots(this);
+        this.filterCampByAttendeeSlots=new FilterCampByAttendeeSlots(this);
+        this.filterCampByCampComSlots=new FilterCampByCampComSlots(this);
+        this.filterCampByAvailableCampComSlots=new FilterCampByAvailableCampComSlots(this);
+        this.filterCampByAvailableAttendeeSlots=new FilterCampByAvailableAttendeeSlots(this);
+        this.filterCampByStaffIC=new FilterCampByStaffIC(this);
+        this.filterCampByOpenTo=new FilterCampByOpenTo(this);
+        this.filterCampByDescription=new FilterCampByDescription(this);
+        this.filterCampByAttendeeName=new FilterCampByAttendeeName(this,attendeeRegistrationChecker);
+        this.filterCampByCommitteeName=new FilterCampByCommitteeName(this,committeeRegistrationChecker);
     }
 
-    public CampDataBase getCampDataBase() {
+    public CampDataBase getCampDataBase()
+    {
         return campDataBase;
     }
 
-    public FilterCampByCampName getFilterCampByCampName() {
+    public FilterCampByCampName getFilterCampByCampName()
+    {
         return filterCampByCampName;
     }
 
-    public FilterCampByNothing getFilterCampByNothing() {
+    public FilterCampByNothing getFilterCampByNothing()
+    {
         return filterCampByNothing;
     }
 
-    public FilterCampByStartDate getFilterCampByStartDate() {
+    public FilterCampByStartDate getFilterCampByStartDate()
+    {
         return filterCampByStartDate;
     }
 
-    public FilterCampByEndDate getFilterCampByEndDate() {
+    public FilterCampByEndDate getFilterCampByEndDate()
+    {
         return filterCampByEndDate;
     }
 
-    public FilterCampByRegClosingDate getFilterCampByRegClosingDate() {
+    public FilterCampByRegClosingDate getFilterCampByRegClosingDate()
+    {
         return filterCampByRegClosingDate;
     }
 
-    public FilterCampByVisibility getFilterCampByVisibility() {
+    public FilterCampByVisibility getFilterCampByVisibility()
+    {
         return filterCampByVisibility;
     }
 
-    public FilterCampByLocation getFilterCampByLocation() {
+    public FilterCampByLocation getFilterCampByLocation()
+    {
         return filterCampByLocation;
     }
 
-    public FilterCampByTotalSlots getFilterCampByTotalSlots() {
+    public FilterCampByTotalSlots getFilterCampByTotalSlots()
+    {
         return filterCampByTotalSlots;
     }
 
-    public FilterCampByAttendeeSlots getFilterCampByAttendeeSlots() {
+    public FilterCampByAttendeeSlots getFilterCampByAttendeeSlots()
+    {
         return filterCampByAttendeeSlots;
     }
 
-    public FilterCampByCampComSlots getFilterCampByCampComSlots() {
+    public FilterCampByCampComSlots getFilterCampByCampComSlots()
+    {
         return filterCampByCampComSlots;
     }
 
-    public FilterCampByAvailableCampComSlots getFilterCampByAvailableCampComSlots() {
+    public FilterCampByAvailableCampComSlots getFilterCampByAvailableCampComSlots()
+    {
         return filterCampByAvailableCampComSlots;
     }
 
-    public FilterCampByAvailableAttendeeSlots getFilterCampByAvailableAttendeeSlots() {
+    public FilterCampByAvailableAttendeeSlots getFilterCampByAvailableAttendeeSlots()
+    {
         return filterCampByAvailableAttendeeSlots;
     }
 
-    public FilterCampByStaffIC getFilterCampByStaffIC() {
+    public FilterCampByStaffIC getFilterCampByStaffIC()
+    {
         return filterCampByStaffIC;
     }
 
-    public FilterCampByOpenTo getFilterCampByOpenTo() {
+    public FilterCampByOpenTo getFilterCampByOpenTo()
+    {
         return filterCampByOpenTo;
     }
 
-    public FilterCampByAttendeeName getFilterCampByAttendeeName() {
+    public FilterCampByAttendeeName getFilterCampByAttendeeName()
+    {
         return filterCampByAttendeeName;
     }
 
-    public FilterCampByCommitteeName getFilterCampByCommitteeName() {
+    public FilterCampByCommitteeName getFilterCampByCommitteeName()
+    {
         return filterCampByCommitteeName;
     }
 
-    public FilterCampByDescription getFilterCampByDescription() {
+    public FilterCampByDescription getFilterCampByDescription()
+    {
         return filterCampByDescription;
     }
 

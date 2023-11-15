@@ -1,4 +1,4 @@
-package user;
+package merge;
 
 public abstract class User {
     private UserDataBase userDataBase;

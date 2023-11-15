@@ -1,5 +1,7 @@
-package camp;
+package merge;
 
-public interface ISortCamps {
+
+public interface ISortCamps
+{
    public void sortCamps();
 }

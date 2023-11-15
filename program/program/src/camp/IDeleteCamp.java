@@ -1,5 +1,6 @@
-package camp;
+package merge;
 
-public interface IDeleteCamp {
-    public boolean deleteCamp(User user, String campName);
+public interface IDeleteCamp 
+{
+    public boolean deleteCamp(User user,String campName);
 }

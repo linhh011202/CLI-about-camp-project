@@ -1,5 +1,6 @@
-package camp;
+package merge;
 
-public interface IViewAllCamps {
-    public void viewAllCamps(User user, ISortCamps iSortCamps, IFilterCamps iFilterCamps, String filterString);
+public interface IViewAllCamps
+{
+    public void viewAllCamps(User user,ISortCamps iSortCamps,IFilterCamps iFilterCamps,String filterString);
 }

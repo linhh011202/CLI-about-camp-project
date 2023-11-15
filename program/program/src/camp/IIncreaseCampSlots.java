@@ -1,5 +1,6 @@
-package camp;
+package merge;
 
-public interface IIncreaseCampSlots {
+public interface IIncreaseCampSlots 
+{
     public void increaseCampSlots(String CampName);
 }
