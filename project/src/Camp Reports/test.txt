@@ -1,0 +1,19 @@
+STUDENT REPORT FOR CAMP COMMITEE MEMBER: bob
+**************************************************
+
+|| Camp name: b | Staff in charge: kaixuan ||
+|| Start Date: 01/12/2010 | End Date: 10/12/2010 ||
+|| Registration Closing Date: 01/10/2050 | Visibility: true ||
+|| Location: ALIBABA | Total Slots: 14 ||
+|| Total Camp Attendee Slots: 10 ||
+|| Total Camp Committee Slots: 4 ||
+|| Description: BEST CAMP ||
+|| Open To: SCSE ||
+|| Available Attendee Slots: 10 ||
+|| Available Camp Committee Slots: 3 ||
+
+|| Student Name: bob | Role: Camp Committee||
+----------------------------------------
+
+
+-------------END OF REPORT--------------

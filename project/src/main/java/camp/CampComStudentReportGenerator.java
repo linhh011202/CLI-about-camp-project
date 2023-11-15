@@ -72,6 +72,13 @@ public class CampComStudentReportGenerator implements IGenerateStudentReport {
             }
             Student student = (Student) user;
 
+            //Only allow generation of report if student is camp committee of a camp.
+            if(!student.getIsCommittee())
+            {
+                System.out.printf("Failed to generate report! You are not a camp committee member of any camps!\n");
+                return;
+            }
+
             // Create directory and file to write report in.
             Scanner sc = new Scanner(System.in);
             System.out.printf(

@@ -41,16 +41,18 @@ public class Main {
 
         //Testing OCP if it works
         staff1.viewAllCamps();
-        ((Student)(userDataBase.getUser("bob"))).registerCampStudent("b");
-       
-        staff1.changeVisibility("a", true);
-        staff1.changeVisibility("c", true);
-        userDataBase.updateUser("bob",((Student)(userDataBase.getUser("bob"))).registerCampCommittee("c"));
-        
-        enquiriesDB.sendEnquiry("b", "HELP", (Student)userDataBase.getUser("bob"));
-        enquiriesDB.addReply(2, "DUNNO", staff1.getCampsCreated());
 
-        suggestionsDB.viewByCamp(staff1.getCampsCreated());
+        userDataBase.updateUser("bob",((Student)userDataBase.getUser("bob")).registerCampCommittee("b"));
+        ((Student)userDataBase.getUser("sam")).generateCampComReport();
+
+
+        //((Student)(userDataBase.getUser("bob"))).registerCampStudent("b");
+       
+        //staff1.changeVisibility("a", true);
+        //staff1.changeVisibility("c", true);
+        //userDataBase.updateUser("bob",((Student)(userDataBase.getUser("bob"))).registerCampCommittee("c"));
+
+        //suggestionsDB.viewByCamp(staff1.getCampsCreated());
 
         enquiriesDB.viewByCamp(staff1.getCampsCreated());
         //Store data
