@@ -98,7 +98,7 @@ public class CampDataBase {
     public void writeToStorage() throws IOException {
         File directory = new File("project\\src\\CampInfo");
     
-        // Create the necessary directories if they don't exist
+        // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
