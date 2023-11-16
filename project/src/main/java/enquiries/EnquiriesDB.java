@@ -39,7 +39,7 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
     public void writeToStorage() throws IOException {
         File directory = new File("project\\src\\EnquiryInfo");
     
-        // Create the necessary directories if they don't exist
+        // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
