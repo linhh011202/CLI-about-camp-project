@@ -108,11 +108,10 @@ public abstract class User {
     }
 
     /**
-     * Prints all the camps that the user is allowed to view.
+     * Abstract function that is called differently based on the user type. The implementor should utilise the iViewAllCamps interface
+     * to view the camps, and can make other adjustments depending on requirements.
      */
-    public void viewAllCamps() {
-        iViewAllCamps.viewAllCamps(this, getSortCamps(), getFilterCamps(), getFilterString());
-    }
+    public abstract void viewAllCamps();
 
     /**
      * Gets this User's name.

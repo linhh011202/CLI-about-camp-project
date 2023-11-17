@@ -183,4 +183,11 @@ public class Staff extends User {
                 getFilterCamps(), getFilterString());
     }
 
+    /**
+     * Prints all the camps that the staff can view (In the current implementation, staffs are able to view all camps.)
+     */
+    public void viewAllCamps() {
+        super.getIViewAllCamps().viewAllCamps(this, getSortCamps(), getFilterCamps(), getFilterString());
+    }
+
 }

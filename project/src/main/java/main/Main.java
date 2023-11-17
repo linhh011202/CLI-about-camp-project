@@ -43,8 +43,7 @@ public class Main {
         staff1.viewAllCamps();
 
         userDataBase.updateUser("bob",((Student)userDataBase.getUser("bob")).registerCampCommittee("b"));
-        ((Student)userDataBase.getUser("sam")).generateCampComReport();
-
+        ((Student)userDataBase.getUser("sam")).viewAllCamps();
 
         //((Student)(userDataBase.getUser("bob"))).registerCampStudent("b");
        

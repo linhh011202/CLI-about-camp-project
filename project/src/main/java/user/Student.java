@@ -222,5 +222,11 @@ public class Student extends User {
     public void generateCampComReport() {
         campComStudentReportGenerator.generateStudentReport(this, getSortCamps(), getFilterCamps(), getFilterString());
     }
-
+ 
+    /**
+     * Prints all the camps that are within the student's faculty range, and are visible.
+     */
+    public void viewAllCamps() {
+        super.getIViewAllCamps().viewAllCamps(this, getSortCamps(), getFilterCamps(), getFilterString());
+    }
 }
