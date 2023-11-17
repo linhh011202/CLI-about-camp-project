@@ -25,7 +25,8 @@ public class CampStudentSlotChecker implements IGetCampSlots {
     private CampDataBase campDataBase;
 
     /**
-     * Creates a new CampStudentSlotChecker with the given Camp Database.
+     * Creates a new CampCommitteeSlotChecker with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This CampStudentSlotChecker's associated Camp Database.
      */
     public CampStudentSlotChecker(CampDataBase campDataBase) {

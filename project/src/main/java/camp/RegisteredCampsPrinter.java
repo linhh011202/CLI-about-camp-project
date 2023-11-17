@@ -27,6 +27,7 @@ public class RegisteredCampsPrinter implements IPrintRegisteredCamps {
 
     /**
      * Creates a new RegisteredCampsPrinter with the camp database that it is associated with.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This RegisteredCampsPrinter's associated database.
      */
     public RegisteredCampsPrinter(CampDataBase campDataBase) {

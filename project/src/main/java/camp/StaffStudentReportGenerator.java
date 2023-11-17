@@ -43,6 +43,7 @@ public class StaffStudentReportGenerator implements IGenerateStudentReport {
     /**
      * Creates a new StaffStudentReportGenerator with its associated camp database and interface it requires to generate the
      * student report for a staff.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase The camp database that this StaffStudentReportGenerator manages.
      * @param registeredStudentNamesRolesGetter The interface from registration database that this StaffStudentReportGenerator uses to get the list of 
      * students and their roles in his camps.

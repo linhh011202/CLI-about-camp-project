@@ -24,6 +24,7 @@ public class CampVisibilityChecker implements ICheckCampVisibility {
 
     /**
      * Creates a new CampVisibilityChecker with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This CampVisibilityChecker's associated Camp Database.
      */
     public CampVisibilityChecker(CampDataBase campDataBase) {

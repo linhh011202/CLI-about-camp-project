@@ -28,6 +28,7 @@ public class ClashWithRegisteredChecker implements ICheckNoClash {
 
     /**
      * Creates a new ClashWithRegisteredChecker with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This ClashWithRegisteredChecker's associated Camp Database.
      */
     public ClashWithRegisteredChecker(CampDataBase campDataBase) {

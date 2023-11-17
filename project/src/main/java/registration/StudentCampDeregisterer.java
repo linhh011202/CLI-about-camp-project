@@ -8,10 +8,35 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents an class that manages the registration database and allows clients to deregister from a camp.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StudentCampDeregisterer implements IDeregisterCamp {
+     /**
+     * This StudentCampDeregisterer's associated registration database.
+     */
     private RegistrationDataBase registrationDataBase;
+
+    /**
+     * The interface this StudentCampDeregisterer uses to increment back the remaining number of attendeee slots in a camp upon
+     * successful deregistration.
+     */
     private IIncreaseCampSlots campStudentSlotIncreaser;
 
+    /**
+     * Creates a new StudentCampDeregisterer with the registration database that it manages, and the interface from
+     * Camp database that it requires to increase the number of available camp attendee slots. The registration database will 
+     * call this constructor and input itself as the paramter upon initialisation, or if not, a call to the static method in {@link CRDBInterfaceInitialiser}.
+     * @param registrationDataBase This StudentCampDeregisterer's associated registration database.
+     * @param campStudentSlotIncreaser Interface this StudentCampDeregisterer uses to increase available attendee slots.
+     */
     public StudentCampDeregisterer(RegistrationDataBase registrationDataBase,
             IIncreaseCampSlots campStudentSlotIncreaser) {
         this.registrationDataBase = registrationDataBase;

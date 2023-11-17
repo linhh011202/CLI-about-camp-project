@@ -8,23 +8,74 @@ import user.*;
 
 import java.util.ArrayList;
 
-//IMPORTANT- to utilise the method to register as campCom, you must assign the old student reference to its return value.
-//This is to allow the returning of a promoted CampCom object, or the Student Object again(only if function fails to register as campCom)
-//Use as such: 
-//Student student=new Student(insert constructor)
-//student=student.registerCampCommittee(campName)
-//must assign return value to old student reference
-
+/** 
+ * Represents a class that helps to register a student into a camp as a camp committee member.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CommitteeCampRegisterer implements IRegisterCommittee {
+    /**
+     * This CommitteeCampRegisterer's associated registration database.
+     */
     private RegistrationDataBase registrationDataBase;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if there are still available camp committee slots in the camp.
+     */
     private IGetCampSlots campCommitteeSlotChecker;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if the camp's faculty is open to the student.
+     */
     private ICheckSchoolMatch checkSchoolMatch;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if the registration date has closed.
+     */
     private ICheckRegistrationClosed registrationClosedChecker;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if the student has already registered as a camp committee member in other camps.
+     */
     private IGetCampsRegistered registeredCampNamesGetter;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if the student is already registered to camps that may clash with 
+     * this new camp's dates.
+     */
     private ICheckNoClash clashWithRegisteredChecker;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to reduce the remaining number of camp committee slots upon successful registration
+     * of the student as camp committee member.
+     */
     private IReduceCampSlots campCommitteeSlotReducer;
+
+    /**
+     * An interface used by CommitteeCampRegisterer to check if the camp is even visible and open to students for registration.
+     */
     private ICheckCampVisibility campvisibilityChecker;
 
+    /**
+     * Creates a new CommitteeCampRegisterer with its associated registration database and interfaces required to 
+     * perform its method functions successfully. These interfaces are obtained from the CampDataBase and this constructor should
+     * automatically be called upon the creation of a {@link RegistrationDataBase} or if not, after using the static method from {@link CRDBInterfaceInitialiser}.
+     * @param registrationDataBase This CommitteeCampRegisterer's associated registration database.
+     * @param campCommitteeSlotChecker An interface used by CommitteeCampRegisterer to check if there are still available camp committee slots in the camp.
+     * @param checkSchoolMatch An interface used by CommitteeCampRegisterer to check if the camp's faculty is open to the student.
+     * @param registrationClosedChecker An interface used by CommitteeCampRegisterer to check if the registration date has closed.
+     * @param registeredCampNamesGetter An interface used by CommitteeCampRegisterer to check if the student has already registered as a camp committee member in other camps.
+     * @param clashWithRegisteredChecker An interface used by CommitteeCampRegisterer to check if the student is already registered to camps that may clash with 
+     * this new camp's dates.
+     * @param campCommitteeSlotReducer An interface used by CommitteeCampRegisterer to reduce the remaining number of camp committee slots upon successful registration
+     * of the student as camp committee member.
+     * @param campvisibilityChecker An interface used by CommitteeCampRegisterer to check if the camp is even visible and open to students for registration.
+     */
     public CommitteeCampRegisterer(RegistrationDataBase registrationDataBase, IGetCampSlots campCommitteeSlotChecker,
             ICheckSchoolMatch checkSchoolMatch, ICheckRegistrationClosed registrationClosedChecker,
             IGetCampsRegistered registeredCampNamesGetter, ICheckNoClash clashWithRegisteredChecker,
@@ -43,6 +94,7 @@ public class CommitteeCampRegisterer implements IRegisterCommittee {
     // success.
     // If fail, we simply return the original student reference. The result can be
     // assigned to the old student reference in main.
+
     public Student registerCamp(Student student, String campName) {
         /*
          * Error checks:

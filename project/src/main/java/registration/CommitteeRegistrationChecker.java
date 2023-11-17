@@ -9,8 +9,16 @@ import user.*;
 import java.util.ArrayList;
 
 public class CommitteeRegistrationChecker implements ICheckRegistration {
+     /**
+     * This CommitteeCampRegisterer's associated registration database.
+     */
     private RegistrationDataBase registrationDataBase;
 
+    /**
+     * Creates a new CommitteeRegistrationChecker with the registration database that it manages. The registration database will 
+     * call this constructor and input itself as the paramter upon initialisation, or if not, a call to the static method in {@link CRDBInterfaceInitialiser}.
+     * @param registrationDataBase This CommitteeRegistrationChecker's associated registration database.
+     */
     public CommitteeRegistrationChecker(RegistrationDataBase registrationDataBase) {
         this.registrationDataBase = registrationDataBase;
     }

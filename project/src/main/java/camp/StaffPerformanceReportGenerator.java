@@ -42,6 +42,7 @@ public class StaffPerformanceReportGenerator implements IGeneratePerformanceRepo
     /**
      * Creates a new StaffPerformanceReportGenerator with the associated camp database that it manages, and the interface it needs
      * to print the performance report.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase The camp database this StaffPerformanceReportGenerator manages.
      * @param registeredStudentNamesRolesGetter The interface this StaffPerformanceReportGenerator uses to get the list of names for the
      * camp committeee members in his camps

@@ -28,6 +28,7 @@ public class StaffViewOwnCamps implements IViewOwnCamps {
 
     /**
      * Creates a new StaffViewOwnCamps with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This StaffViewOwnCamps's associated Camp Database.
      */
     public StaffViewOwnCamps(CampDataBase campDataBase) {

@@ -26,6 +26,7 @@ public class StaffCampDeleter implements IDeleteCamp {
 
     /**
      * Creates a new StaffCampDeleter with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This StaffCampDeleter's associated Camp Database.
      */
     public StaffCampDeleter(CampDataBase campDataBase) {

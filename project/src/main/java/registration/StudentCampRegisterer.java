@@ -8,16 +8,77 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents an class that manages the registration database and allows clients to register for a camp as a camp attendee.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StudentCampRegisterer implements IRegisterCamp {
+    /**
+     * This StudentCampRegisterer's associated registration database.
+     */
     private RegistrationDataBase registrationDataBase;
+
+    /**
+     * An interface used by StudentCampRegisterer to check if there are still available camp attendee slots in the camp.
+     */
     private IGetCampSlots campStudentSlotChecker;
+
+    /**
+     * An interface used by StudentCampRegisterer to reduce the remaining number of camp committee slots upon successful registration
+     * of the student as camp attendee.
+     */
+
     private IReduceCampSlots campStudentSlotReducer;
+
+    /**
+     * An interface used by StudentCampRegisterer to check if the camp's faculty is open to the student.
+     */
     private ICheckSchoolMatch checkSchoolMatch;
+
+
+    /**
+     * An interface used by StudentCampRegisterer to obtain the list of camps a student has already registered for. 
+     */
     private IGetCampsRegistered registeredCampNamesGetter;
+
+
+    /**
+     * An interface used by StudentCampRegisterer to check if the camp that a student wants to register for clashes with
+     * his already registered camps.
+     */
     private ICheckNoClash clashWithRegisteredChecker;
+
+
+    /**
+     * An interface used by StudentCampRegisterer to check if the camp's registration deadline has passed.
+     */
     private ICheckRegistrationClosed registrationClosedChecker;
+
+    /**
+     * An interface used by StudentCampRegisterer to check if the camp is even visible to the student, to be allowed to register.
+     */
     private ICheckCampVisibility campvisibilityChecker;
 
+    /**
+     * Creates a new StudentCampRegisterer with its associated registration database and interfaces required to 
+     * perform its method functions successfully. These interfaces are obtained from the CampDataBase and this constructor should
+     * automatically be called upon the creation of a {@link RegistrationDataBase} or if not, after using the static method from {@link CRDBInterfaceInitialiser}.
+     * @param registrationDataBase This StudentCampRegisterer's associated registration database.
+     * @param campStudentSlotChecker An interface used by StudentCampRegisterer to check if there are still available camp attendee slots in the camp.
+     * @param campStudentSlotReducer An interface used by StudentCampRegisterer to check if the camp's faculty is open to the student.
+     * @param checkSchoolMatch An interface used by StudentCampRegisterer to check if the camp's faculty is open to the student.
+     * @param clashWithRegisteredChecker An interface used by StudentCampRegisterer to check if the camp that a student wants to register for clashes with
+     * his already registered camps.
+     * @param registrationClosedChecker An interface used by StudentCampRegisterer to check if the camp's registration deadline has passed.
+     * @param registeredCampNamesGetter An interface used by StudentCampRegisterer to obtain the list of camps a student has already registered for.
+     * @param campvisibilityChecker An interface used by StudentCampRegisterer to check if the camp is even visible to the student, to be allowed to register.
+     */
     public StudentCampRegisterer(RegistrationDataBase registrationDataBase, IGetCampSlots campStudentSlotChecker,
             IReduceCampSlots campStudentSlotReducer, ICheckSchoolMatch checkSchoolMatch,
             ICheckNoClash clashWithRegisteredChecker, ICheckRegistrationClosed registrationClosedChecker,

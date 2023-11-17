@@ -24,6 +24,7 @@ public class CheckSchoolMatch implements ICheckSchoolMatch {
 
     /**
      * Creates a new CheckSchoolMatch with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This CheckSchoolMatch's associated Camp Database.
      */
     public CheckSchoolMatch(CampDataBase campDataBase) {

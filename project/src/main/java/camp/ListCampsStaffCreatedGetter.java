@@ -25,7 +25,8 @@ public class ListCampsStaffCreatedGetter implements IGetCampsCreated {
     private CampDataBase campDataBase;
 
     /**
-     * Creates a new ListCampsStaffCreatedGetter with the camp database it is associated with
+     * Creates a new ListCampsStaffCreatedGetter with the camp database it is associated with.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This ListCampsStaffCreatedGetter's associated camp database.
      */
     public ListCampsStaffCreatedGetter(CampDataBase campDataBase) {

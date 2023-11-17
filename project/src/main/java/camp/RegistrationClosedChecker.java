@@ -26,6 +26,7 @@ public class RegistrationClosedChecker implements ICheckRegistrationClosed {
 
     /**
      * Creates a new RegistrationClosedChecker with the given Camp Database.
+     * The camp database will call this constructor and input itself as the parameter upon initialisation or a call to the static method in {@link CRDBInterfaceInitialiser}.
      * @param campDataBase This RegistrationClosedChecker's associated Camp Database.
      */
     public RegistrationClosedChecker(CampDataBase campDataBase) {

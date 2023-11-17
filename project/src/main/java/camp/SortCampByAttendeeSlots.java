@@ -28,6 +28,7 @@ public class SortCampByAttendeeSlots implements ISortCamps {
 
     /**
      * Creates a new SortCampByAttendeeSlots with its associated sort manager.
+     * 
      * @param sortManager This SortCampByAttendeeSlots's associated sort manager.
      */
     SortCampByAttendeeSlots(SortManager sortManager) {
