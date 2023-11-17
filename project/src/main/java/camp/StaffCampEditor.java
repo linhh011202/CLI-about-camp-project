@@ -8,9 +8,26 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that performs edits on a camp within the camp database associated with this StaffCampEditor.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StaffCampEditor implements IEditCamp {
+    /**
+     * The Camp Database that this StaffCampEditor manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new StaffCampEditor with the given Camp Database.
+     * @param campDataBase This StaffCampEditor's associated Camp Database.
+     */
     public StaffCampEditor(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

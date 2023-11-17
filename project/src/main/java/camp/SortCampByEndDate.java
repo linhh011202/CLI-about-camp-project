@@ -10,9 +10,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/** 
+ * Represents a class that looks within a camp database, and sorts all the camps by their camp end date.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class SortCampByEndDate implements ISortCamps {
+     /**
+     * The sort manager that manages this SortCampByEndDate.
+     */
     private SortManager sortManager;
 
+    /**
+     * Creates a new SortCampByEndDate with its associated sort manager.
+     * @param sortManager This SortCampByEndDate's associated sort manager.
+     */
     SortCampByEndDate(SortManager sortManager) {
         this.sortManager = sortManager;
     }

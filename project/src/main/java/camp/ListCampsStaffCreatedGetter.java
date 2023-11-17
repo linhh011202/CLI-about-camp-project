@@ -8,9 +8,26 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents an class that searches within a camp database and returns a list of camps that a staff has created.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class ListCampsStaffCreatedGetter implements IGetCampsCreated {
+    /**
+     * This ListCampsStaffCreatedGetter's associated camp database.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new ListCampsStaffCreatedGetter with the camp database it is associated with
+     * @param campDataBase This ListCampsStaffCreatedGetter's associated camp database.
+     */
     public ListCampsStaffCreatedGetter(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

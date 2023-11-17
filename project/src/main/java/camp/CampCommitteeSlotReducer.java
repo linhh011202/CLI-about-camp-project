@@ -8,9 +8,26 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that helps to reduce the available Camp Committee Slot for a camp in this object's associated Camp Database.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CampCommitteeSlotReducer implements IReduceCampSlots {
+    /**
+     * The Camp Database that this CampCommitteeSlotChecker manages.
+     */
     private CampDataBase campDataBase;
 
+     /**
+     * Creates a new CampCommitteeSlotReducer with the given Camp Database.
+     * @param campDataBase This CampCommitteeSlotReducer's associated Camp Database.
+     */
     public CampCommitteeSlotReducer(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

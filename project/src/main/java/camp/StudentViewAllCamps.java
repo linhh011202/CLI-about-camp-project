@@ -8,8 +8,28 @@ import user.*;
 
 import java.util.ArrayList;
 
+
+/** 
+ * Represents a class that looks within it's associated camp database and prints all camp details that the student is allowed to see.
+ * Currently, it is all camps that are open to his faculty, and visibility set to true.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StudentViewAllCamps implements IViewAllCamps {
+    /**
+     * The Camp Database that this StudentViewAllCamps manages.
+     */
     private CampDataBase campDataBase;
+
+    /**
+     * Creates a new StudentViewAllCamps with the given Camp Database.
+     * @param campDataBase This StudentViewAllCamps's associated Camp Database.
+     */
 
     public StudentViewAllCamps(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;

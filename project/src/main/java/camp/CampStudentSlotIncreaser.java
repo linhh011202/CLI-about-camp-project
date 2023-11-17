@@ -8,9 +8,27 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that helps to increase the remaining camp attendee slots of a camp, given the camp name,
+ * such as after deregistration/withdrawal of a student from the camp, from the associated camp database.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CampStudentSlotIncreaser implements IIncreaseCampSlots {
+    /**
+     * The Camp Database that this CampStudentSlotIncreaser manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new CampStudentSlotIncreaser with the given Camp Database.
+     * @param campDataBase This CampStudentSlotIncreaser's associated Camp Database.
+     */
     public CampStudentSlotIncreaser(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

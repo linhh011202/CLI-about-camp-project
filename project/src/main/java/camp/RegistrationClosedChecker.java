@@ -8,9 +8,26 @@ import user.*;
 
 import java.time.LocalDate;
 
+/** 
+ * Represents an class that checks within a camp database if a specific camp's registration closing date has passed.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class RegistrationClosedChecker implements ICheckRegistrationClosed {
+    /**
+     * The Camp Database that this RegistrationClosedChecker manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new RegistrationClosedChecker with the given Camp Database.
+     * @param campDataBase This RegistrationClosedChecker's associated Camp Database.
+     */
     public RegistrationClosedChecker(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

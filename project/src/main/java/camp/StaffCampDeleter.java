@@ -8,9 +8,26 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that deletes a camp within the camp database associated with this StaffCampDeleter.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StaffCampDeleter implements IDeleteCamp {
+    /**
+     * The Camp Database that this StaffCampDeleter manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new StaffCampDeleter with the given Camp Database.
+     * @param campDataBase This StaffCampDeleter's associated Camp Database.
+     */
     public StaffCampDeleter(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }
@@ -32,7 +49,6 @@ public class StaffCampDeleter implements IDeleteCamp {
                 return true;
             }
         }
-        // If can't find his row OR his row doesn't have campId, return false.
         // (indicates failure to delete camp); Probably handled by mainAPP
         return false;
 

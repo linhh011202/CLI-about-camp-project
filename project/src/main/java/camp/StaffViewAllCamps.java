@@ -8,9 +8,28 @@ import user.*;
 
 import java.util.ArrayList;
 
+
+/** 
+ * Represents a class that looks within it's associated camp database and prints all camp details that a staff is allowed
+ * to see. Currently, a staff can view all camps in a database.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StaffViewAllCamps implements IViewAllCamps {
+     /**
+     * The Camp Database that this StaffViewAllCamps manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new StaffViewAllCamps with the given Camp Database.
+     * @param campDataBase This StaffViewAllCamps's associated Camp Database.
+     */
     public StaffViewAllCamps(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

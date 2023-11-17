@@ -8,9 +8,27 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents an class that takes in a list that holds the names of the registered camps, as well as the corresponding role of the student.
+ * It then looks through the camp database and prints all details of those camps, as well as the role the student has in the camp.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class RegisteredCampsPrinter implements IPrintRegisteredCamps {
+    /**
+     * This RegisteredCampsPrinter's associated camp database.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new RegisteredCampsPrinter with the camp database that it is associated with.
+     * @param campDataBase This RegisteredCampsPrinter's associated database.
+     */
     public RegisteredCampsPrinter(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

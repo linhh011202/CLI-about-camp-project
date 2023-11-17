@@ -6,9 +6,26 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+/** 
+ * Represents a class that helps to check if a student's faculty matches with the camp's faculty in the associated camp database.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CheckSchoolMatch implements ICheckSchoolMatch {
+    /**
+     * The Camp Database that this CheckSchoolMatch manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new CheckSchoolMatch with the given Camp Database.
+     * @param campDataBase This CheckSchoolMatch's associated Camp Database.
+     */
     public CheckSchoolMatch(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

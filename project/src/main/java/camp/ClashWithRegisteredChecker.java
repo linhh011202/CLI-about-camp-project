@@ -9,9 +9,27 @@ import user.*;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
+/** 
+ * Represents a class that helps to check if a camp from the associated camp database
+ * clashes with any of a student's currently registered camps. 
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class ClashWithRegisteredChecker implements ICheckNoClash {
+    /**
+     * The Camp Database that this ClashWithRegisteredChecker manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new ClashWithRegisteredChecker with the given Camp Database.
+     * @param campDataBase This ClashWithRegisteredChecker's associated Camp Database.
+     */
     public ClashWithRegisteredChecker(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

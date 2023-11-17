@@ -8,9 +8,28 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that helps to check the remaining Camp Committee Slot for a camp in this object's associated Camp Database.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CampCommitteeSlotChecker implements IGetCampSlots {
+
+    /**
+     * The Camp Database that this CampCommitteeSlotChecker manages.
+     */
     private CampDataBase campDataBase;
 
+    
+    /**
+     * Creates a new CampCommitteeSlotChecker with the given Camp Database.
+     * @param campDataBase This CampCommitteeSlotChecker's associated Camp Database.
+     */
     public CampCommitteeSlotChecker(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

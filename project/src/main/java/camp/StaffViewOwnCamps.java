@@ -8,9 +8,28 @@ import user.*;
 
 import java.util.ArrayList;
 
+
+/** 
+ * Represents a class that looks within it's associated camp database and prints all camp details for all the camps that
+ * they are in charge of.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StaffViewOwnCamps implements IViewOwnCamps {
+    /**
+     * The Camp Database that this StaffViewOwnCamps manages.
+     */
     private CampDataBase campDataBase;
 
+    /**
+     * Creates a new StaffViewOwnCamps with the given Camp Database.
+     * @param campDataBase This StaffViewOwnCamps's associated Camp Database.
+     */
     public StaffViewOwnCamps(CampDataBase campDataBase) {
         this.campDataBase = campDataBase;
     }

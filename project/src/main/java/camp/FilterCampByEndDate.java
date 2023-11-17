@@ -8,9 +8,27 @@ import user.*;
 
 import java.util.ArrayList;
 
+/** 
+ * Represents a class that helps to check if every camp in the database matches the camp end date as described in the given string,
+ * and changes the isFilteredOut bit of that camp accordingly.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class FilterCampByEndDate implements IFilterCamps {
+    /**
+     * The filter manager that manages this FilterCampByEndDate.
+     */
     private FilterManager filterManager;
 
+    /**
+     * Creates a new FilterCampByEndDate with its associated filter manager.
+     * @param filterManager This FilterCampByEndDate's associated filter manager.
+     */
     public FilterCampByEndDate(FilterManager filterManager) {
         this.filterManager = filterManager;
     }

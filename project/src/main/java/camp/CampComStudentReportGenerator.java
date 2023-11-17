@@ -16,11 +16,41 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** 
+ * Represents a class that helps to generate a Camp Report for all camps that a student is a
+ * Camp Committee member of.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class CampComStudentReportGenerator implements IGenerateStudentReport {
+    /**
+     * The Camp Database that this CampComStudentReportGenerator manages.
+     */
     private CampDataBase campDataBase;
+
+    /**
+     * The interface that this CampComStudentReportGenerator uses to retrieve the list of camps he is a committee member of.
+     */
     private IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter;
+
+    
+    /**
+     * The interface that this CampComStudentReportGenerator uses to retrieve the roles and names of students
+     * for the camps he is a committee member of, in order to print them in the report.
+     */
     private IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter;
 
+    /**
+     * Creates a new CampComStudentReportGenerator with the given Camp Database and interfaces required.
+     * @param campDataBase The Camp Database that this CampComStudentReportGenerator manages.
+     * @param registeredStudentNamesRolesGetter The interface that this CampComStudentReportGenerator uses to retrieve the roles and names of students from the registration database for the camps he is a committee member of, in order to print them in the report.
+     * @param listOfCampsIsCommiteeOfGetter The interface that this CampComStudentReportGenerator uses to retrieve the list of camps he is a committee member of from the registration database.
+     */
     public CampComStudentReportGenerator(CampDataBase campDataBase,
             IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter,
             IGetCampsIsCommittee listOfCampsIsCommiteeOfGetter) {
@@ -29,6 +59,12 @@ public class CampComStudentReportGenerator implements IGenerateStudentReport {
         this.listOfCampsIsCommiteeOfGetter = listOfCampsIsCommiteeOfGetter;
     }
 
+    /**
+     * Creates a file in the given file name and returns a File object if successful.
+     * Function fails if a file with the specified file name already exists.
+     * @param fileName The desired filename to generate the report to.
+     * @return The successfully created file, or null on failure.
+     */
     private File createFile(String fileName) {
         try {
             // Try to create a \Reports output directory if it doesnt exist.

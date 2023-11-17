@@ -16,16 +16,48 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/** 
+ * Represents a class that generates a performance report for all the camp committee members in all the camps that
+ * a staff is in charge of.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-17
+*/
 public class StaffPerformanceReportGenerator implements IGeneratePerformanceReport {
+    /**
+     * The camp database that this StaffPerformanceReportGenerator's manages.
+     */
     CampDataBase campDataBase;
+    
+    /**
+     * The interface from registration Database that this StaffPerformanceReportGenerator uses to get the
+     * list of names for the camp committee members in his camps.
+     */
     private IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter;
 
+    /**
+     * Creates a new StaffPerformanceReportGenerator with the associated camp database that it manages, and the interface it needs
+     * to print the performance report.
+     * @param campDataBase The camp database this StaffPerformanceReportGenerator manages.
+     * @param registeredStudentNamesRolesGetter The interface this StaffPerformanceReportGenerator uses to get the list of names for the
+     * camp committeee members in his camps
+     */
     public StaffPerformanceReportGenerator(CampDataBase campDataBase,
             IGetStudentNamesRolesRegistered registeredStudentNamesRolesGetter) {
         this.campDataBase = campDataBase;
         this.registeredStudentNamesRolesGetter = registeredStudentNamesRolesGetter;
     }
 
+     /**
+     * Creates a file in the given file name and returns a File object if successful.
+     * Function fails if a file with the specified file name already exists.
+     * @param fileName The desired filename to generate the report to.
+     * @return The successfully created file, or null on failure.
+     */
     private File createFile(String fileName) {
         try {
             // Try to create a \Reports output directory if it doesnt exist.
