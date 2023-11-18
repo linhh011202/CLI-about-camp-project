@@ -30,7 +30,7 @@ public class SortCampByVisibility implements ISortCamps {
      * Creates a new SortCampByTotalSlots with its associated sort manager.
      * @param sortManager This SortCampByVisibility's associated sort manager.
      */
-    SortCampByVisibility(SortManager sortManager) {
+    public SortCampByVisibility(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

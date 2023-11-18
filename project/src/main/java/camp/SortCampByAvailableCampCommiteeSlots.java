@@ -30,7 +30,7 @@ public class SortCampByAvailableCampCommiteeSlots implements ISortCamps {
      * Creates a new SortCampByAvailableCampCommiteeSlots with its associated sort manager.
      * @param sortManager This SortCampByAvailableCampCommiteeSlots's associated sort manager.
      */
-    SortCampByAvailableCampCommiteeSlots(SortManager sortManager) {
+    public SortCampByAvailableCampCommiteeSlots(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

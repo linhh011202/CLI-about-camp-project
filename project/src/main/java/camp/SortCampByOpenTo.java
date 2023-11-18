@@ -30,7 +30,7 @@ public class SortCampByOpenTo implements ISortCamps {
      * Creates a new SortCampByOpenTo with its associated sort manager.
      * @param sortManager This SortCampByOpenTo's associated sort manager.
      */
-    SortCampByOpenTo(SortManager sortManager) {
+    public SortCampByOpenTo(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

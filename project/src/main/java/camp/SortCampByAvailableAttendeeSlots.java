@@ -31,7 +31,7 @@ public class SortCampByAvailableAttendeeSlots implements ISortCamps {
      * 
      * @param sortManager This SortCampByAvailableAttendeeSlots's associated sort manager.
      */
-    SortCampByAvailableAttendeeSlots(SortManager sortManager) {
+    public SortCampByAvailableAttendeeSlots(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

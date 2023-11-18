@@ -30,7 +30,7 @@ public class SortCampByStaffIC implements ISortCamps {
      * Creates a new SortCampByStaffIC with its associated sort manager.
      * @param sortManager This SortCampByStaffIC's associated sort manager.
      */
-    SortCampByStaffIC(SortManager sortManager) {
+    public SortCampByStaffIC(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

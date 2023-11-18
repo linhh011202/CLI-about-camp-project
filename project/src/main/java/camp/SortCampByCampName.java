@@ -30,7 +30,7 @@ public class SortCampByCampName implements ISortCamps {
      * Creates a new SortCampByCampName with its associated sort manager.
      * @param sortManager This SortCampByCampName's associated sort manager.
      */
-    SortCampByCampName(SortManager sortManager) {
+    public SortCampByCampName(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

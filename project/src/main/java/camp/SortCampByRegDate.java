@@ -30,7 +30,7 @@ public class SortCampByRegDate implements ISortCamps {
      * Creates a new SortCampByRegDate with its associated sort manager.
      * @param sortManager This SortCampByRegDate's associated sort manager.
      */
-    SortCampByRegDate(SortManager sortManager) {
+    public SortCampByRegDate(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 

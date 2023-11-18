@@ -30,7 +30,7 @@ public class SortCampByEndDate implements ISortCamps {
      * Creates a new SortCampByEndDate with its associated sort manager.
      * @param sortManager This SortCampByEndDate's associated sort manager.
      */
-    SortCampByEndDate(SortManager sortManager) {
+    public SortCampByEndDate(SortManager sortManager) {
         this.sortManager = sortManager;
     }
 
