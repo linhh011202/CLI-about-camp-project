@@ -2,6 +2,7 @@ package user;
 
 // Here we define the thing that all user have in common regardless of Staff or student
 public class User {
+    public String userID; 
     public String name;
     public String email;
     public String password = "password"; // Remember the requirement is that the default password is password? And the user can also change? So we intialize password as password
@@ -13,6 +14,10 @@ public class User {
         this.name = name;  // this refer to the INSTANCE
         this.email = email;
         this.faculty = faculty;
+        //split string based on @ character and store:
+        String[] emailComponents = email.split("@");
+        this.userID = emailComponents[0];
+        
     }
 
 

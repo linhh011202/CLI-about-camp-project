@@ -1,8 +1,10 @@
+package utils;
 
 // We need a Class to load the file, this comes from the Java library
 // Search online to see what library
 import java.io.FileReader;
 import java.io.BufferedReader;
+
 // We need this to handle if the file is not found
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,21 +79,21 @@ public class FileLoader {
             BufferedReader reader = new BufferedReader(new FileReader(path)); // Create a BufferedReader object
             String line = reader.readLine(); // This will give us the line string
             while (line != null) {
-                    if (!(line.isEmpty())) { 
-                    String[] lineComponents = line.split(","); // This will return an array of string
-                    
-                    if (type == "staff"){
-                        Staff staff = new Staff(lineComponents[0], lineComponents[1], lineComponents[2]); // So here we need a constructor
-                        // Here we add to the list!
-                        userList.add(staff); // The array list allows us to quickly add elements!
-                    }
-                    else if (type == "student"){
-                        Student student = new Student(lineComponents[0], lineComponents[1], lineComponents[2]); // So here we need a constructor
-                        userList.add(student);
-                    }
-                    else{
-                        System.out.println("Invalid type");
-                    }}
+                if (!(line.isBlank())) { 
+                String[] lineComponents = line.split(","); // This will return an array of string
+                
+                if (type == "staff"){
+                    Staff staff = new Staff(lineComponents[0].trim(), lineComponents[1], lineComponents[2]); // So here we need a constructor
+                    // Here we add to the list!
+                    userList.add(staff); // The array list allows us to quickly add elements!
+                }
+                else if (type == "student"){
+                    Student student = new Student(lineComponents[0].trim(), lineComponents[1], lineComponents[2]); // So here we need a constructor
+                    userList.add(student);
+                }
+                else{
+                    System.out.println("Invalid type");
+                }}
                 line = reader.readLine();
             }  // Always check your logic. Especially the parsing of the string
             reader.close();
