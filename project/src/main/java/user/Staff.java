@@ -20,6 +20,11 @@ import java.util.ArrayList;
 */
 public class Staff extends User {
     /**
+     * This Staff's faculty.
+     */
+    private Faculty faculty;
+
+    /**
      * This Staff's interface it utilises to create a camp.
      */
     private ICreateCamp staffCampCreator;
@@ -60,6 +65,7 @@ public class Staff extends User {
      * Creates a new Staff object, with the given name, associated user database, and interfaces it requires from 
      * {@link CampDataBase} and {@link RegistrationDataBase}.
      * @param name This Staff's name.
+     * @param faculty This Staff's faculty.
      * @param staffCampCreator Interface this Staff uses to create camps.
      * @param staffCampDeleter Interface this Staff uses to delete camps.
      * @param staffCampEditor Interface this Staff uses to edit camps.
@@ -73,12 +79,13 @@ public class Staff extends User {
      * @param staffPerformanceReportGenerator Interface this Staff uses to generate a performance report for all camp committee members of
      * all the camps he is in charge of.
      */
-    public Staff(String name, ICreateCamp staffCampCreator, IDeleteCamp staffCampDeleter, IEditCamp staffCampEditor,
+    public Staff(String name, Faculty faculty, ICreateCamp staffCampCreator, IDeleteCamp staffCampDeleter, IEditCamp staffCampEditor,
             IViewAllCamps staffViewAllCamps, IViewOwnCamps staffViewOwnCamps, ISortCamps iSortCamps,
             IFilterCamps iFilterCamps, IGenerateStudentReport staffStudentReportGenerator,
             IGetCampsCreated listCampsStaffCreatedGetter, UserDataBase userDataBase,
             IGeneratePerformanceReport staffPerformanceReportGenerator) {
         super(name, iSortCamps, iFilterCamps, userDataBase, staffViewAllCamps);
+        this.faculty=faculty;
         this.staffCampCreator = staffCampCreator;
         this.staffCampDeleter = staffCampDeleter;
         this.staffCampEditor = staffCampEditor;
@@ -106,6 +113,34 @@ public class Staff extends User {
         staffCampCreator.createCamp(campName, startDate, endDate, regClosingDate, visibility, location, attendeeSlots,
                 campComSlots, description, this, openTo);
     }
+
+    /**
+     * Changes this Staff's faculty.
+     * @param faculty This Staff's new faculty.
+     */
+    public void setFaculty(Faculty faculty)
+    {
+        this.faculty=faculty;
+    }
+
+    /**
+     * Gets this Staff's faculty as a String.
+     * @return This Staff's faculty as a String.
+     */
+    public String getFacultyString()
+    {
+        return faculty.toString();
+    }
+
+    /**
+     * Gets this Staff's faculty as an enum.
+     * @return This Staff's faculty as an enum.
+     */
+    public Faculty getFaculty()
+    {
+        return faculty;
+    }
+
 
     /**
      * Deletes a camp that was created by this Staff.

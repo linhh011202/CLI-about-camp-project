@@ -25,11 +25,11 @@ public class Main {
         CRDBInterfaceInitialiser.InitialiseCRDataBaseInterfaces(campDataBase, registrationDataBase);
         EnquiriesDB enquiriesDB=new EnquiriesDB(campDataBase.getCheckSchoolMatch(),campDataBase.getCampVisibilityChecker());
 
-        Staff staff0=new Staff("animal",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
+        Staff staff0=new Staff("animal",Faculty.SCSE,campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
         //staff0.createCamp("d", "01/12/2010", "10/12/2010","01/10/2050", false, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
 
-        Staff staff1=new Staff("kaixuan",campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
-        staff1.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
+        Staff staff1=new Staff("kaixuan",Faculty.SCSE,campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),userDataBase,campDataBase.getStaffPerformanceReportGenerator());
+        //staff1.createCamp("b", "01/12/2010", "10/12/2010","01/10/2050", true, "ALIBABA", 10, 4, "BEST CAMP" , Faculty.SCSE);
         //staff1.createCamp("a", "14/12/2010","15/12/2010", "09/11/2050", false, "MOHOR B", 5, 2, "AEST CAMP" , Faculty.SBS);
         //staff1.createCamp("c", "15/12/2012","20/12/2020", "01/10/2050", false, "CLASSSY", 1, 2, "BEST CAMP" , Faculty.NTU);
         
