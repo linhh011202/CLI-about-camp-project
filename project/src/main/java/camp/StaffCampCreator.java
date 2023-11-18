@@ -38,8 +38,7 @@ public class StaffCampCreator implements ICreateCamp {
         // Possible error checking if its not a staff?? But dont think we need it since
         // there shouldn't be a place in the mainApp
         // where non-staffs can even call this func
-
-        // Possible error checking to make sure CampComSlots <=10!!!! not in place..
+        
         Camp newCamp = new Camp(campName, startDate, endDate, regClosingDate, visibility, location, attendeeSlots,
                 campComSlots, description, user, openTo);
 

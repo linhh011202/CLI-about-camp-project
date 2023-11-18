@@ -51,9 +51,11 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeCampName(User user, String campName, String newCampName) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setCampName(newCampName);
         return true;
     }
@@ -61,9 +63,11 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeStartDate(User user, String campName, String newStartDate) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setStartDate(newStartDate);
         return true;
     }
@@ -71,9 +75,11 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeEndDate(User user, String campName, String newEndDate) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setEndDate(newEndDate);
         return true;
     }
@@ -81,9 +87,11 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeRegClosingDate(User user, String campName, String newRegClosingDate) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setregClosingDate(newRegClosingDate);
         return true;
     }
@@ -91,9 +99,17 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeVisibility(User user, String campName, boolean newVisibility) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        if(campToEdit.getTotalSlots()!=(campToEdit.getAvailableAttendeeSlots()+campToEdit.getAvailableCampComSlots()))
+        {
+            System.out.printf("Can't change visibility if a student has already registered for camp!\n");
+            return false;
+        }
+
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setVisibility(newVisibility);
         return true;
     }
@@ -101,9 +117,11 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeLocation(User user, String campName, String newLocation) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
+        System.out.printf("Changes made successfully!\n");
         campToEdit.setLocation(newLocation);
         return true;
     }
@@ -111,6 +129,7 @@ public class StaffCampEditor implements IEditCamp {
     public boolean changeAttendeeSlots(User user, String campName, int newAttendeeSlots) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
@@ -127,12 +146,14 @@ public class StaffCampEditor implements IEditCamp {
         campToEdit.setAttendeeSlots(newAttendeeSlots);
         campToEdit.setAvailableAttendeeSlots(newAttendeeSlots - numAttendeesRegistered);
         campToEdit.setTotalSlots(newAttendeeSlots + campToEdit.getCampComSlots());
+        System.out.printf("Changes made successfully!\n");
         return true;
     }
 
     public boolean changeCampComSlots(User user, String campName, int newCampComSlots) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
@@ -150,16 +171,19 @@ public class StaffCampEditor implements IEditCamp {
         campToEdit.setCampComSlots(newCampComSlots);
         campToEdit.setAvailableCampComSlots(newCampComSlots - numCampComRegistered);
         campToEdit.setTotalSlots(newCampComSlots + campToEdit.getAttendeeSlots());
+        System.out.printf("Changes made successfully!\n");
         return true;
     }
 
     public boolean changeDescription(User user, String campName, String newDescription) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
+            System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
 
         campToEdit.setDescription(newDescription);
+        System.out.printf("Changes made successfully!\n");
         return true;
     }
 

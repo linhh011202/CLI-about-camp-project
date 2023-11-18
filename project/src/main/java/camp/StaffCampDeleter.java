@@ -46,11 +46,19 @@ public class StaffCampDeleter implements IDeleteCamp {
         for (int i = 0; i < allCamps.size(); ++i) {
             if (allCamps.get(i).getCampName().equals(campName)
                     && allCamps.get(i).getStaffInCharge().equals(user.getName())) {
+                        if(allCamps.get(i).getTotalSlots()!=(allCamps.get(i).getAvailableAttendeeSlots()+allCamps.get(i).getAvailableCampComSlots()))
+                        {
+                            System.out.printf("Can't change delete a camp if a student has already registered for camp!\n");
+                            return false;
+                        }
                 allCamps.remove(i);
+                System.out.printf("Successfully deleted camp!\n");
                 return true;
             }
         }
+
         // (indicates failure to delete camp); Probably handled by mainAPP
+        System.out.printf("Delete failed! Couldn't find camp!");
         return false;
 
     }
