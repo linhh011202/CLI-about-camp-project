@@ -211,12 +211,18 @@ public class SuggestionsDB {
      * @param user The name of camp committee member that wishes to view his Suggestions and their status.
      */
     public void viewOwnSuggestion(String user) {
+        int n = 0;
         System.out.println("Your Suggestions:");
         for (Suggestion suggestion : suggestionsDB) {
             if (suggestion.getUser().equals(user)) {
                 displaySuggestion(suggestion);
                 System.out.println();
+                n++;
             }
+        }
+        if (n == 0) {
+                System.out.println("You have not made any suggestions.");
+                System.out.println();
         }
     }
 
@@ -232,11 +238,17 @@ public class SuggestionsDB {
     public void viewByCamp(List<String> campList) {
         for (String camp : campList) {
             System.out.println("Suggestions for camp " + camp + ":");
+            int n = 0;
             for (Suggestion suggestion : suggestionsDB) {
                 if (suggestion.getCamp().equals(camp)) {
                     displaySuggestion(suggestion);
                     System.out.println();
+                    n++;
                 }
+            }
+            if (n == 0) {
+                System.out.println("No suggestions for camp " + camp + " found.");
+                System.out.println();
             }
         }
     }
@@ -247,6 +259,8 @@ public class SuggestionsDB {
      * to be approved by).
      * @param suggestionNumber ID of the suggestion to be approved.
      * @param campList The list of the names of camps that the staff manages.
+     * @return Name of camp committee member whose suggestion was successfully approved. Returns null if suggestion
+     * not successfully approved.
      */
     public String approveSuggestion(int suggestionNumber, List<String> campList) {
         for (Suggestion suggestion : suggestionsDB) {
