@@ -35,26 +35,33 @@ public class Main {
             try {
                 String s = login.startLogin(dataList);
                 // exit
+                
                 if (s.equals("exit")) {
                     break;
                 }
 
                 // commandParser.printStatus("command parser" + s);
-                while(true){
-                    CommandParser commandParser1= new CommandParser(); 
-                    String s1 = commandParser1.handleStudentCommand();
+                while (true) {
                     
-                    if(s1.equals("2")){
-                        break; 
-                    }
-                }   
-            // }
-        
-    
+                    // use s to know whether it is staff or student: 
+                    if (dataList.containsStudent(s)) {
+                        String s1 = commandParser.handleStudentCommand();
+                        if (s1.equals("6")) {
+                            break;
+                        }
+                    } else if (dataList.containsStaff(s)) {
+                    
+                        String s1 = commandParser.handleStaffCommand();
+                        if (s1.equals("6")) {
+                            break;
+                        }
+                    } 
 
-            //} 
-            } 
-            catch (Exception e) {
+                }
+                // }
+
+                // }
+            } catch (Exception e) {
                 System.out.println(Message.FAILED + e.getMessage());
             }
 

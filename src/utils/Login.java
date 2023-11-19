@@ -57,7 +57,7 @@ public class Login {
             Message.printDivider();
             
  
-            return(dataList.getStudentName(enteredUsername)); 
+            return(enteredUsername); 
             // do something here
          
             // Print student commands:
@@ -84,8 +84,7 @@ public class Login {
             Message.printDivider();
             System.out.println("You are a staff!");
             Message.printDivider();
-            Message.printAllStaffCommands(); 
-            return(dataList.getStaffName(enteredUsername));             // Print student commands:
+            return(enteredUsername);             // Print student commands:
 
             // do something with staff which i have to implement later
             //
@@ -93,30 +92,5 @@ public class Login {
             throw new Exception("Username not found");
         }
     }
-    private void handleStudentCommand(String studentCommand) {
-        // Implement handling of student commands
-        switch (studentCommand) {
-            case "1":
-                // Handle edit password command
-                break;
-            case "2":
-                // Handle log out command
-                break;
-            case "3":
-                // Handle register for a camp command
-                break;
-            case "4":
-                // Handle deregister from registered camp command
-                break;
-            case "5":
-                // Handle register as a Camp Committee command
-                break;
-            case "6":
-                // Handle view registered camps command
-                break;
-            default:
-                System.out.println("Invalid command");
-                break;
-        }
-    }
+    
 }

@@ -23,17 +23,24 @@ public class Message {
 
 
     public static final String STUDENTCOMMANDS= "Here are list of Student Commands:\n"
-            +"1.Edit password\n"
-            +"2.Log out\n"
-            +"3.Register for a camp\n" 
-            +"4.Deregister from registered camp\n" 
-            +"5.Register as a Camp Committee\n" 
-            +"6.View registered camps\n"; 
-    public static final String STAFFCOMMANDS= "Here are list of Staff Commands:\n "
-        +"1. blabla"
-        +"2.hiiiiiiiiiiiiiiiii"
-        +"3.hhhhhhhhhhhhhhhh"; 
+        +"0.Change password\n"
+        +"1.Register for a camp\n"
+        +"2.Deregister from registered camp\n"
+        +"3.Register as a Camp Committee\n"
+        +"4.View registered camps\n"
+        +"5.Generate Report\n"
+        +"6.Log Out\n";
+        
+    public static final String STAFFCOMMANDS= "Here are list of Staff Commands:\n"
+            +"0.Change password\n"
+            +"1.Create camp\n"
+            +"2.Delete Camp\n"
+            +"3.Edit camp\n" 
+            +"4.Generate Student Report\n" 
+            +"5.Generate Performance Report\n" 
+            +"6.Log out\n";
             
+    
 
     private static final String EXIT_OR_LOGIN = "Type the index for command";
 
