@@ -10,6 +10,7 @@ import utils.ExcetionHandling;
 import user.DataList; // Import DataList definition
 import utils.Message;
 import user.Student;
+import utils.CommandParser;
 
 public class Login {
     private Scanner scanner;
@@ -17,7 +18,7 @@ public class Login {
     public Login(Scanner scanner) {
         this.scanner = scanner;
     }
-
+    // can write here as static , de do phai tao ra instance(?):
     public String startLogin(DataList x) throws Exception{
             
                 Message.printDivider();
@@ -38,21 +39,28 @@ public class Login {
             
     }
 
-    private String handleLogin(DataList dataList) throws Exception {
+    public String handleLogin(DataList dataList) throws Exception {
         Message.printDivider();
         Message.printUsernamePasswordPrompt();
-        Message.printUsernameMessage();
+        Message.printUsernameMessage();// print asking user: "username: "
         String enteredUsername = scanner.nextLine().trim();
 
         if (dataList.containsStudent(enteredUsername)) {
-            Message.printPassWordMessage();
+            Message.printPassWordMessage();// print asking for password
             String enteredPassword = scanner.nextLine().trim();
             if (!enteredPassword.equals(dataList.getStudentPassword(enteredUsername))) {
                 throw new Exception("Incorrect password");
             }
             System.out.println(Message.WELCOME + dataList.getStudentName(enteredUsername) + "!");
+            Message.printDivider();
             System.out.println("You are a student!");
-            return(dataList.getStudentName(enteredUsername));             // Print student commands:
+            Message.printDivider();
+            
+ 
+            return(dataList.getStudentName(enteredUsername)); 
+            // do something here
+         
+            // Print student commands:
 
             //i have to list all students'commands here:
 
@@ -65,18 +73,6 @@ public class Login {
             // +"6. View registered camps");
 
            
-            // System.out.println("Your command: ");
-            
-            // String studentCommand = scanner.nextLine().trim();
-            // handleStudentCommand(studentCommand);
-
-            // add students'commands:
-            // 1/Edit password
-            // 2/Log out
-            // 3/Register for a camp
-            // 4/Deregister from registered camp
-            // 5/Register as a Camp Committee
-            // 6/View registered camps
 
         } else if (dataList.containsStaff(enteredUsername)) {
             Message.printPassWordMessage();
@@ -85,7 +81,10 @@ public class Login {
                 throw new Exception("Incorrect password");
             }
             System.out.println(Message.WELCOME + dataList.getStaffName(enteredUsername) + "!");
+            Message.printDivider();
             System.out.println("You are a staff!");
+            Message.printDivider();
+            Message.printAllStaffCommands(); 
             return(dataList.getStaffName(enteredUsername));             // Print student commands:
 
             // do something with staff which i have to implement later
