@@ -19,6 +19,11 @@ public class User {
         this.userID = emailComponents[0];
         
     }
+    public void setPassword(String password){
+        this.password = password;
 
+
+
+    }
 
 }

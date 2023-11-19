@@ -36,6 +36,9 @@ public class Student extends User{
     public void viewRegisteredCamps() {
         // Implementation to view registered camps
     }
+
+
+
     
 
 }

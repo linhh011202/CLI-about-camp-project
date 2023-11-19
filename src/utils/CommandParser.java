@@ -1,6 +1,9 @@
 package utils;
 
 import java.util.Scanner;
+
+import javax.xml.crypto.Data;
+
 import user.DataList;
 import utils.Login;
 
@@ -8,8 +11,9 @@ public class CommandParser {
     // public void printStatus(String s){
     // System.out.println(s);
     // }
+    Scanner scanner = new Scanner(System.in);
 
-    public String handleStudentCommand() {
+    public String handleStudentCommand(DataList datalist, String username) {
         Message.printAllStudentCommands();// in mot dong comment 1 2 3 4 5..
         Message.printDivider();
 
@@ -26,8 +30,13 @@ public class CommandParser {
                 // Handle edit password command
                 // handleStudentCommand1();
                 // testing: System.out.println("Your command is :" +studentCommand);
-
-                break;
+                //s, datalist; 
+                //datalist, username
+                
+                handleStudentCommandChangePassword(datalist, username); 
+                break; 
+                
+                
             case "1":
                 // Register for a camp
 
@@ -61,12 +70,23 @@ public class CommandParser {
         return studentCommand;
 
     }
+// write again the code to change the password
+    public void handleStudentCommandChangePassword(DataList datalist, String username) {
+        
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter a new password: ");
+            String newPassword = scanner.nextLine().trim();
+            datalist.setNewStudentPasswordWithInput(username, newPassword);
+            System.out.println("Your password has been changed to: " + newPassword);
 
-    public void handleStudentCommandChangePassword() {
+        
+           
 
-        // change password
+    
+        }
 
-    }
+
+    
 
     public void handleStudentCommandLogout() {
         // handle handle
@@ -97,7 +117,7 @@ public class CommandParser {
     }
 ////////////////////////////////////////////////////////////////////////////////staff/////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-public String handleStaffCommand() {
+public String handleStaffCommand(DataList datalist, String username) {
         Message.printAllStaffCommands();// in mot dong comment 1 2 3 4 5..
         Message.printDivider();
 
@@ -113,9 +133,9 @@ public String handleStaffCommand() {
         switch (staffCommand) {
             case "0":
                 //Change password 
-
-
+                handleStaffCommandChangePassword(datalist, username); 
                 break;
+
             case "1":
                 // Create camp
 
@@ -152,9 +172,16 @@ public String handleStaffCommand() {
 
     }
 
-    public void handleStaffCommandChangePassword() {
+    public void handleStaffCommandChangePassword(DataList datalist, String username) {
 
         // change password
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a new password: ");
+        String newPassword = scanner.nextLine().trim();
+        datalist.setNewStaffPasswordWithInput(username, newPassword);
+        System.out.println("Your password has been changed to: " + newPassword);
+        Message.printDivider();
+
 
     }
 

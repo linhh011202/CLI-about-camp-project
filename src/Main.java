@@ -33,10 +33,10 @@ public class Main {
         // main function, instead of Login.java
         while (true) {
             try {
-                String s = login.startLogin(dataList);
+                String username = login.startLogin(dataList);
                 // exit
                 
-                if (s.equals("exit")) {
+                if (username.equals("exit")) {
                     break;
                 }
 
@@ -44,14 +44,14 @@ public class Main {
                 while (true) {
                     
                     // use s to know whether it is staff or student: 
-                    if (dataList.containsStudent(s)) {
-                        String s1 = commandParser.handleStudentCommand();
-                        if (s1.equals("6")) {
+                    if (dataList.containsStudent(username)) {
+                        String indexCommand = commandParser.handleStudentCommand(dataList,username);
+                        if (indexCommand.equals("6")) {
                             break;
                         }
-                    } else if (dataList.containsStaff(s)) {
+                    } else if (dataList.containsStaff(username)) {
                     
-                        String s1 = commandParser.handleStaffCommand();
+                        String s1 = commandParser.handleStaffCommand(dataList,username);
                         if (s1.equals("6")) {
                             break;
                         }

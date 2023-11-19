@@ -1,6 +1,7 @@
 package user;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 // Now I want to introduce you to this list class
 // I want to store all type of list of the things the app has to manage
@@ -85,8 +86,51 @@ public class DataList {
 
     }
 
-    
 
+    
+    public User getStudent(String username){
+        for(User student: studentList){
+            if(student.userID.equals(username)){
+                return student;
+            }
+        }
+        return null; 
+    }
+
+
+
+    public User getStaff(String username){
+        for(User staff: staffList){
+            if(staff.userID.equals(username)){
+                return staff;
+            }
+        }
+        return null; 
+    }
+
+    // Method to set a new password for a student with user input
+    public void setNewStudentPasswordWithInput(String username,String newPassword) {
+        for (User student : studentList) {
+            if (student.userID.equals(username)) {
+                student.setPassword(newPassword);
+                System.out.println("Password changed successfully.");
+                return;
+            }
+        }
+        System.out.println("Student not found.");
+    }
+
+    // Method to set a new password for a staff member with user input
+    public void setNewStaffPasswordWithInput(String username, String newPassword) {
+        for (User staff : staffList) {
+            if (staff.userID.equals(username)) {
+                staff.setPassword(newPassword);
+                System.out.println("Password changed successfully.");
+                return;
+            }
+        }
+        System.out.println("Staff member not found.");
+    }
 
 
 
