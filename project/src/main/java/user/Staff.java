@@ -23,38 +23,38 @@ public class Staff extends User {
     /**
      * This Staff's interface it utilises to create a camp.
      */
-    private ICreateCamp staffCampCreator;
+    private transient ICreateCamp staffCampCreator;
 
     /**
      * This Staff's interface it utilises to delete a camp.
      */
-    private IDeleteCamp staffCampDeleter;
+    private transient IDeleteCamp staffCampDeleter;
 
     /**
      * This Staff's interface it utilises to edit a camp.
      */
-    private IEditCamp staffCampEditor;
+    private transient IEditCamp staffCampEditor;
 
     /**
      * This Staff's interface it utilises to view all camps that he can see. (Basically every camp).
      */
-    private IViewOwnCamps staffViewOwnCamps;
+    private transient IViewOwnCamps staffViewOwnCamps;
     
     /**
      * This Staff's interface it utilises to generate a student report for all camps that he is in charge of.
      */
-    private IGenerateStudentReport staffStudentReportGenerator;
+    private transient IGenerateStudentReport staffStudentReportGenerator;
 
     /**
      * This Staff's interface that it utilises to create a list of camp names that were created by him.
      */
-    private IGetCampsCreated listCampsStaffCreatedGetter;
+    private transient IGetCampsCreated listCampsStaffCreatedGetter;
 
     /**
      * This Staff's interface it utilises to generate a performance report for all camp committee members of camps
      * that this staff created.
      */
-    private IGeneratePerformanceReport staffPerformanceReportGenerator;
+    private transient IGeneratePerformanceReport staffPerformanceReportGenerator;
 
 
     /**
@@ -81,6 +81,36 @@ public class Staff extends User {
             IGetCampsCreated listCampsStaffCreatedGetter, DataList dataList,
             IGeneratePerformanceReport staffPerformanceReportGenerator) {
         super(name,email,faculty,iSortCamps, iFilterCamps, dataList, staffViewAllCamps);
+        this.staffCampCreator = staffCampCreator;
+        this.staffCampDeleter = staffCampDeleter;
+        this.staffCampEditor = staffCampEditor;
+        this.staffViewOwnCamps = staffViewOwnCamps;
+        this.staffStudentReportGenerator = staffStudentReportGenerator;
+        this.listCampsStaffCreatedGetter = listCampsStaffCreatedGetter;
+        this.staffPerformanceReportGenerator = staffPerformanceReportGenerator;
+    }
+
+    /**
+     * Function to initialise the required interfaces after deserialising staff object from storage.
+     * @param staffCampCreator Interface this Staff uses to create camps.
+     * @param staffCampDeleter Interface this Staff uses to delete camps.
+     * @param staffCampEditor Interface this Staff uses to edit camps.
+     * @param staffViewAllCamps Interface this Staff uses to view all camps.
+     * @param staffViewOwnCamps Interface this Staff uses to view all camps created by him.
+     * @param iSortCamps Interface this Staff uses to sort all the camps in the associated camp database.
+     * @param iFilterCamps Interface this Staff uses to filter all the camps in the associated camp database.
+     * @param staffStudentReportGenerator Interface this Staff uses to generate a student report for all the camps he is in charge of.
+     * @param listCampsStaffCreatedGetter Interface this Staff uses to generate a list of camp names, consisting of all camps he has created.
+     * @param dataList This Staff's associated user databse.
+     * @param staffPerformanceReportGenerator Interface this Staff uses to generate a performance report for all camp committee members of
+     */
+    public void initialiseAfterDeserialise(ICreateCamp staffCampCreator, IDeleteCamp staffCampDeleter, IEditCamp staffCampEditor,
+    IViewAllCamps staffViewAllCamps, IViewOwnCamps staffViewOwnCamps, ISortCamps iSortCamps,
+    IFilterCamps iFilterCamps, IGenerateStudentReport staffStudentReportGenerator,
+    IGetCampsCreated listCampsStaffCreatedGetter, DataList dataList,
+    IGeneratePerformanceReport staffPerformanceReportGenerator)
+    {
+        super.initialiseAfterDeserialise(iSortCamps, iFilterCamps, dataList, staffViewAllCamps);
         this.staffCampCreator = staffCampCreator;
         this.staffCampDeleter = staffCampDeleter;
         this.staffCampEditor = staffCampEditor;
@@ -173,7 +203,7 @@ public class Staff extends User {
      */
     public void changeDescription(String campName,String newDescription)
     {
-        staffCampEditor.changeLocation(this,campName,newDescription);
+        staffCampEditor.changeDescription(this,campName,newDescription);
     }
 
     /**

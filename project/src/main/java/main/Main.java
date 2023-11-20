@@ -22,10 +22,11 @@ public class Main {
 
     // Define the instance of the DataList as this will be used by the Main program
 
-    public static void main(String[] args) { // THIS IS THE ENTRY POINT OF THEll PROGRAM
+    public static void main(String[] args) { // THIS IS THE ENTRY POINT OF THE PROGRAM
         // System.out.println("Start program"); // This is a print statement
 
         //Initialise databases
+        System.out.println("Restoring information from previous runs...");
         SuggestionsDB suggestionsDB=new SuggestionsDB();
         CampDataBase campDataBase=new CampDataBase();
         RegistrationDataBase registrationDataBase=new RegistrationDataBase();
@@ -37,6 +38,18 @@ public class Main {
                                                                                       // file into the student list
         fileLoader.loadFile(FileLoader.STAFF_PATH, "staff", dataList.staffList);// We want to load the staff file into
                                                                                 // the staff list
+
+        //Initialise all objects with appropriate interfaces.
+        for(int i=0;i<dataList.studentList.size();++i)
+        {
+            ((Student)(dataList.studentList).get(i)).initialiseAfterDeserialise(campDataBase.getStudentViewAllCamps(),campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),dataList);
+        }
+
+        for(int i=0;i<dataList.staffList.size();++i)
+        {
+            ((Staff)(dataList.staffList).get(i)).initialiseAfterDeserialise(campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),dataList,campDataBase.getStaffPerformanceReportGenerator());
+        }
+
 
         Scanner scanner = new Scanner(System.in);
         Login login = new Login(scanner);
@@ -57,7 +70,8 @@ public class Main {
                     campDataBase.writeToStorage();
                     registrationDataBase.writeToStorage();
                     enquiriesDB.writeToStorage();
-                    //TO add userDB
+                    dataList.writeStaffToStorage();
+                    dataList.writeStudentToStorage();
                     System.out.println("All data information saved! Exiting...");
                     break;
                 }
@@ -69,14 +83,14 @@ public class Main {
                     if (dataList.containsStudent(username)) {
                         Student userObject=(Student)dataList.getStudent(username);
                         String indexCommand = commandParser.handleStudentCommand(dataList,username,userObject);
-                        if (indexCommand.equals("6")) {
+                        if (indexCommand.equals("14")) {
                        
                             break;
                         }
                     } else if (dataList.containsStaff(username)) {
                         Staff userObject=(Staff)dataList.getStaff(username);
                         String s1 = commandParser.handleStaffCommand(dataList,username,userObject);
-                        if (s1.equals("6")) {
+                        if (s1.equals("14")) {
 
                             break;
                         }

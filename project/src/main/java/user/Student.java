@@ -29,27 +29,27 @@ public class Student extends User {
     /**
      * This Student's interface it utilises to register for camps as attendee.
      */
-    private IRegisterCamp studentCampRegisterer;
+    private transient IRegisterCamp studentCampRegisterer;
 
     /**
      * This Student's interface it utilises to deregister for camps as attendee.
      */
-    private IDeregisterCamp studentCampDeregisterer;
+    private transient IDeregisterCamp studentCampDeregisterer;
 
     /**
      * This Student's interface it utilises to register for camps as a camp committee member.
      */
-    private IRegisterCommittee committeeCampRegisterer;
+    private transient IRegisterCommittee committeeCampRegisterer;
 
     /**
      * This Student's interface it utilises to view all his registered camps.
      */
-    private IViewRegisteredCamps studentRegisteredCampsViewer;
+    private transient IViewRegisteredCamps studentRegisteredCampsViewer;
 
     /**
      * This Student's interface it utilises to generate a report for all the camps he is a camp committee member of.
      */
-    private IGenerateStudentReport campComStudentReportGenerator;
+    private transient IGenerateStudentReport campComStudentReportGenerator;
 
 
     /**
@@ -74,6 +74,32 @@ public class Student extends User {
             DataList dataList) {
         super(name,email,faculty,iSortCamps, iFilterCamps, dataList, studentViewAllCamps);
         this.isCommittee = false;
+        this.studentCampRegisterer = studentCampRegisterer;
+        this.studentCampDeregisterer = studentCampDeregisterer;
+        this.committeeCampRegisterer = commiteeCampRegisterer;
+        this.studentRegisteredCampsViewer = studentRegisteredCampsViewer;
+        this.campComStudentReportGenerator = campComStudentReportGenerator;
+    }
+
+    /**
+     * Initialises an existing Student object that was deserialised, with the appropriate interfaces it needs.
+     * @param studentViewAllCamps Interface this Student uses to view all the camps that he can see.
+     * @param iSortCamps Interface this Student uses to sort the camps in the database before viewing or generating camp reports.
+     * @param studentCampRegisterer Interface this Student uses to register for camps as an attendee.
+     * @param studentCampDeregisterer Interface this Student uses to deregister from camps.
+     * @param commiteeCampRegisterer Interface this Student uses register for camps as a camp committee member.
+     * @param studentRegisteredCampsViewer Interface this Student uses to view the details of all his registered camps, and his roles in them.
+     * @param iFilterCamps Interface this Student uses to filter the camps.
+     * @param campComStudentReportGenerator Interface this Student uses to generate a report for all the camps the student is a camp committee member of.
+     * @param dataList This Student's associated user database.
+     */
+    public void initialiseAfterDeserialise(IViewAllCamps studentViewAllCamps,ISortCamps iSortCamps,
+    IRegisterCamp studentCampRegisterer, IDeregisterCamp studentCampDeregisterer,
+    IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,
+    IFilterCamps iFilterCamps, IGenerateStudentReport campComStudentReportGenerator,
+    DataList dataList)
+    {
+        super.initialiseAfterDeserialise(iSortCamps, iFilterCamps, dataList, studentViewAllCamps);
         this.studentCampRegisterer = studentCampRegisterer;
         this.studentCampDeregisterer = studentCampDeregisterer;
         this.committeeCampRegisterer = commiteeCampRegisterer;

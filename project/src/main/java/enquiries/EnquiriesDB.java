@@ -61,7 +61,7 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
             readFromStorage();
         }catch(Exception exception)
         {
-            System.out.printf("No existing Enquiries information to retrieve from storage!\n");
+            ;
         }
 
         enquiryIdCounter=enquiriesDB.size()+1;
@@ -75,14 +75,14 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
      * @throws IOException Throws an exception if it is unable to find the file to read or write to.
      */
     public void writeToStorage() throws IOException {
-        File directory = new File("project\\src\\EnquiryInfo");
+        File directory = new File("project\\src\\DataBaseInformation\\EnquiryInfo");
     
         // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
     
-        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\EnquiryInfo\\EnquiryInfo.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\EnquiryInfo\\EnquiryInfo.txt");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
     
             for (int i = 0; i < enquiriesDB.size(); ++i) {
@@ -102,7 +102,7 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
      */
     public void readFromStorage() throws IOException, ClassNotFoundException {
         try (
-            FileInputStream fileInputStream = new FileInputStream("project\\src\\EnquiryInfo\\EnquiryInfo.txt");
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\EnquiryInfo\\EnquiryInfo.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
         ) 
         {

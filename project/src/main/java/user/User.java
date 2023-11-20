@@ -1,5 +1,7 @@
 package user;
 
+import java.io.Serializable;
+
 import javax.xml.crypto.Data;
 
 import camp.*;
@@ -19,7 +21,7 @@ import main.user.DataList;
  * @version 1.0
  * @since 2023-11-17
 */
-public abstract class User {
+public abstract class User implements Serializable{
     /**
      * This User's user ID.
      */
@@ -42,7 +44,7 @@ public abstract class User {
     /**
      * This User's associated user database.
      */
-    private DataList dataList;
+    private transient DataList dataList;
 
     /**
      * This User's name.
@@ -53,7 +55,7 @@ public abstract class User {
      * This User's ISortCamps that determines his preferred sorting method, depending on what object is contained that implements
      * the ISortCamps.
      */
-    private ISortCamps iSortCamps;
+    private transient ISortCamps iSortCamps;
 
     /**
      * This User's filter string used to filter out specific camps.
@@ -64,13 +66,13 @@ public abstract class User {
      * This User's IFilterCamps that determines which category he is filtering the camps by, depending on what object is contained that 
      * implements the IFilterCamps.
      */
-    private IFilterCamps iFilterCamps;
+    private transient IFilterCamps iFilterCamps;
 
     /**
      * This User's viewing camps interface that would affect the manner in which he views all camps, depending on what
      * object is contained that implements the IViewAllCamps.
      */
-    private IViewAllCamps iViewAllCamps;
+    private transient IViewAllCamps iViewAllCamps;
 
     /**
      * Creates a new User object with the given name, sorting and filtering styles, and viewing camp ability. Sorting and filtering
@@ -122,10 +124,24 @@ public abstract class User {
         this.faculty=faculty;
         String[] emailComponents = email.split("@");
         this.userID = emailComponents[0];
-        this.iSortCamps = iSortCamps; // default is by campName, maybe need to add some logic to set it to that if
-                                      // there isnt any prexisting info in DB?
-                                      // Or maybe in DB preset is alr Alpha so error checking should be here
-                                      // anyways??..
+        this.iSortCamps = iSortCamps; // default is by campName
+        this.filterString = null;
+        this.iFilterCamps = iFilterCamps;
+        this.dataList = dataList;
+        this.iViewAllCamps = iViewAllCamps;
+    }
+
+    /**
+     * Function called by Derived class to initialise the required interfaces after deserialising information such as password, points frem previous runs into this object.
+     * @param iSortCamps The sorting interface that can be used to sort the camps in the camp database.
+     * @param iFilterCamps The filtering interface that can be used to filter the camps in the camp database.
+     * @param dataList This User's associated user database.
+     * @param iViewAllCamps The viewing camps interface that would be used to view all camps, and differ based on what type extends the user.
+     */
+    public void initialiseAfterDeserialise(ISortCamps iSortCamps, IFilterCamps iFilterCamps, DataList dataList,
+    IViewAllCamps iViewAllCamps)
+    {
+        this.iSortCamps = iSortCamps; // default is by campName
         this.filterString = null;
         this.iFilterCamps = iFilterCamps;
         this.dataList = dataList;
@@ -203,7 +219,7 @@ public abstract class User {
      * @return This User's associated user database.
      */
     public DataList getUserDataList() {
-        return getUserDataList();
+        return dataList;
     }
 
     /**

@@ -48,7 +48,7 @@ public class StaffCampDeleter implements IDeleteCamp {
                     && allCamps.get(i).getStaffInCharge().equals(user.getName())) {
                         if(allCamps.get(i).getTotalSlots()!=(allCamps.get(i).getAvailableAttendeeSlots()+allCamps.get(i).getAvailableCampComSlots()))
                         {
-                            System.out.printf("Can't change delete a camp if a student has already registered for camp!\n");
+                            System.out.printf("Can't delete a camp if a student has already registered for camp!\n");
                             return false;
                         }
                 allCamps.remove(i);

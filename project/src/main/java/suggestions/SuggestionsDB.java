@@ -49,7 +49,7 @@ public class SuggestionsDB {
             readFromStorage();
         }catch(Exception exception)
         {
-            System.out.printf("No existing Suggestions information to retrieve from storage!\n");
+            ;
         }
 
         suggestionIdCounter=suggestionsDB.size()+1;
@@ -64,14 +64,14 @@ public class SuggestionsDB {
      * @throws IOException Throws an exception if it is unable to find the file to read or write to.
      */
     public void writeToStorage() throws IOException {
-        File directory = new File("project\\src\\SuggestionInfo");
+        File directory = new File("project\\src\\DataBaseInformation\\SuggestionInfo");
     
         //Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
     
-        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\SuggestionInfo\\SuggestionInfo.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\SuggestionInfo\\SuggestionInfo.txt");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
     
             for (int i = 0; i < suggestionsDB.size(); ++i) {
@@ -91,7 +91,7 @@ public class SuggestionsDB {
      */
     public void readFromStorage() throws IOException, ClassNotFoundException {
         try (
-            FileInputStream fileInputStream = new FileInputStream("project\\src\\SuggestionInfo\\SuggestionInfo.txt");
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\SuggestionInfo\\SuggestionInfo.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
         ) 
         {
@@ -141,7 +141,7 @@ public class SuggestionsDB {
                     return;
                 }
                 if (suggestion.getApproved()) {
-                    System.out.println("Suggestion already processed.");
+                    System.out.println("Failed! Suggestion already processed.");
                     return;
                 }
                 if (suggestion.getApproveBy().isBefore(LocalDate.now())) {
@@ -173,7 +173,7 @@ public class SuggestionsDB {
                     return;
                 }
                 if (suggestion.getApproved()) {
-                    System.out.println("Suggestion already processed.");
+                    System.out.println("Failed! Suggestion already processed.");
                     return;
                 }
                 if (suggestion.getApproveBy().isBefore(LocalDate.now())) {

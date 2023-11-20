@@ -198,7 +198,7 @@ public class CampDataBase {
             readFromStorage();
         }catch(Exception exception)
         {
-            System.out.printf("No existing Camp information to retrieve from storage!\n");
+            ;
         }
     }
 
@@ -231,14 +231,14 @@ public class CampDataBase {
      * @throws IOException Throws an exception if it is unable to find the file to read or write to.
      */
     public void writeToStorage() throws IOException {
-        File directory = new File("project\\src\\CampInfo");
+        File directory = new File("project\\src\\DataBaseInformation\\CampInfo");
     
         // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
     
-        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\CampInfo\\CampInfo.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\CampInfo\\CampInfo.txt");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
     
             for (int i = 0; i < allCamps.size(); ++i) {
@@ -257,7 +257,7 @@ public class CampDataBase {
      */
     public void readFromStorage() throws IOException, ClassNotFoundException {
         try (
-            FileInputStream fileInputStream = new FileInputStream("project\\src\\CampInfo\\CampInfo.txt");
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\CampInfo\\CampInfo.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
         ) 
         {

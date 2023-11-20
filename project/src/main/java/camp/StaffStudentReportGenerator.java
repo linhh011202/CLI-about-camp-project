@@ -63,7 +63,7 @@ public class StaffStudentReportGenerator implements IGenerateStudentReport {
     private File createFile(String fileName) {
         try {
             // Try to create a \Reports output directory if it doesnt exist.
-            Path reportsDirectory = Paths.get("project\\src\\Camp Reports");
+            Path reportsDirectory = Paths.get("project\\src\\Reports\\Camp Reports");
             if (!Files.exists(reportsDirectory)) {
                 try {
                     Files.createDirectories(reportsDirectory);

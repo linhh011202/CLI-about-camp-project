@@ -100,7 +100,7 @@ public class RegistrationDataBase {
             readFromStorage();
         }catch(Exception exception)
         {
-            System.out.printf("No existing Registration information to retrieve from storage!\n");
+            ;
         }
     }
 
@@ -155,14 +155,14 @@ public class RegistrationDataBase {
      * @throws IOException Throws an exception if it is unable to find the file to read or write to.
      */
     public void writeToStorage() throws IOException {
-        File directory = new File("project\\src\\RegInfo");
+        File directory = new File("project\\src\\DataBaseInformation\\RegInfo");
     
         // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
     
-        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\RegInfo\\RegInfo.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\RegInfo\\RegInfo.txt");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
     
             for (int i = 0; i < allRegistrations.size(); ++i) {
@@ -181,7 +181,7 @@ public class RegistrationDataBase {
      */
     public void readFromStorage() throws IOException, ClassNotFoundException {
         try (
-            FileInputStream fileInputStream = new FileInputStream("project\\src\\RegInfo\\RegInfo.txt");
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\RegInfo\\RegInfo.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
         ) 
         {

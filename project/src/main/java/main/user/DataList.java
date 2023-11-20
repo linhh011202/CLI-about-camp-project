@@ -9,12 +9,26 @@ import misc.*;
 import registration.*;
 import suggestions.*;
 import user.*;
+import java.io.*;
 
 // Now I want to introduce you to this list class
 // I want to store all type of list of the things the app has to manage
 public class DataList {
     public ArrayList<User> studentList = new ArrayList<User>();
     public ArrayList<User> staffList = new ArrayList<User>();
+
+    public DataList()
+    {
+        try
+        {
+            readStudentFromStorage();
+            readStaffFromStorage();
+        }
+        catch(Exception e){
+            ;
+        }
+    }
+
     //Polymorphism will work here. SO the array can store User elements, and each element can be a Student or Staff
     
     // We have ArrayList that hold element of type Student. The Type of the element goes in between <> such as <Student>
@@ -230,6 +244,100 @@ public class DataList {
         }
         System.out.println("Staff member not found.");
     }
+
+
+    //Functions to read and write to file for storage and retrieval of information
+    //Read and write to storage
+    /**
+     * Writes this DataList's array of student entries into a txt file. This should be called at the end of the
+     * application in order to save the database into a file.
+     * @throws IOException Throws an exception if it is unable to find the file to read or write to.
+     */
+    public void writeStudentToStorage() throws IOException {
+
+        
+        File directory = new File("project\\src\\StudentInfo");
+    
+        // Check if have directory, else create if needed
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\StudentInfo\\StudentInfo.txt");
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+    
+            for (int i = 0; i < studentList.size(); ++i) {
+                objectOutputStream.writeObject(studentList.get(i));
+            }
+    
+            objectOutputStream.flush();
+        }
+    }
+
+    /**
+     * Searches for the designated storage txt file to read in student list data from previous app runs, and adds those
+     * student objects to the student list array this DataList database. If there is no storage file, does not read in anything and no new
+     * student entries are added to the student array in this database.
+     * @throws IOException Thrown if it is unable to find the file to read or write to.
+     * @throws ClassNotFoundException Thrown if unable to find class that we are trying to reference.
+     */
+    public void readStudentFromStorage() throws IOException, ClassNotFoundException {
+        try (
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\StudentInfo\\StudentInfo.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
+        ) 
+        {
+            while (fileInputStream.available() > 0) {
+                Student student = (Student) objectInputStream.readObject();
+                studentList.add(student);
+            }
+        }
+    }
+
+    /**
+     * Writes this DataList's array of staff entries into a txt file. This should be called at the end of the
+     * application in order to save the database into a file.
+     * @throws IOException Throws an exception if it is unable to find the file to read or write to.
+     */
+    public void writeStaffToStorage() throws IOException {
+        File directory = new File("project\\src\\DataBaseInformation\\StaffInfo");
+    
+        // Check if have directory, else create if needed
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\StaffInfo\\StaffInfo.txt");
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+    
+            for (int i = 0; i < staffList.size(); ++i) {
+                objectOutputStream.writeObject(staffList.get(i));
+            }
+    
+            objectOutputStream.flush();
+        }
+    }
+
+    /**
+     * Searches for the designated storage txt file to read in staff list data from previous app runs, and adds those
+     * staff objects to the staff list array this DataList database. If there is no storage file, does not read in anything and no new
+     * staff entries are added to the staff array in this database.
+     * @throws IOException Thrown if it is unable to find the file to read or write to.
+     * @throws ClassNotFoundException Thrown if unable to find class that we are trying to reference.
+     */
+    public void readStaffFromStorage() throws IOException, ClassNotFoundException {
+        try (
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\StaffInfo\\StaffInfo.txt");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
+        ) 
+        {
+            while (fileInputStream.available() > 0) {
+                Staff staff = (Staff) objectInputStream.readObject();
+                staffList.add(staff);
+            }
+        }
+    }
+
 
 
 

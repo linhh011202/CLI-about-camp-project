@@ -99,12 +99,40 @@ public class FileLoader {
                 
                 if (type == "staff"){
                     Staff staff = new Staff(lineComponents[0].trim(),lineComponents[1],  Faculty.valueOf(lineComponents[2]),campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),dataList,campDataBase.getStaffPerformanceReportGenerator());// So here we need a constructor
-                    // Here we add to the list!
-                    userList.add(staff); // The array list allows us to quickly add elements!
+
+                    //Check if staff already has data backed up previously. If so, we restore and use their previous data instead of creating a new
+                    //Object
+                    boolean alreadyExists=false;
+                    for(int i=0;i<userList.size();++i)
+                    {
+                        if(userList.get(i).getName().equals(staff.getName()))
+                        {
+                            alreadyExists=true;
+                        }
+                    }
+                    // Here we add to the list! If it didnt have backupdata.
+                    if(!alreadyExists)
+                    {
+                        userList.add(staff); // The array list allows us to quickly add elements!
+                    }    
                 }
                 else if (type == "student"){
                     Student student = new Student(lineComponents[0].trim(), lineComponents[1], Faculty.valueOf(lineComponents[2]),campDataBase.getStudentViewAllCamps(),campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),dataList);// So here we need a constructor
-                    userList.add(student);
+                    //Check if student already has data backed up previously. If so, we restore and use their previous data instead of creating a new
+                    //Object
+                    boolean alreadyExists=false;
+                    for(int i=0;i<userList.size();++i)
+                    {
+                        if(userList.get(i).getName().equals(student.getName()))
+                        {
+                            alreadyExists=true;
+                        }
+                    }
+                    // Here we add to the list! If it didnt have backupdata.
+                    if(!alreadyExists)
+                    {
+                        userList.add(student);
+                    }
                 }
                 else{
                     System.out.println("Invalid type");
