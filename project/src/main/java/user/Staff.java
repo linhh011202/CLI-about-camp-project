@@ -6,6 +6,7 @@ import misc.*;
 import registration.*;
 import suggestions.*;
 
+import main.user.DataList;
 import java.util.ArrayList;
 
 /** 
@@ -19,11 +20,6 @@ import java.util.ArrayList;
  * @since 2023-11-17
 */
 public class Staff extends User {
-    /**
-     * This Staff's faculty.
-     */
-    private Faculty faculty;
-
     /**
      * This Staff's interface it utilises to create a camp.
      */
@@ -75,17 +71,16 @@ public class Staff extends User {
      * @param iFilterCamps Interface this Staff uses to filter all the camps in the associated camp database.
      * @param staffStudentReportGenerator Interface this Staff uses to generate a student report for all the camps he is in charge of.
      * @param listCampsStaffCreatedGetter Interface this Staff uses to generate a list of camp names, consisting of all camps he has created.
-     * @param userDataBase This Staff's associated user databse.
+     * @param dataList This Staff's associated user databse.
      * @param staffPerformanceReportGenerator Interface this Staff uses to generate a performance report for all camp committee members of
      * all the camps he is in charge of.
      */
-    public Staff(String name, Faculty faculty, ICreateCamp staffCampCreator, IDeleteCamp staffCampDeleter, IEditCamp staffCampEditor,
+    public Staff(String name,String email, Faculty faculty, ICreateCamp staffCampCreator, IDeleteCamp staffCampDeleter, IEditCamp staffCampEditor,
             IViewAllCamps staffViewAllCamps, IViewOwnCamps staffViewOwnCamps, ISortCamps iSortCamps,
             IFilterCamps iFilterCamps, IGenerateStudentReport staffStudentReportGenerator,
-            IGetCampsCreated listCampsStaffCreatedGetter, UserDataBase userDataBase,
+            IGetCampsCreated listCampsStaffCreatedGetter, DataList dataList,
             IGeneratePerformanceReport staffPerformanceReportGenerator) {
-        super(name, iSortCamps, iFilterCamps, userDataBase, staffViewAllCamps);
-        this.faculty=faculty;
+        super(name,email,faculty,iSortCamps, iFilterCamps, dataList, staffViewAllCamps);
         this.staffCampCreator = staffCampCreator;
         this.staffCampDeleter = staffCampDeleter;
         this.staffCampEditor = staffCampEditor;
@@ -115,34 +110,6 @@ public class Staff extends User {
     }
 
     /**
-     * Changes this Staff's faculty.
-     * @param faculty This Staff's new faculty.
-     */
-    public void setFaculty(Faculty faculty)
-    {
-        this.faculty=faculty;
-    }
-
-    /**
-     * Gets this Staff's faculty as a String.
-     * @return This Staff's faculty as a String.
-     */
-    public String getFacultyString()
-    {
-        return faculty.toString();
-    }
-
-    /**
-     * Gets this Staff's faculty as an enum.
-     * @return This Staff's faculty as an enum.
-     */
-    public Faculty getFaculty()
-    {
-        return faculty;
-    }
-
-
-    /**
      * Deletes a camp that was created by this Staff.
      * @param campName Name of camp to be deleted by this Staff.
      */
@@ -157,6 +124,56 @@ public class Staff extends User {
      */
     public void changeCampName(String campName, String newCampName) {
         staffCampEditor.changeCampName(this, campName, newCampName);
+    }
+
+    /**
+     * Changes the start date of a specified camp owned by this Staff.
+     * @param campName Name of camp to be edited.
+     * @param newStartDate New start date.
+     */
+    public void changeStartDate(String campName,String newStartDate)
+    {
+        staffCampEditor.changeStartDate(this,campName,newStartDate);
+    }
+
+    /**
+     * Changes the end date of a specified camp owned by this Staff.
+     * @param campName Name of camp to be edited.
+     * @param newEndDate New end date.
+     */
+    public void changeEndDate(String campName,String newEndDate)
+    {
+        staffCampEditor.changeEndDate(this,campName,newEndDate);
+    }
+
+    /**
+     * Changes the registration closing date of a specified camp owned by this Staff.
+     * @param campName Name of camp to be edited.
+     * @param newRegClosingDate New camp registration closing date.
+     */
+    public void changeRegClosingDate(String campName,String newRegClosingDate)
+    {
+        staffCampEditor.changeRegClosingDate(this,campName,newRegClosingDate);
+    }
+
+    /**
+     * Changes the location of a specified camp owned by this Staff.
+     * @param campName Name of camp to be edited.
+     * @param newLocation New camp location.
+     */
+    public void changeLocation(String campName,String newLocation)
+    {
+        staffCampEditor.changeLocation(this,campName,newLocation);
+    }
+
+    /**
+     * Changes the description of a specified camp owned by this Staff.
+     * @param campName Name of camp to be edited.
+     * @param newDescription New camp description.
+     */
+    public void changeDescription(String campName,String newDescription)
+    {
+        staffCampEditor.changeLocation(this,campName,newDescription);
     }
 
     /**
@@ -214,7 +231,7 @@ public class Staff extends User {
      * in the respective camps owned by this Staff.
      */
     public void generatePerformanceReport() {
-        staffPerformanceReportGenerator.generatePerformanceReport(getUserDataBase(), this, getSortCamps(),
+        staffPerformanceReportGenerator.generatePerformanceReport(getUserDataList(), this, getSortCamps(),
                 getFilterCamps(), getFilterString());
     }
 

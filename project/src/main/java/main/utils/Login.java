@@ -1,16 +1,18 @@
-package utils;
-
-import user.User;
-import utils.FileLoader;
+package main.utils;
 
 import java.io.File;
 import java.util.Scanner;
-import utils.ExcetionHandling;
 
-import user.DataList; // Import DataList definition
-import utils.Message;
-import user.Student;
-import utils.CommandParser;
+import main.user.DataList; // Import DataList definition
+import main.utils.*;
+
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+import main.user.DataList;
 
 public class Login {
     private Scanner scanner;

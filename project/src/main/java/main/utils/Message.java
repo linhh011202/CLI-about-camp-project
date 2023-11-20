@@ -1,9 +1,14 @@
-package utils;
+package main.utils;
+
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+import main.user.DataList;
 
 public class Message {
-
-
-    
 
    
     public static final String START = "Hi user. This is the start";

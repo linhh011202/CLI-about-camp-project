@@ -44,6 +44,7 @@ public class StaffCampCreator implements ICreateCamp {
 
         ArrayList<Camp> allCamps = campDataBase.getAllCamps();
         allCamps.add(newCamp);
+        System.out.println("Camp successfully created!");
 
     }
 }

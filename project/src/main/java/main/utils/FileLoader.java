@@ -1,4 +1,4 @@
-package utils;
+package main.utils;
 
 // We need a Class to load the file, this comes from the Java library
 // Search online to see what library
@@ -9,13 +9,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import user.User;
-import user.Staff;
-import user.Student;
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
+import main.user.DataList;
 
 public class FileLoader {
     public static final String STUDENT_PATH = "./student_list.csv"; // Define where to load the file
     public static final String STAFF_PATH = "./staff_list.csv";
+
+    private CampDataBase campDataBase;
+    private RegistrationDataBase registrationDataBase;
+    private DataList dataList;
+
+    public FileLoader(CampDataBase campDataBase,RegistrationDataBase registrationDataBase,DataList dataList)
+    {
+        this.campDataBase=campDataBase;
+        this.registrationDataBase=registrationDataBase;
+        this.dataList=dataList;
+    }
 
     // This thing is Javadoc!
     /***
@@ -24,7 +39,7 @@ public class FileLoader {
      * @param path is the path to the file
      * @return nothing because it is a void
      */
-    public static void readFile(String path){
+    public void readFile(String path){
 
         try{ // Try, catch structure to handle exception
             BufferedReader reader = new BufferedReader(new FileReader(path)); // Create a BufferedReader object
@@ -69,7 +84,7 @@ public class FileLoader {
      * @param userList the appropriate list
      */
 
-    public static void loadFile(String path, String type, ArrayList<User> userList){
+    public void loadFile(String path, String type, ArrayList<User> userList){
         // This demonstrate the concept of POLYMORPHISM. I pass in the User[] Array because I don't know what to expect
         // But in the Main.java, I will pass the appropirate Student or Staff list, but they are children of User so it is valid
         // Now, copy and paste the parsing of the file
@@ -83,12 +98,12 @@ public class FileLoader {
                 String[] lineComponents = line.split(","); // This will return an array of string
                 
                 if (type == "staff"){
-                    Staff staff = new Staff(lineComponents[0].trim(), lineComponents[1], lineComponents[2]); // So here we need a constructor
+                    Staff staff = new Staff(lineComponents[0].trim(),lineComponents[1],  Faculty.valueOf(lineComponents[2]),campDataBase.getStaffCampCreator(),campDataBase.getStaffCampDeleter(),campDataBase.getStaffCampEditor(),campDataBase.getStaffViewAllCamps(),campDataBase.getStaffViewOwnCamps(),campDataBase.getSortManager().getSortCampByCampName(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getStaffStudentReportGenerator(),campDataBase.getListCampsStaffCreatedGetter(),dataList,campDataBase.getStaffPerformanceReportGenerator());// So here we need a constructor
                     // Here we add to the list!
                     userList.add(staff); // The array list allows us to quickly add elements!
                 }
                 else if (type == "student"){
-                    Student student = new Student(lineComponents[0].trim(), lineComponents[1], lineComponents[2]); // So here we need a constructor
+                    Student student = new Student(lineComponents[0].trim(), lineComponents[1], Faculty.valueOf(lineComponents[2]),campDataBase.getStudentViewAllCamps(),campDataBase.getSortManager().getSortCampByCampName(),registrationDataBase.getStudentCampRegisterer(),registrationDataBase.getStudentCampDeregisterer(),registrationDataBase.getCommitteeCampRegisterer(),registrationDataBase.getStudentRegisteredCampsViewer(),campDataBase.getFilterManager().getFilterCampByNothing(),campDataBase.getCampComStudentReportGenerator(),dataList);// So here we need a constructor
                     userList.add(student);
                 }
                 else{

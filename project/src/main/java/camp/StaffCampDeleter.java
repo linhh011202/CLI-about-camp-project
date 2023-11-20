@@ -57,8 +57,7 @@ public class StaffCampDeleter implements IDeleteCamp {
             }
         }
 
-        // (indicates failure to delete camp); Probably handled by mainAPP
-        System.out.printf("Delete failed! Couldn't find camp!");
+        System.out.printf("Delete failed! Couldn't find camp!\n");
         return false;
 
     }

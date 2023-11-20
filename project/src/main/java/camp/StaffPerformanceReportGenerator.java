@@ -5,6 +5,7 @@ import misc.*;
 import registration.*;
 import suggestions.*;
 import user.*;
+import main.user.DataList;
 
 import java.util.ArrayList;
 import java.io.File;
@@ -90,7 +91,7 @@ public class StaffPerformanceReportGenerator implements IGeneratePerformanceRepo
         return null;
     }
 
-    public void generatePerformanceReport(UserDataBase userDataBase, User user, ISortCamps iSortCamps,
+    public void generatePerformanceReport(DataList dataList, User user, ISortCamps iSortCamps,
             IFilterCamps iFilterCamps, String filterString) {
         try {
             Scanner sc = new Scanner(System.in);
@@ -137,7 +138,7 @@ public class StaffPerformanceReportGenerator implements IGeneratePerformanceRepo
                             if (studentNamesRoles.get(j).get(1).equals("Camp Committee")) {
                                 printWriter.printf("|| Camp Committee Member Name: %s | Points: %d||\n",
                                         studentNamesRoles.get(j).get(0),
-                                        userDataBase.getPoints(studentNamesRoles.get(j).get(0)));
+                                        dataList.getPoints(studentNamesRoles.get(j).get(0)));
                             }
                         }
                     }

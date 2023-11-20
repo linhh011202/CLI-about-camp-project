@@ -5,6 +5,7 @@ import enquiries.*;
 import misc.*;
 import registration.*;
 import suggestions.*;
+import main.user.DataList;
 
 /** 
  * Represents a Student in the system. A student can interact with the various camp, enquiries, registration and suggestions databases.
@@ -17,11 +18,6 @@ import suggestions.*;
  * @since 2023-11-17
 */
 public class Student extends User {
-
-    /**
-     * This Student's faculty.
-     */
-    private Faculty faculty;
 
     /**
      * This Student's committee status.
@@ -69,16 +65,15 @@ public class Student extends User {
      * @param studentRegisteredCampsViewer Interface this Student uses to view the details of all his registered camps, and his roles in them.
      * @param iFilterCamps Interface this Student uses to filter the camps.
      * @param campComStudentReportGenerator Interface this Student uses to generate a report for all the camps the student is a camp committee member of.
-     * @param userDataBase This Student's associated user database.
+     * @param dataList This Student's associated user database.
      */
-    public Student(String name, IViewAllCamps studentViewAllCamps, Faculty faculty, ISortCamps iSortCamps,
+    public Student(String name,String email,Faculty faculty, IViewAllCamps studentViewAllCamps,ISortCamps iSortCamps,
             IRegisterCamp studentCampRegisterer, IDeregisterCamp studentCampDeregisterer,
             IRegisterCommittee commiteeCampRegisterer, IViewRegisteredCamps studentRegisteredCampsViewer,
             IFilterCamps iFilterCamps, IGenerateStudentReport campComStudentReportGenerator,
-            UserDataBase userDataBase) {
-        super(name, iSortCamps, iFilterCamps, userDataBase, studentViewAllCamps);
+            DataList dataList) {
+        super(name,email,faculty,iSortCamps, iFilterCamps, dataList, studentViewAllCamps);
         this.isCommittee = false;
-        this.faculty = faculty;
         this.studentCampRegisterer = studentCampRegisterer;
         this.studentCampDeregisterer = studentCampDeregisterer;
         this.committeeCampRegisterer = commiteeCampRegisterer;
@@ -92,10 +87,9 @@ public class Student extends User {
      * @param student This Student to be copied.
      */
     public Student(Student student) {
-        super(student.getName(), student.getSortCamps(), student.getFilterCamps(), student.getUserDataBase(),
+        super(student.getName(),student.getEmail(),student.getPassword(),student.getFaculty(), student.getSortCamps(), student.getFilterCamps(), student.getUserDataList(),
                 student.getIViewAllCamps());
         this.isCommittee = student.getIsCommittee();
-        this.faculty = student.getFaculty();
         this.studentCampRegisterer = student.getStudentCampRegisterer();
         this.studentCampDeregisterer = student.getStudentCampDeregisterer();
         this.committeeCampRegisterer = student.getCommitteeCampRegisterer();
@@ -104,22 +98,6 @@ public class Student extends User {
     }
 
     // Getters and Setters
-
-    /**
-     * Gets this Student's faculty.
-     * @return This Student's faculty as an enum.
-     */
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    /**
-     * Sets this Student's faculty.
-     * @param faculty This Student's new faculty.
-     */
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
 
     /**
      * Gets this Student's camp committee status.

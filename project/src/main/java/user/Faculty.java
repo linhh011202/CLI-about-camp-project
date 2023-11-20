@@ -30,7 +30,58 @@ public enum Faculty {
     SBS,
 
     /**
+     * School of Electrical and Electronic Engineering
+     */
+    EEE,
+
+    /**
+     * School of Art, Design and Media
+     */
+    ADM,
+
+    /**
+     * Nanyang Business School
+     */
+    NBS,
+
+    /**
+     * School of Social Sciences
+     */
+    SSS,
+
+    /**
+     * School of Civil and Environmental Engineering
+     */
+    CEE,
+
+    /**
+     * School of Materials Science and Engineering
+     */
+    MSE,
+
+    /**
+     * School of Physical and Mathematical Sciences
+     */
+    SPMS,
+
+    /**
+     * School of Chemistry, Chemical Engineering and Biotechnology
+     */
+    CCEB,
+
+    /**
+     * School of Humanities
+     */
+    SOH,
+
+    /**
+     * School of Mechanical and Aerospace Engineering
+     */
+    MAE,
+
+    /**
      * Nanyang Technological University, encompasses all the faculties.
      */
     NTU,
+
 }

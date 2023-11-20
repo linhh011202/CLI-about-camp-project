@@ -1,4 +1,11 @@
-package utils;
+package main.utils;
+
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
 
 public class ExcetionHandling {
 

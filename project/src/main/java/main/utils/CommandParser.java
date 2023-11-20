@@ -1,11 +1,18 @@
-package utils;
+package main.utils;
 
 import java.util.Scanner;
 
 import javax.xml.crypto.Data;
 
-import user.DataList;
-import utils.Login;
+import main.user.DataList;
+import main.utils.Login;
+
+import camp.*;
+import enquiries.*;
+import misc.*;
+import registration.*;
+import suggestions.*;
+import user.*;
 
 public class CommandParser {
     // public void printStatus(String s){
@@ -13,7 +20,22 @@ public class CommandParser {
     // }
     Scanner scanner = new Scanner(System.in);
 
-    public String handleStudentCommand(DataList datalist, String username) {
+    private SuggestionsDB suggestionsDB;
+    private CampDataBase campDataBase;
+    private RegistrationDataBase registrationDataBase;
+    private EnquiriesDB enquiriesDB;
+    private DataList dataList;
+    public CommandParser(SuggestionsDB suggestionsDB,CampDataBase campDataBase,RegistrationDataBase registrationDataBase,EnquiriesDB enquiriesDB,DataList dataList)
+    {
+        this.suggestionsDB=suggestionsDB;
+        this.campDataBase=campDataBase;
+        this.registrationDataBase=registrationDataBase;
+        this.enquiriesDB=enquiriesDB;
+        this.dataList=dataList;
+
+    }
+
+    public String handleStudentCommand(DataList datalist, String username,Student student) {
         Message.printAllStudentCommands();// in mot dong comment 1 2 3 4 5..
         Message.printDivider();
 
@@ -78,11 +100,6 @@ public class CommandParser {
             String newPassword = scanner.nextLine().trim();
             datalist.setNewStudentPasswordWithInput(username, newPassword);
             System.out.println("Your password has been changed to: " + newPassword);
-
-        
-           
-
-    
         }
 
 
@@ -117,7 +134,7 @@ public class CommandParser {
     }
 ////////////////////////////////////////////////////////////////////////////////staff/////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-public String handleStaffCommand(DataList datalist, String username) {
+public String handleStaffCommand(DataList datalist, String username,Staff staff) {
         Message.printAllStaffCommands();// in mot dong comment 1 2 3 4 5..
         Message.printDivider();
 
@@ -138,16 +155,17 @@ public String handleStaffCommand(DataList datalist, String username) {
 
             case "1":
                 // Create camp
+                handleStaffCommandCreateCamp(staff);
 
-                
                 break;
             case "2":
                 // Delete camp
+                handleStaffCommandDeleteCamp(staff);
 
                 break;
             case "3":
                 //Edit camp 
-
+                
 
                 break;
             case "4":
@@ -185,15 +203,60 @@ public String handleStaffCommand(DataList datalist, String username) {
 
     }
 
-    public void handleStaffCommandCreateCamp() {
+    public void handleStaffCommandCreateCamp(Staff staff) {
         // handle handle
+        System.out.printf("Enter Camp Name: ");
+        String campName;
+        campName=scanner.nextLine();
+
+        System.out.printf("Enter Camp Start Date (DD/MM/YYYY): ");
+        String startDate;
+        startDate=scanner.nextLine();
+
+        System.out.printf("Enter Camp End Date (DD/MM/YYYY): ");
+        String endDate;
+        endDate=scanner.nextLine();
+
+        System.out.printf("Enter Camp Registration Closing Date (DD/MM/YYYY): ");
+        String regClosingDate;
+        regClosingDate=scanner.nextLine();
+
+        System.out.printf("Enter Camp Registration starting visibility (True or False): ");
+        boolean visibility;
+        visibility=scanner.nextBoolean();
+
+        System.out.printf("Enter Camp Location: ");
+        String location;
+        location=scanner.nextLine();
+
+        System.out.printf("Enter Attendee Slots: ");
+        int attendeeSlots;
+        attendeeSlots=scanner.nextInt();
+
+        System.out.printf("Enter Camp Committee Slots: ");
+        int campComSlots;
+        campComSlots=scanner.nextInt();
+
+        System.out.printf("Enter Camp Description: ");
+        String description;
+        description=scanner.nextLine();
+
+        System.out.printf("Enter Faculty it is open to (ALL CAPS, i.e SCSE): ");
+        Faculty openTo;
+        openTo=Faculty.valueOf(scanner.nextLine());
+
+        staff.createCamp(campName, startDate, endDate, regClosingDate, visibility, location, attendeeSlots, campComSlots, description, openTo);
+
         // ==> quay lai log out
 
     }
 
-    public void handleStaffCommandDeleteCamp() {
+    public void handleStaffCommandDeleteCamp(Staff staff) {
         // Handle register for a camp command
-
+        String campName;
+        System.out.printf("Enter camp name of the camp you want to delete: ");
+        campName = scanner.nextLine();
+        staff.deleteCamp(campName);
     }
 
     public void handleStaffCommandEditCamp() {
