@@ -56,6 +56,7 @@ public class Student extends User {
      * Creates a new Student object, with the given name, faculty, associated user database, and interfaces it requires from 
      * {@link CampDataBase} and {@link RegistrationDataBase}.
      * @param name This Student's name.
+     * @param email This Student's email.
      * @param studentViewAllCamps Interface this Student uses to view all the camps that he can see.
      * @param faculty This Student's faculty.
      * @param iSortCamps Interface this Student uses to sort the camps in the database before viewing or generating camp reports.

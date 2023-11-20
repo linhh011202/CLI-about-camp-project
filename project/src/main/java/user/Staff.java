@@ -61,6 +61,7 @@ public class Staff extends User {
      * Creates a new Staff object, with the given name, associated user database, and interfaces it requires from 
      * {@link CampDataBase} and {@link RegistrationDataBase}.
      * @param name This Staff's name.
+     * @param email THis Staff's email.
      * @param faculty This Staff's faculty.
      * @param staffCampCreator Interface this Staff uses to create camps.
      * @param staffCampDeleter Interface this Staff uses to delete camps.

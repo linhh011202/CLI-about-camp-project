@@ -20,13 +20,45 @@ public class CommandParser {
     // public void printStatus(String s){
     // System.out.println(s);
     // }
+
+    /**
+     * This CommandParser's Scanner used to take in user input.
+     */
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * This CommandParser's associated suggestions database for the user to utilise and interact with the Suggestions.
+     */
     private SuggestionsDB suggestionsDB;
+
+    /**
+     * This CommandParser's associated camp database for the user to utilise and interact with the Camp Database Interaces.
+     */
     private CampDataBase campDataBase;
+
+    /**
+     * This CommandParser's associated registrations database for the user to utilise and interact with the Registration Database Interaces.
+     */
     private RegistrationDataBase registrationDataBase;
+
+    /**
+     * This CommandParser's associated enquiries database for the user to utilise and interact with the Enquiries.
+     */
     private EnquiriesDB enquiriesDB;
+
+    /**
+     * This CommandParser's associated User Database to obtain the current user object.
+     */
     private DataList dataList;
+
+    /**
+     * Creates a CommandParser with the appropriate data bases required.
+     * @param suggestionsDB This CommandParser's associated suggestions database for the user to utilise and interact with the Suggestions.
+     * @param campDataBase This CommandParser's associated camp database for the user to utilise and interact with the Camp Database Interaces.
+     * @param registrationDataBase This CommandParser's associated registrations database for the user to utilise and interact with the Registration Database Interaces.
+     * @param enquiriesDB This CommandParser's associated enquiries database for the user to utilise and interact with the Enquiries.
+     * @param dataList This CommandParser's associated User Database to obtain the current user object.
+     */
     public CommandParser(SuggestionsDB suggestionsDB,CampDataBase campDataBase,RegistrationDataBase registrationDataBase,EnquiriesDB enquiriesDB,DataList dataList)
     {
         this.suggestionsDB=suggestionsDB;
@@ -150,9 +182,6 @@ public class CommandParser {
             datalist.setNewStudentPasswordWithInput(username, newPassword);
             System.out.println("Your password has been changed to: " + newPassword);
         }
-
-
-    
 
     public void handleStudentCommandLogout() {
         // handle handle

@@ -81,6 +81,7 @@ public abstract class User implements Serializable{
      * These interfaces can be obtained from {@link CampDataBase}.
      * @param name This User's name.
      * @param email This User's email.
+     * @param faculty This User's faculty.
      * @param iSortCamps The sorting interface that can be used to sort the camps in the camp database.
      * @param iFilterCamps The filtering interface that can be used to filter the camps in the camp database.
      * @param dataList This User's associated user database.
@@ -111,6 +112,7 @@ public abstract class User implements Serializable{
      * @param name This User's name.
      * @param email This User's email.
      * @param password This User's password.
+     * @param faculty This User's faculty.
      * @param iSortCamps The sorting interface that can be used to sort the camps in the camp database.
      * @param iFilterCamps The filtering interface that can be used to filter the camps in the camp database.
      * @param dataList This User's associated user database.

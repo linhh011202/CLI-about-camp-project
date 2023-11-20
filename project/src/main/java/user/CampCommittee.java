@@ -18,7 +18,14 @@ import suggestions.*;
  * @since 2023-11-17
 */
 public class CampCommittee extends Student {
+    /**
+     * This CampCommitee's points.
+     */
     private int points = 0;
+
+    /**
+     * The camp name this Camp Committee is in charge of.
+     */
     private String campName;
 
     /**

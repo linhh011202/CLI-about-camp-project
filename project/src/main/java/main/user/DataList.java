@@ -17,6 +17,9 @@ public class DataList {
     public ArrayList<User> studentList = new ArrayList<User>();
     public ArrayList<User> staffList = new ArrayList<User>();
 
+    /**
+     * This DataList's constructor, tries to read in any existing information that could have been stored from previous runs.
+     */
     public DataList()
     {
         try

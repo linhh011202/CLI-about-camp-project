@@ -39,7 +39,7 @@ public interface IEditCamp {
      * Changes the end date of the camp.
      * @param user The user who wants to edit the camp
      * @param campName The name of the target camp.
-     * @param newStartDate The new end date.
+     * @param newEndDate The new end date.
      * @return Implementors should return true on success and false on failure.
      */
     public boolean changeEndDate(User user, String campName, String newEndDate);
