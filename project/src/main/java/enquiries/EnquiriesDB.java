@@ -6,13 +6,18 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+import java.util.ArrayList;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /** 
@@ -251,6 +256,24 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
     }
 
     /**
+     * Internal method to print the details of and replies to an enquiry to a file.
+     * @param enquiry Enquiry object details to be printed.
+     * @param level Indicates if the enquiry object is a reply or not.
+     * @param printWriter A PrintWriter object that writes to the desired specified output file.
+     */
+    private void printEnquiryToFile(Enquiry enquiry, int level, PrintWriter printWriter) {
+        if (level == 0) {
+            printWriter.printf("Enquiry #%d (by %s about camp %s"): %s", enquiry.getEnquiryID(), enquiry.getUser(), enquiry.getCamp(), enquiry.getText());
+        }
+        if (level == 1) {
+            printWriter.printf("  Reply: %s", enquiry.getText());
+        }
+        for (Enquiry reply : enquiry.getReplies()) {
+            printEnquiryToFile(reply, level + 1, printWriter);
+        }
+    }
+
+    /**
      * Allows students to view their own enquiries and all replies to it in EnquiriesDB database. This should be used
      * only by students.
      * @param user The name of student that wishes to view his enquiries and all replies to him.
@@ -278,5 +301,67 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
                 }
             }
         }
+    }
+
+    /**
+     * Allows staff and camp committee members to generate enquiry report about camps managed by them and all replies.
+     * This should be used only by staff and camp committee members.
+     * @param campList The list of camp names that the staff or camp committee member manages.
+     * @param fileName The name of the file that the report is generated to
+     */
+    public void enquiryReport(List<String> campList, String fileName) {
+        try {
+            File outputFile = createFile(fileName);
+            if (outputFile == null) {
+                return;
+            }
+            FileWriter fileWriter = new FileWriter(outputFile);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.printf("ENQUIRY REPORT\n**************************************************\n\n");
+            for (String camp : campList) {
+                System.out.println("Enquiries for camp " + camp + ":");
+                for (Enquiry enquiry : enquiriesDB) {
+                    if (enquiry.getCamp().equals(camp)) {
+                        printEnquiryToFile(enquiry, 0, printWriter);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Creates a file in the given file name and returns a File object if successful.
+     * Function fails if a file with the specified file name already exists.
+     * @param fileName The desired filename to generate the report to.
+     * @return The successfully created file, or null on failure.
+     */
+    private File createFile(String fileName) {
+        try {
+            // Try to create a \Reports output directory if it doesnt exist.
+            Path reportsDirectory = Paths.get("project\\src\\Reports\\Enquiry Reports");
+            if (!Files.exists(reportsDirectory)) {
+                try {
+                    Files.createDirectories(reportsDirectory);
+                    System.out.println("Reports directory created.");
+                } catch (IOException e) {
+                    System.out.println("Failed to create Reports directory.");
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+
+            // Create file in that directory to write to. If name already exists, fail and
+            // return.
+            File myObj = new File(reportsDirectory.toFile(), fileName + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+                return myObj;
+            } else {
+                System.out.println("Failed to generate report in file! That file name already exists!");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
     }
 }
