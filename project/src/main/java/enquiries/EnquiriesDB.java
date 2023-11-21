@@ -263,7 +263,7 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
      */
     private void printEnquiryToFile(Enquiry enquiry, int level, PrintWriter printWriter) {
         if (level == 0) {
-            printWriter.printf("Enquiry #%d (by %s about camp %s"): %s", enquiry.getEnquiryID(), enquiry.getUser(), enquiry.getCamp(), enquiry.getText());
+            printWriter.printf("Enquiry #%d (by %s about camp %s): %s", enquiry.getEnquiryID(), enquiry.getUser(), enquiry.getCamp(), enquiry.getText());
         }
         if (level == 1) {
             printWriter.printf("  Reply: %s", enquiry.getText());
@@ -295,10 +295,17 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
     public void viewByCamp(List<String> campList) {
         for (String camp : campList) {
             System.out.println("Enquiries for camp " + camp + ":");
+            int n = 0;
             for (Enquiry enquiry : enquiriesDB) {
                 if (enquiry.getCamp().equals(camp)) {
                     displayEnquiry(enquiry, 0);
+                    System.out.println();
+                    n++;
                 }
+            }
+            if (n == 0) {
+                System.out.println("No suggestions for camp " + camp + " found.");
+                System.out.println();
             }
         }
     }
@@ -319,12 +326,26 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
             PrintWriter printWriter = new PrintWriter(fileWriter);
             printWriter.printf("ENQUIRY REPORT\n**************************************************\n\n");
             for (String camp : campList) {
-                System.out.println("Enquiries for camp " + camp + ":");
+                printWriter.printf("Enquiries for camp %s:\n", camp);
+                int n = 0;
                 for (Enquiry enquiry : enquiriesDB) {
                     if (enquiry.getCamp().equals(camp)) {
                         printEnquiryToFile(enquiry, 0, printWriter);
+                        printWriter.printf("\n");
+                        n++;
+                    }
                 }
+                if (n == 0) {
+                    printWriter.printf("No enquiries for camp %s found.\n", camp);
+                }
+                printWriter.println("----------------------------------------\n\n");
             }
+            printWriter.println("-------------END OF REPORT--------------");
+            System.out.printf("Successfully generated student report in %s.txt!\n\n", fileName);
+            printWriter.close();
+        } catch (IOException e) {
+            System.out.printf("An error occured while generating report!\n");
+            return;
         }
     }
     
