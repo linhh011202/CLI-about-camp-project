@@ -259,14 +259,14 @@ public class DataList {
     public void writeStudentToStorage() throws IOException {
 
         
-        File directory = new File("project\\src\\StudentInfo");
+        File directory = new File("project\\src\\DataBaseInformation\\StudentInfo");
     
         // Check if have directory, else create if needed
         if (!directory.exists()) {
             directory.mkdirs();
         }
     
-        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\StudentInfo\\StudentInfo.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream("project\\src\\DataBaseInformation\\StudentInfo\\StudentInfo.txt");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
     
             for (int i = 0; i < studentList.size(); ++i) {
@@ -286,7 +286,7 @@ public class DataList {
      */
     public void readStudentFromStorage() throws IOException, ClassNotFoundException {
         try (
-            FileInputStream fileInputStream = new FileInputStream("project\\src\\StudentInfo\\StudentInfo.txt");
+            FileInputStream fileInputStream = new FileInputStream("project\\src\\DataBaseInformation\\StudentInfo\\StudentInfo.txt");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)
         ) 
         {
