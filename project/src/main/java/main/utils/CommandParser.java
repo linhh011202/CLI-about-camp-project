@@ -70,19 +70,31 @@ public class CommandParser {
     }
 
     public String handleStudentCommand(DataList datalist, String username,Student student) {
-        System.out.println("\nYou can customise your sorting categories, and filter out specific items within categories.\ne.g Only show camps with Filter Category Location, where filterString 'Pioneer'.");
-        System.out.println("Set the sort, filter, and filterStrings and they will affect the camps filtered out, and their order, when viewing camps or generating reports.\n");
-        Message.printAllStudentCommands();// in mot dong comment 1 2 3 4 5..
-        Message.printDivider();
-
         Scanner scanner = new Scanner(System.in);
 
+        //We must ensure the user changes password on first login.
+        String studentCommand;
+        if(student.getPassword().equals("password"))
+        {
+            System.out.printf("Your password is the default password! Please change it:\n");
+            studentCommand="0";
+        }
+        
         // Implement handling of student commands
         // CommandParser handle= new CommandParser();
         // handle.handleStudentCommand();
-        System.out.println("Type the index for command: ") ; 
-        String studentCommand = scanner.nextLine().trim();
-        Message.printDivider();
+        else
+        {
+            Message.printDivider();
+            System.out.println("\nYou can customise your sorting categories, and filter out specific items within categories.\ne.g Only show camps with Filter Category Location, where filterString 'Pioneer'.");
+            System.out.println("Set the sort, filter, and filterStrings and they will affect the camps filtered out, and their order, when viewing camps or generating reports.\n");
+            Message.printAllStudentCommands();// in mot dong comment 1 2 3 4 5..
+            Message.printDivider();
+            System.out.println("Type the index for command: ") ; 
+            studentCommand = scanner.nextLine().trim();
+            Message.printDivider();
+
+        }
         switch (studentCommand) {
             case "0":
                 // Handle edit password command
@@ -285,6 +297,12 @@ public class CommandParser {
 
             case "7":
             campCommittee.generateCampComReport();
+            break;
+
+            case "8":
+            System.out.printf("Enter the name of the file you would like to generate the report in: ");
+            String fileName=scanner.nextLine();
+            enquiriesDB.enquiryReport(new ArrayList<String>(Arrays.asList(campCommittee.getCampName())),fileName);
             break;
         }
     }
@@ -506,19 +524,28 @@ public class CommandParser {
 
 public String handleStaffCommand(DataList datalist, String username,Staff staff) {
 
-        System.out.println("\nYou can customise your sorting categories, and filter out specific items within categories.\ne.g Only show camps with Filter Category Location, where filterString 'Pioneer'.");
-        System.out.println("Set the sort, filter, and filterStrings and they will affect the camps filtered out, and their order, when viewing camps or generating reports.\n");
-        Message.printAllStaffCommands();// in mot dong comment 1 2 3 4 5..
-        Message.printDivider();
-
         Scanner scanner1 = new Scanner(System.in);
-
+        String staffCommand;
+        if(staff.getPassword().equals("password"))
+        {
+            System.out.printf("Your password is the default password! Please change it:\n");
+            staffCommand="0";
+        }
+        
         // Implement handling of student commands
         // CommandParser handle= new CommandParser();
         // handle.handleStudentCommand();
-        System.out.println("Type the index for command: "); 
-
-        String staffCommand = scanner1.nextLine().trim();
+        else
+        {
+            Message.printDivider();
+            System.out.println("\nYou can customise your sorting categories, and filter out specific items within categories.\ne.g Only show camps with Filter Category Location, where filterString 'Pioneer'.");
+            System.out.println("Set the sort, filter, and filterStrings and they will affect the camps filtered out, and their order, when viewing camps or generating reports.\n");
+            Message.printAllStaffCommands();// in mot dong comment 1 2 3 4 5..
+            Message.printDivider();
+            System.out.println("Type the index for command: ") ; 
+            staffCommand = scanner.nextLine().trim();
+            Message.printDivider();
+        }
         Message.printDivider();
         switch (staffCommand) {
             case "0":
@@ -555,43 +582,47 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 // Generate Performance Report
                 handleStaffGeneratePerformanceReport(staff);
                 break;
-
             case "7":
+                //Generate Enquiries Report
+                handleStaffGenerateEnquiriesReport(staff);
+                break;
+
+            case "8":
                 // View suggestions to staff's camps 
                 handleStaffViewSuggestions(staff);
                 break;
 
-            case "8":
+            case "9":
                 // Accept suggetions to staff's camps
                 handleStaffAcceptSuggestion(staff);
                 break;
                 
-            case "9":
+            case "10":
             //View enquiries
                 handleStaffViewEnquiries(staff);
                 break;
 
-            case "10":
+            case "11":
             //reply enquiries
                 handleStaffReplyEnquiries(staff);
             break;
 
-            case "11":
+            case "12":
                 // Set filter category
                 handleStaffSetFilterCategory(staff, campDataBase);
                 break;
 
-            case "12":
+            case "13":
                 // Set filter string
                 handleStaffSetFilterString(staff);
                 break;
 
-            case "13":
+            case "14":
                 // Set sorting category
                 handleStaffSetSortingCategory(staff, campDataBase);
                 break;
 
-            case "14":
+            case "15":
                //Log Out
                 System.out.println("You  are logging out the programm");
                 break;
@@ -707,19 +738,12 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
         Message.printDivider();
         Message.printCampEditCommands();
-        Message.askForInput();
+        System.out.printf("Type index for command (enter any other value to exit!): ");
 
         String s = scanner.nextLine().trim();
 
         switch(s) {
             case "1":
-            System.out.printf("Enter the new camp name: ");
-            String newCampName = scanner.nextLine();
-            staff.changeCampName(campName,newCampName);
-            System.out.println("Camp name successfully changed!");
-            break;
-
-            case "2":
             System.out.printf("Enter the visibility you want for this camp: ");
             boolean newVisibility = scanner.nextBoolean();
             scanner.nextLine();
@@ -727,7 +751,7 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             //System.out.println("Visibility successfully changed!");
             break;
 
-            case "3":
+            case "2":
             Message.printEditSlots();
             Message.askForInput();
             String s2 = scanner.nextLine().trim();
@@ -752,31 +776,31 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 }
             break;
 
-            case "4":
+            case "3":
             System.out.printf("Enter the new location for this camp: ");
             String newLocation=scanner.nextLine();
             staff.changeLocation(campName, newLocation);
             break;
 
-            case "5":
+            case "4":
             System.out.printf("Enter the new description for this game: ");
             String newDescription=scanner.nextLine();
             staff.changeDescription(campName, newDescription);
             break;
 
-            case "6":
+            case "5":
             System.out.printf("Enter the new starting date for this camp (DD/MM/YYYY): ");
             String newDate=scanner.nextLine();
             staff.changeStartDate(campName, newDate);
             break;
 
-            case "7":
+            case "6":
             System.out.printf("Enter the new ending date for this camp (DD/MM/YYYY): ");
             String endDate=scanner.nextLine();
             staff.changeEndDate(campName, endDate);
             break;
 
-            case "8":
+            case "7":
             System.out.printf("Enter the new registration closing date for this camp (DD/MM/YYYY): ");
             String newRegClose=scanner.nextLine();
             staff.changeStartDate(campName, newRegClose);
@@ -808,6 +832,13 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
      public void handleStaffGeneratePerformanceReport(Staff staff) {
         //// Handle view registered camps command
         staff.generatePerformanceReport();
+    }
+
+    public void handleStaffGenerateEnquiriesReport(Staff staff)
+    {
+        System.out.printf("Enter the name of the file you would like to generate the report in: ");
+        String fileName=scanner.nextLine();
+        enquiriesDB.enquiryReport(staff.getCampsCreated(),fileName);
     }
 
     public void handleStaffViewSuggestions(Staff staff)

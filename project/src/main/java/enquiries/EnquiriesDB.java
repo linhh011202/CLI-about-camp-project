@@ -263,10 +263,10 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
      */
     private void printEnquiryToFile(Enquiry enquiry, int level, PrintWriter printWriter) {
         if (level == 0) {
-            printWriter.printf("Enquiry #%d (by %s about camp %s): %s", enquiry.getEnquiryID(), enquiry.getUser(), enquiry.getCamp(), enquiry.getText());
+            printWriter.printf("Enquiry #%d (by %s about camp %s): %s\n", enquiry.getEnquiryID(), enquiry.getUser(), enquiry.getCamp(), enquiry.getText());
         }
         if (level == 1) {
-            printWriter.printf("  Reply: %s", enquiry.getText());
+            printWriter.printf("  Reply: %s\n", enquiry.getText());
         }
         for (Enquiry reply : enquiry.getReplies()) {
             printEnquiryToFile(reply, level + 1, printWriter);
@@ -341,7 +341,7 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
                 printWriter.println("----------------------------------------\n\n");
             }
             printWriter.println("-------------END OF REPORT--------------");
-            System.out.printf("Successfully generated student report in %s.txt!\n\n", fileName);
+            System.out.printf("Successfully generated enquiry report in %s.txt!\n\n", fileName);
             printWriter.close();
         } catch (IOException e) {
             System.out.printf("An error occured while generating report!\n");
