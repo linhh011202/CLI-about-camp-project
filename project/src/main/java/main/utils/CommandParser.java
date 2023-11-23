@@ -1090,7 +1090,7 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 }
             }
             
-            staff.changeStartDate(campName, newRegClose);
+            staff.changeRegClosingDate(campName, newRegClose);
             break;
         }
     }
