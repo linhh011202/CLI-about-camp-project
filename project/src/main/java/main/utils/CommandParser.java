@@ -820,13 +820,13 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         {
             try
             {
-                System.out.printf("Enter Faculty it is open to (ALL CAPS, i.e SCSE): ");
-                openTo=Faculty.valueOf(scanner.nextLine());
+                System.out.printf("Enter Faculty it is open to (i.e SCSE): ");
+                openTo=Faculty.valueOf(scanner.nextLine().toUpperCase());
                 break;
             }
             catch(Exception exception)
             {
-                System.out.printf("Invalid input! Please enter a valid faculty in all caps! Try again.\n");   
+                System.out.printf("Invalid input! Please enter a valid faculty! Try again.\n");   
             }
         }
         
