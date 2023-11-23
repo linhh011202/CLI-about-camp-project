@@ -18,10 +18,6 @@ import suggestions.*;
 import user.*;
 
 public class CommandParser {
-    // public void printStatus(String s){
-    // System.out.println(s);
-    // }
-
     /**
      * This CommandParser's Scanner used to take in user input.
      */
@@ -1357,16 +1353,3 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
     
 
 }
-
-// parse command index(1,2,3....6)
-// similar to startlogin
-
-// handle command index
-// same as Handlelogin which ask user the specific parameter of the user
-
-// handleCommand1
-// param a b c
-// handleCommand2
-// param x y
-// handleCommand3
-// param x y z
