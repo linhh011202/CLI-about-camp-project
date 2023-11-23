@@ -69,7 +69,6 @@ public class FileLoader {
      * We make sure that the file reading functionality works before we try to add into more complex class structure. 
      * It is a function used for testing functionality.
      * @param path is the path to the file
-     * @return nothing because it is a void
      */
     public void readFile(String path){
 
