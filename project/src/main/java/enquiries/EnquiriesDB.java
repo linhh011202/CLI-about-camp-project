@@ -69,7 +69,11 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
             ;
         }
 
-        enquiryIdCounter=enquiriesDB.size()+1;
+        //If there was previous data, set the static enquiryIDcounter to be bigger than the largest existing one.
+        if(enquiriesDB.size()!=0)
+        {
+            enquiryIdCounter=enquiriesDB.get(enquiriesDB.size()-1).getEnquiryID()+1;
+        }
     }
 
     //Functions to read and write to file for storage and retrieval of information

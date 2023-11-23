@@ -52,7 +52,11 @@ public class SuggestionsDB {
             ;
         }
 
-        suggestionIdCounter=suggestionsDB.size()+1;
+        //If there was previous data, set the static suggestionsIdCounter to be bigger than the largest existing one.
+        if(suggestionsDB.size()!=0)
+        {
+            suggestionIdCounter=suggestionsDB.get(suggestionsDB.size()-1).getSuggestionID()+1;
+        }
     }
 
 

@@ -241,7 +241,7 @@ public class CommandParser {
      public void handleCommitteeCommand(CampCommittee campCommittee) {
         //Handles campCom commands
         Message.printCommitteeCommands();
-        System.out.printf("Type index for command (enter any other value to return to menu)");
+        System.out.printf("Type index for command (enter any other value to return to menu): ");
         String s2 = scanner.nextLine();
         switch(s2) {
             case "1":
@@ -260,8 +260,22 @@ public class CommandParser {
             case "3":
             suggestionsDB.viewOwnSuggestion(campCommittee.getName());
             System.out.printf("Enter which suggestion number you want to edit: ");
-            int suggestionNumber = scanner.nextInt();
-            scanner.nextLine();
+            int suggestionNumber;
+            while(true)
+            {
+                try
+                {
+                    suggestionNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    scanner.nextLine();
+                    System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+                }
+                
+            }
             System.out.printf("Enter new suggestion text: ");
             String newText = scanner.nextLine();
             suggestionsDB.editSuggestion(suggestionNumber, newText, campCommittee.getName());
@@ -270,8 +284,21 @@ public class CommandParser {
             case "4":
             suggestionsDB.viewOwnSuggestion(campCommittee.getName());
             System.out.printf("Enter which suggestion number you want to delete: ");
-            suggestionNumber = scanner.nextInt();
-            scanner.nextLine();
+            while(true)
+            {
+                try
+                {
+                    suggestionNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    scanner.nextLine();
+                    System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+                }
+                
+            }
             suggestionsDB.deleteSuggestion(suggestionNumber, campCommittee.getName());
             break;
 
@@ -282,8 +309,22 @@ public class CommandParser {
             case "6":
             enquiriesDB.viewByCamp(new ArrayList<String>(Arrays.asList(campCommittee.getCampName())));
             System.out.printf("Enter which enquiry number you want to reply to: ");
-            int enquiryNumber = scanner.nextInt();
-            scanner.nextLine();
+            int enquiryNumber;
+            while(true)
+            {
+                try
+                {
+                    enquiryNumber = scanner.nextInt();
+                    scanner.nextLine();
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    scanner.nextLine();
+                    System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+                }
+                
+            }
             System.out.printf("Enter your reply: ");
             text = scanner.nextLine();
             boolean ret=enquiriesDB.addReply(enquiryNumber, text,new ArrayList<String>(Arrays.asList(campCommittee.getCampName())));    
@@ -324,9 +365,25 @@ public class CommandParser {
     public void handleStudentEditEnquiry(Student student)
     {
         enquiriesDB.viewOwnEnquiry(student.getName());
-        System.out.printf("Enter enquiry ID that you want to edit: ");
-        int enquiryId = scanner.nextInt();
-        scanner.nextLine();
+        
+        int enquiryId;
+        while(true)
+        {
+            try
+            {
+                System.out.printf("Enter enquiry ID that you want to edit: ");
+                enquiryId = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                System.out.printf("Invalid input! Please enter an integer. Try again!\n");
+            }
+            
+        }
+        
         System.out.printf("Enter new name of camp you want this enquiry to be for: ");
         String newCamp=scanner.nextLine();
         System.out.printf("Enter new enquiry to replace old one: ");
@@ -337,10 +394,25 @@ public class CommandParser {
     public void handleStudentDeleteEnquiry(Student student)
     {
         enquiriesDB.viewOwnEnquiry(student.getName());
-        System.out.printf("Enter enquiry ID that you want to delete: ");
-        int enquiryId = scanner.nextInt();
-        scanner.nextLine();
-        enquiriesDB.deleteEnquiry(enquiryId,student.getName());
+
+        int enquiryId;
+        while(true)
+        {
+            try
+            {
+                System.out.printf("Enter enquiry ID that you want to delete: ");
+                enquiryId = scanner.nextInt();
+                scanner.nextLine();
+                enquiriesDB.deleteEnquiry(enquiryId,student.getName());
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                System.out.printf("Invalid input! Please enter an integer. Try again!\n");
+            }
+            
+        }
     }
 
     public void handleStudentSetFilterCategory(Student student,CampDataBase campDataBase)
@@ -862,10 +934,28 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
         switch(s) {
             case "1":
-            System.out.printf("Enter the visibility you want for this camp: ");
-            boolean newVisibility = scanner.nextBoolean();
-            scanner.nextLine();
-            staff.changeVisibility(campName,newVisibility);
+            while(true)
+            {
+                try
+                {
+                    System.out.printf("Enter the visibility you want for this camp: ");
+                    String sNewVisibility = scanner.nextLine();
+                    sNewVisibility=scanner.nextLine().toLowerCase();
+                    if(!sNewVisibility.equals("true") && !sNewVisibility.equals("false"))
+                    {
+                        throw new InputMismatchException();
+                    }
+
+                    staff.changeVisibility(campName,Boolean.valueOf(sNewVisibility));
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    System.out.printf("Invalid boolean value! Please enter true or false. Try again!\n");
+                }
+                
+            }
+            
             //System.out.println("Visibility successfully changed!");
             break;
 
@@ -876,8 +966,23 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             switch(s2) {
                 case "a":
                     System.out.printf("Enter the new number committee slots: ");
-                    int newCampComSlots = scanner.nextInt();
-                    scanner.nextLine();
+                    int newCampComSlots;
+                    while(true)
+                    {
+                        try
+                        {
+                            newCampComSlots = scanner.nextInt();
+                            scanner.nextLine();
+                            break;
+                        }
+                        catch(Exception exception)
+                        {
+                            scanner.nextLine();
+                            System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+                        }
+                        
+                    }
+                    
                     staff.changeCampComSlots(campName,newCampComSlots);
                     System.out.println("Number of committee slots changed!");
                     staff.viewOwnCamps();
@@ -885,8 +990,22 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
                 case "b":
                     System.out.printf("Enter the new number of attendee slots: ");
-                    int newAttendeeSlots = scanner.nextInt();
-                    scanner.nextLine();
+                    int newAttendeeSlots;
+                    while(true)
+                    {
+                        try
+                        {
+                            newAttendeeSlots = scanner.nextInt();
+                            scanner.nextLine();
+                            break;
+                        }
+                        catch(Exception exception)
+                        {
+                            scanner.nextLine();
+                            System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+                        }
+                        
+                    }
                     staff.changeAttendeeSlots(campName, newAttendeeSlots);
                     System.out.println("Number of attendee slots changed!");
                     staff.viewOwnCamps();
@@ -907,20 +1026,70 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             break;
 
             case "5":
-            System.out.printf("Enter the new starting date for this camp (DD/MM/YYYY): ");
-            String newDate=scanner.nextLine();
+            String newDate;
+            while(true)
+            {
+                try
+                {
+                    System.out.printf("Enter the new starting date for this camp (DD/MM/YYYY): ");
+                    newDate=scanner.nextLine();
+                    if(DateUtils.stringToDate(newDate).isBefore(LocalDate.now()))
+                    {
+                        throw new IllegalArgumentException();
+                    }
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    if(exception instanceof IllegalArgumentException)
+                    {
+                        System.out.printf("Can't create a camp with starting date before current date! Try again!\n");
+                    }
+                    else
+                    {
+                        System.out.printf("Invalid date format! Try again.\n"); 
+                    }        
+                }
+            }
             staff.changeStartDate(campName, newDate);
             break;
 
             case "6":
-            System.out.printf("Enter the new ending date for this camp (DD/MM/YYYY): ");
-            String endDate=scanner.nextLine();
+            String endDate;
+            while(true)
+            {
+                try
+                {
+                    System.out.printf("Enter the new ending date for this camp (DD/MM/YYYY): ");
+                    endDate=scanner.nextLine();
+                    DateUtils.stringToDate(endDate);//Check for valid date format. throws exception if invalid
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    System.out.printf("Invalid date format! Try again.\n");
+                }
+            }
             staff.changeEndDate(campName, endDate);
             break;
 
             case "7":
-            System.out.printf("Enter the new registration closing date for this camp (DD/MM/YYYY): ");
-            String newRegClose=scanner.nextLine();
+            String newRegClose;
+            while(true)
+            {
+                try
+                {
+                    System.out.printf("Enter the new registration closing date for this camp (DD/MM/YYYY): ");
+                    newRegClose=scanner.nextLine();
+                    DateUtils.stringToDate(newRegClose);//Check for valid date format. Throws exception if invalid
+                    break;
+                }
+                catch(Exception exception)
+                {
+                    System.out.printf("Invalid date format! Try again.\n");
+                }
+            }
+            
             staff.changeStartDate(campName, newRegClose);
             break;
         }
@@ -968,8 +1137,22 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
     {
         suggestionsDB.viewByCamp(staff.getCampsCreated());
         System.out.printf("Enter suggestion ID of suggestion to accept: ");
-        int suggestionID=scanner.nextInt();
-        scanner.nextLine();
+        int suggestionID;
+        while(true)
+        {
+            try
+            {
+                suggestionID = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+            }
+            
+        }
         String studentWhoSuggested=suggestionsDB.approveSuggestion(suggestionID, staff.getCampsCreated());
         if(studentWhoSuggested!=null)
         {
@@ -988,8 +1171,22 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
     {
         enquiriesDB.viewByCamp(staff.getCampsCreated());
         System.out.printf("Enter which enquiry number you want to reply to: ");
-        int enquiryNumber = scanner.nextInt();
-        scanner.nextLine();
+        int enquiryNumber;
+        while(true)
+        {
+            try
+            {
+                enquiryNumber = scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                System.out.printf("Invalid input! Please enter an integer. Try again: \n");
+            }
+            
+        }
         System.out.printf("Enter your reply: ");
         String text = scanner.nextLine();
         enquiriesDB.addReply(enquiryNumber, text,staff.getCampsCreated());  
