@@ -1033,22 +1033,12 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 {
                     System.out.printf("Enter the new starting date for this camp (DD/MM/YYYY): ");
                     newDate=scanner.nextLine();
-                    if(DateUtils.stringToDate(newDate).isBefore(LocalDate.now()))
-                    {
-                        throw new IllegalArgumentException();
-                    }
+                    DateUtils.stringToDate(newDate);//Checks date format. If illegal, throws exception.
                     break;
                 }
                 catch(Exception exception)
                 {
-                    if(exception instanceof IllegalArgumentException)
-                    {
-                        System.out.printf("Can't create a camp with starting date before current date! Try again!\n");
-                    }
-                    else
-                    {
-                        System.out.printf("Invalid date format! Try again.\n"); 
-                    }        
+                    System.out.printf("Invalid date format! Try again.\n"); 
                 }
             }
             staff.changeStartDate(campName, newDate);

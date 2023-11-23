@@ -8,6 +8,8 @@ import user.*;
 
 import java.util.ArrayList;
 
+import java.time.LocalDate;
+
 /** 
  * Represents a class that performs edits on a camp within the camp database associated with this StaffCampEditor.
  * @author Soo Qi Yang
@@ -66,6 +68,11 @@ public class StaffCampEditor implements IEditCamp {
             System.out.printf("Unable to find that camp!\n");
             return false;
         } // Unable to find camp under that editor to change.
+        if(DateUtils.stringToDate(newStartDate).isBefore(LocalDate.now()))
+        {
+            System.out.printf("Edit failed! Start date cannot be set before the current date!\n");
+            return false;
+        }
 
         System.out.printf("Changes made successfully!\n");
         campToEdit.setStartDate(newStartDate);
@@ -79,6 +86,12 @@ public class StaffCampEditor implements IEditCamp {
             return false;
         } // Unable to find camp under that editor to change.
 
+        if(DateUtils.stringToDate(newEndDate).isBefore(campToEdit.getStartDate()) || DateUtils.stringToDate(newEndDate).isBefore(LocalDate.now()))
+        {
+            System.out.printf("Edit failed! Camp end date cannot be set before the camp start date!\n");
+            return false;
+        }
+
         System.out.printf("Changes made successfully!\n");
         campToEdit.setEndDate(newEndDate);
         return true;
@@ -91,6 +104,11 @@ public class StaffCampEditor implements IEditCamp {
             return false;
         } // Unable to find camp under that editor to change.
 
+        if(DateUtils.stringToDate(newRegClosingDate).isAfter(campToEdit.getEndDate()))
+        {
+            System.out.printf("Edit failed! Registration closing date cannot be set after the camp end date!\n");
+            return false;
+        }
         System.out.printf("Changes made successfully!\n");
         campToEdit.setregClosingDate(newRegClosingDate);
         return true;
