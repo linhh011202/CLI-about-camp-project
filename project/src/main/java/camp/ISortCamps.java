@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface to sort all camps in a camp database according to some order defined by the implementor class.
  * @author Soo Qi Yang

@@ -1,9 +1,6 @@
 package camp;
 
-import enquiries.*;
 import misc.*;
-import registration.*;
-import suggestions.*;
 import user.*;
 
 import java.util.ArrayList;
@@ -47,8 +44,6 @@ public class StudentViewAllCamps implements IViewAllCamps {
         for (int i = 0; i < allCamps.size(); ++i) {
             Camp curCamp = allCamps.get(i);
 
-            // Could use an instanceOf operator here to check the downcasting below but the
-            // code is so long alr TT
             // Only shows camps that are visible, AND within the student's faculty/NTU.
             // Also ensures it shows what is filtered.
             if (curCamp.getVisibility()) {

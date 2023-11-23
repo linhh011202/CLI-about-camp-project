@@ -1,10 +1,5 @@
 package user;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
 
 /** 
  * Represents a Camp Commitee member in the system. A Camp Committee member has more power than a Student, and can generate reports,

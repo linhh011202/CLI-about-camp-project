@@ -1,12 +1,7 @@
 package main;
 
-import main.utils.FileLoader;
-
-import java.io.File;
 import java.util.Scanner;
 
-
-import main.utils.CommandParser;
 import main.utils.*; 
 
 import main.user.DataList; // Import DataList definition
@@ -17,12 +12,25 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+/** 
+ * A Camp Application for staff and students to manage, view and register for
+ * camps within NTU. The application will act as a centralized hub for all staff and 
+ * students.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-24
+*/
 public class Main {
 
-    // Define the instance of the DataList as this will be used by the Main program
-
-    public static void main(String[] args) { // THIS IS THE ENTRY POINT OF THE PROGRAM
-        // System.out.println("Start program"); // This is a print statement
+    /**
+     * The entry point of the camp application.
+     * @param args Command Line arguments, we do not use them in this app.
+     */
+    public static void main(String[] args) { 
 
         //Initialise databases
         System.out.println("Restoring information from previous runs...");
@@ -54,10 +62,6 @@ public class Main {
         Login login = new Login(scanner);
         CommandParser commandParser = new CommandParser(suggestionsDB,campDataBase,registrationDataBase,enquiriesDB,dataList);
 
-        // Assuming you have a DataList class
-        // DataList dataList = new DataList();
-        // my aim is to write something that can know that they are user or staff in the
-        // main function, instead of Login.java
         while (true) {
             try {
                 String username = login.startLogin(dataList);
@@ -75,7 +79,6 @@ public class Main {
                     break;
                 }
 
-                // commandParser.printStatus("command parser" + s);
                 while (true) {
                     
                     // use s to know whether it is staff or student: 
@@ -96,101 +99,11 @@ public class Main {
                     } 
 
                 }
-                // }
 
-                // }
             } catch (Exception e) {
                 System.out.println(Message.FAILED + e.getMessage());
             }
 
         }
-
-        // Close the scanner
-        // scanner.close();
-
-        // FileLoader.readFile(FileLoader.STUDENT_PATH); This is just a dummy function
-        // to check
-        // We want to load the data in the file into the list, so it might go something
-        // like this
-        // System.out.println("Finish Loading Files"); // This is a print statement
-
-        // String enteredUsername = "";
-
-        // while(true){
-        // System.out.print("Enter: ");
-        // enteredUsername = scanner.nextLine().trim();
-        // if(enteredUsername.equals("exit")){
-        // break;
-        // }
-        // System.out.println("You entered: " + enteredUsername);
-
-        // // add, edit, delete
-        // // print "Add command"
-        // switch(enteredUsername){
-        // case "add":
-        // System.out.println("Add command");
-        // break;
-        // case "edit":
-        // System.out.println("Edit command");
-        // break;
-        // case "delete":
-        // System.out.println("Delete command");
-        // break;
-        // default:
-        // System.out.println("Invalid command");
-        // break;
-        // }
-
-        // }
-
-        // while (true) {
-        // try{
-        // Message.printDivider();// to print the divider
-        // ===================================================
-        // System.out.println(Message.HELLO); // to print : Welcome to the application
-        // System.out.println("Your command: ");
-        // String enteredCommand = scanner.nextLine().trim();
-        // if(enteredCommand.equals("exit")){
-        // break;
-        // }
-        // else if(enteredCommand.equals("login")){
-        // Message.printDivider();// to print the divider
-        // ===================================================
-        // Message.printUsernamePasswordPrompt(); // to print : Please enter your name
-        // and password;
-        // Message.printUsernameMessage();// print to user: "Username: ...?"
-        // String enteredUsername = scanner.nextLine().trim();
-        // if(dataList.containsStudent(enteredUsername) ){
-        // Message.printPassWordMessage();// print to user: "Password: ...?"
-        // String enteredPassword = scanner.nextLine().trim();
-        // if(!enteredPassword.equals(dataList.getStudentPassword(enteredUsername)) ){
-        // throw new Exception("Incorrect password");
-        // }
-        // System.out.println(Message.WELCOME + dataList.getStudentName(enteredUsername)
-        // + "!");
-        // }
-        // else if(dataList.containsStaff(enteredUsername)) {
-        // Message.printPassWordMessage();// print to user: "Password: ...?"
-        // String enteredPassword = scanner.nextLine().trim();
-        // if(!enteredPassword.equals(dataList.getStaffPassword(enteredUsername)) ){
-        // throw new Exception("Incorrect password");
-        // }
-        // System.out.println(Message.WELCOME + dataList.getStaffName(enteredUsername) +
-        // "!");
-
-        // }
-        // else{
-        // throw new Exception("Username not found");
-        // }
-
-        // }
-        // else{
-        // throw new Exception("Invalid command");
-        // }
-        // }catch(Exception e){
-        // System.out.println(Message.FAILED+ e.getMessage());
-        // }
-        // }
-
     }
 }

@@ -1,9 +1,6 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
 import registration.*;
-import suggestions.*;
 import user.*;
 
 import java.io.File;
@@ -173,8 +170,7 @@ public class CampComStudentReportGenerator implements IGenerateStudentReport {
             printWriter.println("-------------END OF REPORT--------------");
             System.out.printf("Successfully generated student report in %s.txt!\n\n", fileName);
 
-            // Close resources, close scanner in main file instead so we can continue using
-            // System.in as long as program persists.
+            // Close resources
             printWriter.close();
         } catch (IOException exception) {
             System.out.printf("An error occured while generating report!\n");

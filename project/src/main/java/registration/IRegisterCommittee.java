@@ -1,12 +1,8 @@
 package registration;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import suggestions.*;
 import user.*;
 
-//IMPORTANT- to utilise the method to register as campCom, you must assign the old student reference to its return value.
+//To utilise the method to register as campCom, you must assign the old student reference to its return value.
 //This is to allow the returning of a promoted CampCom object, or the Student Object again(only if function fails to register as campCom)
 //Use as such: 
 //Student student=new Student(insert constructor)

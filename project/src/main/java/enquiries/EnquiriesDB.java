@@ -1,9 +1,6 @@
 package enquiries;
 
 import camp.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
 import user.*;
 
 import java.util.ArrayList;

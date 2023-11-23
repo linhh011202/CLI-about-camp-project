@@ -1,9 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
 import user.*;
 
 /** 
@@ -98,14 +94,5 @@ public interface IEditCamp {
      */
 
     public boolean changeDescription(User user, String campName, String newDescription);
-
-    /*
-     * DO WE ALLOW TO CHANGE WHO ITS OPEN TO?? what if alr registered then change
-     * away.
-     * public boolean changeOpenTo()
-     * 
-     * Also probably need error checks for many of this. Shd be allow editing once
-     * people have signed up?
-     */
 
 }

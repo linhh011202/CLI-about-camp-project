@@ -1,10 +1,6 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
 import registration.*;
-import suggestions.*;
-import user.*;
 
 /** 
  * Represents a class that manages all the various types of filters. These filters can be obtained from the FilterManager, and

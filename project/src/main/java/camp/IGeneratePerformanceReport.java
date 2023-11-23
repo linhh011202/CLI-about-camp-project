@@ -1,9 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
 import user.*;
 import main.user.DataList;
 

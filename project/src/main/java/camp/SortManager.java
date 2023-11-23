@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents a class that manages all the various types of sorters. These sorters can be obtained from the SortManager, and
  * utilised as interfaces by the user classes to sort the camps before calling their viewing/generating report functions.

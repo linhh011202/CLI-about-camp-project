@@ -1,11 +1,5 @@
 package registration;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface that takes in a student and a camp name, and returns a value of true or false based on
  * his registration details.

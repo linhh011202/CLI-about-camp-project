@@ -1,11 +1,5 @@
 package enquiries;
 
-import camp.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface to check within a camp database if a camp's registration date has passed.
  * @author Soo Qi Yang

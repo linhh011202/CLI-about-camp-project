@@ -1,11 +1,5 @@
 package suggestions;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import registration.*;
-import user.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 

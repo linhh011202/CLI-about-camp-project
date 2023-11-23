@@ -11,10 +11,25 @@ import suggestions.*;
 import user.*;
 import java.io.*;
 
-// Now I want to introduce you to this list class
-// I want to store all type of list of the things the app has to manage
+/** 
+ * A database that stores all the existing user objects in the system.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-24
+*/
 public class DataList {
+    /**
+     * This DataList's array of students.
+     */
     public ArrayList<User> studentList = new ArrayList<User>();
+
+    /**
+     * This DataList's array of staffs.
+     */
     public ArrayList<User> staffList = new ArrayList<User>();
 
     /**
@@ -32,15 +47,7 @@ public class DataList {
         }
     }
 
-    //Polymorphism will work here. SO the array can store User elements, and each element can be a Student or Staff
-    
-    // We have ArrayList that hold element of type Student. The Type of the element goes in between <> such as <Student>
-    // The <> is called a generic type. It is a way to tell the compiler that this list will only hold element of type Student
-    
-
-    //Generic stuff for fuunctionality merging
-
-    //Call whenever a student object becomes CampComm, so data in DB is updated as well.
+    //To be call whenever a student object becomes CampComm, so data in DB is updated as well.
     /**
      * Replaces a user object within this User Database's list of users. This should be used whenever a student registers to be a camp
      * committee member, because he is upgraded to a camp commmittee object. Hence this change should be reflected in the User DataBase as well.
@@ -129,10 +136,12 @@ public class DataList {
 
 
 
-    /*Student stuff */
+    /**
+     * Checks if a student is inside this DataList's array of students.
+     * @param username The student's name.
+     * @return True if the student is in the array of students. Returns false otherwise.
+     */
     public boolean containsStudent (String username){
-
-
 
         for(User student: studentList){
             if(student.userID.equals(username)){
@@ -143,7 +152,12 @@ public class DataList {
 
 
     }
-    ////////////////////////////////////////////////
+    
+    /**
+     * Gets a student's password from this DataList's student array.
+     * @param username The name of the student's whose password is to be retrieved.
+     * @return The student's password.
+     */
     public String getStudentPassword(String username){
         for(User student: studentList){
             if(student.userID.equals(username)){
@@ -152,9 +166,13 @@ public class DataList {
         }
         return null; 
     }
-    ///////////////////////////////////////////////////
          
 
+    /**
+     * Gets the student's name from the datalist, given his username.
+     * @param username The student's username.
+     * @return The student's corresponding name.
+     */
     public String getStudentName(String username){
         for(User student: studentList){
             if(student.userID.equals(username)){
@@ -167,9 +185,15 @@ public class DataList {
 
 
     }
-     /*end of student staff */
-         /* now, staff stuff */
+     /*End of student stuff */
+         
+     /*Now, staff stuff */
 
+    /**
+      * Checks if this DataList's Staff array contains a staff with a given username.
+      * @param username The username to be checked.
+      * @return Returns true of the username is in this DataList's array. Returns false otherwise.
+      */
     public boolean containsStaff (String username){
 
         for(User staff: staffList){
@@ -179,7 +203,13 @@ public class DataList {
         }
         return false; 
     }
-    //////////////////////////////////////////////////////
+    
+    
+    /**
+     * Gets the staff's password, given his username, from this DataList's staff array.
+     * @param username The staff's username whose password is to be obtained
+     * @return Returns the password if the staff is in this DataList's list. Else returns null.
+     */
     public String getStaffPassword(String username){
         for(User staff: staffList){
             if(staff.userID.equals(username)){
@@ -189,6 +219,11 @@ public class DataList {
         return null; 
     }
    
+    /**
+     * Gets a staff's name from this DataList's staff array, given his username.
+     * @param username The staff's username, who name is to be obtained.
+     * @return The staff's corresponding name. If the username is not found in the DataList's staff array, null is returned.
+     */
     public String getStaffName(String username){
         for(User staff: staffList){
             if(staff.userID.equals(username)){
@@ -203,7 +238,11 @@ public class DataList {
     }
 
 
-    
+    /**
+     * Gets a student object, given his username.
+     * @param username The name of the student object to be attained.
+     * @return The user object with the corresponding username, in this DataList's student array. Returns null if student is not found.
+     */
     public User getStudent(String username){
         for(User student: studentList){
             if(student.userID.equals(username)){
@@ -214,7 +253,11 @@ public class DataList {
     }
 
 
-
+    /**
+     * Gets a staff object, given his username.
+     * @param username The name of the staff object to be attained.
+     * @return The user object with the corresponding username, in this DataList's staff array. Returns null if staff is not found.
+     */
     public User getStaff(String username){
         for(User staff: staffList){
             if(staff.userID.equals(username)){
@@ -224,7 +267,12 @@ public class DataList {
         return null; 
     }
 
-    // Method to set a new password for a student with user input
+    
+    /**
+     * Changes a student's password.
+     * @param username Username of the student object whose password is to be changed in this DataList's student array.
+     * @param newPassword The new password.
+     */
     public void setNewStudentPasswordWithInput(String username,String newPassword) {
         for (User student : studentList) {
             if (student.userID.equals(username)) {
@@ -236,7 +284,11 @@ public class DataList {
         System.out.println("Student not found.");
     }
 
-    // Method to set a new password for a staff member with user input
+    /**
+     * Changes a staff's password
+     * @param username Username of the staff object whose password is to be changed in this DataList's staff array.
+     * @param newPassword The new password.
+     */
     public void setNewStaffPasswordWithInput(String username, String newPassword) {
         for (User staff : staffList) {
             if (staff.userID.equals(username)) {

@@ -2,12 +2,6 @@ package registration;
 
 import java.io.Serializable;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents a Registration entry created in the registration database. A registration entry contains information related to the registration of a 
  * student to a camp, such as role, name of student, name of camp, and whether he has deregistered before.

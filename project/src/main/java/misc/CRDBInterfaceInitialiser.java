@@ -1,10 +1,7 @@
 package misc;
 
 import camp.*;
-import enquiries.*;
 import registration.*;
-import suggestions.*;
-import user.*;
 
 /** 
  * Represents a class whose sole purpose is to call the static function to initialise both Camp Databases and Registration 

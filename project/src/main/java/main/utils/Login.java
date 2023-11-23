@@ -14,13 +14,36 @@ import suggestions.*;
 import user.*;
 import main.user.DataList;
 
+/** 
+ * A login class that handles all logging in functionality in the main app.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-24
+*/
 public class Login {
+    /**
+     * This Login object's scanner.
+     */
     private Scanner scanner;
 
+    /**
+     * Creates a new Login object with a scanner to read in user input.
+     * @param scanner The scanner to read in user input.
+     */
     public Login(Scanner scanner) {
         this.scanner = scanner;
     }
-    // can write here as static , de do phai tao ra instance(?):
+
+    /**
+     * Gives the user options to choose when logging in , either to log in or exit the application. It throws an exception if the user sends an invalid input. This exception is handled by the main app.
+     * @param x The datalist that contains all the user objects, so we can verify the usernames and passwords.
+     * @return The username of the user that has successfully logged in.
+     * @throws Exception Throws an exception if an invalid command is input, handled by the main app.
+     */
     public String startLogin(DataList x) throws Exception{
             
                 Message.printDivider();
@@ -41,6 +64,12 @@ public class Login {
             
     }
 
+    /**
+     * Handles the verification process of the user if he decides to log in.
+     * @param dataList The datalist that contains all the user objects, so we can verify the usernames and passwords.
+     * @return The username of the user that has successfully logged in.
+     * @throws Exception Throws an exception with a message containing information on the type of error, whether if the username does not exist, or the password is wrong.
+     */
     public String handleLogin(DataList dataList) throws Exception {
         Message.printDivider();
         Message.printUsernamePasswordPrompt();
@@ -59,22 +88,7 @@ public class Login {
             Message.printDivider();
             
  
-            return(enteredUsername); 
-            // do something here
-         
-            // Print student commands:
-
-            //i have to list all students'commands here:
-
-            // System.out.println("Student Commands:"
-            // + "1. Edit password"
-            // +"2. Log out"
-            // + "3. Register for a camp"
-            // +"4. Deregister from registered camp"
-            // +"5. Register as a Camp Committee"
-            // +"6. View registered camps");
-
-           
+            return(enteredUsername);  
 
         } else if (dataList.containsStaff(enteredUsername)) {
             Message.printPassWordMessage();

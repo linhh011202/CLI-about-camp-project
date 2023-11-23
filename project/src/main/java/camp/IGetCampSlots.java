@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface to obtain the remaining number of camp slots.
  * @author Soo Qi Yang

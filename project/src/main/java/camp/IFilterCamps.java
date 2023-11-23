@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface to set the filter bits of all camps within a camp database based on the filter string.
  * @author Soo Qi Yang

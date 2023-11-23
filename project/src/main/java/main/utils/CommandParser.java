@@ -17,6 +17,16 @@ import registration.*;
 import suggestions.*;
 import user.*;
 
+/** 
+ * A command parser that processes the user's commands, and issues the appropriate responses to achieve the desired result that the user seleceted in the main function.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-24
+*/
 public class CommandParser {
     /**
      * This CommandParser's Scanner used to take in user input.
@@ -66,6 +76,13 @@ public class CommandParser {
 
     }
 
+    /**
+     * Provides a list of commands for a student user to choose from, and calls the appropriate functions to achieve the desired result.
+     * @param datalist This CommandParser's associated datalist. 
+     * @param username The username of the current logged in student.
+     * @param student The Student object of the current logged in student, to call the appropriate methods on, depending on the user's inputs.
+     * @return The user's input command, if it returns the LOG OUT case value, the main function can check and log out accordingly.
+     */
     public String handleStudentCommand(DataList datalist, String username,Student student) {
         Scanner scanner = new Scanner(System.in);
 
@@ -95,11 +112,6 @@ public class CommandParser {
         switch (studentCommand) {
             case "0":
                 // Handle edit password command
-                // handleStudentCommand1();
-                // testing: System.out.println("Your command is :" +studentCommand);
-                //s, datalist; 
-                //datalist, username
-                
                 handleStudentCommandChangePassword(datalist, username); 
                 break; 
                 
@@ -182,7 +194,13 @@ public class CommandParser {
         return studentCommand;
 
     }
-// write again the code to change the password
+
+
+    /**
+     * Handles the student command to change the password
+     * @param datalist This CommandParser's associated user datalist. 
+     * @param username The username of the student's whose password is to be changed.
+     */
     public void handleStudentCommandChangePassword(DataList datalist, String username) {
         
             Scanner scanner = new Scanner(System.in);
@@ -192,12 +210,17 @@ public class CommandParser {
             System.out.println("Your password has been changed to: " + newPassword);
         }
 
+    /**
+     * Handles the student command to log out. This function is empty for now but additional functionality can be added if needed.
+     */
     public void handleStudentCommandLogout() {
-        // handle handle
-        // ==> quay lai log out
-
+        //log out
     }
 
+    /**
+     * Handles student command to register for a camp.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentCommandHandleRegister(Student student) {
         // Handle register for a camp command
         student.viewAllCamps();
@@ -206,6 +229,10 @@ public class CommandParser {
         student.registerCampStudent(campName);
     }
 
+    /**
+     * Handles student command to deregister for a camp.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentCommandDeregister(Student student) {
         // Handle deregister from registered camp command
         System.out.println("These are your registered camps");
@@ -215,6 +242,10 @@ public class CommandParser {
         student.deregisterCamp(campName);
     }
 
+    /**
+     * Handles the student command to register for a camp as camp committee member.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentCommandCampCommittee(Student student) {
         // Handle register as a Camp Committee command
         System.out.println("These are the available camps: ");
@@ -224,16 +255,30 @@ public class CommandParser {
         dataList.updateUser(student.getName(), student.registerCampCommittee(campName));
     }
 
+    /**
+     * Handles the student command to view all visible camps.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentCommandViewAllCamps(Student student)
     {
         System.out.println("All visible camps: ");
         student.viewAllCamps();
     }
+
+    /**
+     * Handles the student command to view all of the logged in student's registered camps, and his corresponding roles.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentCommandViewRegisteredCamps(Student student) {
         //// Handle view registered camps command
         System.out.println("Your registered camps: ");
         student.viewRegisteredCamps();
     }
+
+    /**
+     * Handles all the camp committee commands. Only a user who is a camp committee member will be allowed to call these commands.
+     * @param campCommittee The current logged in camp committee user of this CommandParser.
+     */
      public void handleCommitteeCommand(CampCommittee campCommittee) {
         //Handles campCom commands
         Message.printCommitteeCommands();
@@ -345,10 +390,18 @@ public class CommandParser {
         }
     }
 
+    /**
+     * Handles the student command to view all of his own submitted enquiries.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentViewOwnEnquiries(Student student) {
         enquiriesDB.viewOwnEnquiry(student.getName());
     }
 
+    /**
+     * Handles the student command to send an enquiry to a camp.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentSendEnquiry(Student student) {
         student.viewAllCamps();
         System.out.printf("Enter which camp you want to send an enquiry: ");
@@ -358,6 +411,10 @@ public class CommandParser {
         enquiriesDB.sendEnquiry(campName,text,student);
     }
 
+    /**
+     * Handles the student command to edit an enquiry that he had sent. Fails if enquiry has already been replied to.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentEditEnquiry(Student student)
     {
         enquiriesDB.viewOwnEnquiry(student.getName());
@@ -387,6 +444,10 @@ public class CommandParser {
         enquiriesDB.editEnquiry(enquiryId,text,newCamp,student);
     }
 
+    /**
+     * Handles the student command to delete an enquiry that he had sent. Fails with an error message if enquiry has already been replied to.
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentDeleteEnquiry(Student student)
     {
         enquiriesDB.viewOwnEnquiry(student.getName());
@@ -411,6 +472,11 @@ public class CommandParser {
         }
     }
 
+    /**
+     * Handles the student command to set his desired filter category. 
+     * @param student The current logged in student user of this CommandParser.
+     * @param campDataBase The associated campDataBase object that contains a filter manager, which provides the interfaces for the student to use to filter the camps.
+     */
     public void handleStudentSetFilterCategory(Student student,CampDataBase campDataBase)
     {
 
@@ -497,6 +563,14 @@ public class CommandParser {
         
     }
 
+    /**
+     * Handles the student command to set the filter string. This string is used to filter specific instances of camps, from the chosen filter category. 
+     * 
+     * <p>
+     * For example, a filterString of "Pioneer" with a filter category of Location would cause any viewing or generation of reports to only contain camps that are located in Pioneer.
+     * </p>
+     * @param student The current logged in student user of this CommandParser.
+     */
     public void handleStudentSetFilterString(Student student)
     {
         System.out.println("Enter what you would like to find based on your filter category.");
@@ -509,6 +583,11 @@ public class CommandParser {
 
     }
 
+    /**
+     * Handles the student command to set the student's preferred sorting category. 
+     * @param student The current logged in student user of this CommandParser.
+     * @param campDataBase The associated camp database that contains the sorting manager, which provides the interfaces to sort the camps according to the user's preferences.
+     */
     public void handleStudentSetSortingCategory(Student student,CampDataBase campDataBase)
     {
 
@@ -589,8 +668,13 @@ public class CommandParser {
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
+/**
+     * Provides a list of commands for a staff user to choose from, and calls the appropriate functions to achieve the desired result.
+     * @param datalist This CommandParser's associated datalist. 
+     * @param username The username of the current logged in staff.
+     * @param staff The Staff object of the current logged in staff, to call the appropriate methods on, depending on the user's inputs.
+     * @return The user's input command, if it returns the LOG OUT case value, the main function can check and log out accordingly.
+     */
 public String handleStaffCommand(DataList datalist, String username,Staff staff) {
 
         Scanner scanner1 = new Scanner(System.in);
@@ -705,6 +789,11 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
     }
 
 
+    /**
+     * Handles the staff command to change the staff's password.
+     * @param datalist This CommandParser's associated datalist that contains the staff object whose password is to be changed.
+     * @param username The username of the staff object whose password is to be changed.
+     */
     public void handleStaffCommandChangePassword(DataList datalist, String username) {
 
         // change password
@@ -718,6 +807,10 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
     }
 
+    /**
+     * Handles the staff command to create a new camp.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffCommandCreateCamp(Staff staff) {
         // handle handle
         System.out.printf("Enter Camp Name: ");
@@ -898,14 +991,14 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             }
         }
         
-
-
         staff.createCamp(campName, startDate, endDate, regClosingDate, visibility, location, attendeeSlots, campComSlots, description, openTo);
-
-        // ==> quay lai log out
 
     }
 
+    /**
+     * Handles the staff command to delete a camp that he owns.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffCommandDeleteCamp(Staff staff) {
         // Handle register for a camp command
         staff.viewOwnCamps();
@@ -915,6 +1008,10 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         staff.deleteCamp(campName);
     }
 
+    /**
+     * Handles the staff command to edit a camp that he owns.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffCommandEditCamp(Staff staff) {
         // Handle deregister from registered camp command
         staff.viewOwnCamps();
@@ -1081,6 +1178,10 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         }
     }
 
+    /**
+     * Handles the staff command to view all camps visible to him. (In the current implementation, a staff can view all camps.)
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffViewCamps(Staff staff) {
         // Handle view all camps
         System.out.printf("Enter option to view! (enter any other value to return to menu)\n\na. View all camps \nb. View your created camps \n");
@@ -1098,15 +1199,29 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         }
     }
 
+    /**
+     * Handles the staff command to generate a camp report for all of his camps. This will include camp details and all roles and names of the camp participants.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffGenerateStudentReport(Staff staff) {
         //// Handle view registered camps command
         staff.generateStudentReport();
     }
+
+    /**
+     * Handles the staff command to generate a performance report of all camp committee members of his camps. This will include the points of the camp committee members.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
      public void handleStaffGeneratePerformanceReport(Staff staff) {
         //// Handle view registered camps command
         staff.generatePerformanceReport();
     }
 
+
+    /**
+     * Handles the staff command to generate an enquiries report for all his camps. It shows all enquiries and replies for all his camps.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffGenerateEnquiriesReport(Staff staff)
     {
         System.out.printf("Enter the name of the file you would like to generate the report in: ");
@@ -1114,11 +1229,19 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         enquiriesDB.enquiryReport(staff.getCampsCreated(),fileName);
     }
 
+    /**
+     * Handles the staff command to view all suggestions for all of his camps.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffViewSuggestions(Staff staff)
     {
         suggestionsDB.viewByCamp(staff.getCampsCreated());
     }
 
+    /**
+     * Handles the staff command to accept a suggestion from a camp committee member for a camp that he owns.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffAcceptSuggestion(Staff staff)
     {
         suggestionsDB.viewByCamp(staff.getCampsCreated());
@@ -1148,11 +1271,19 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
     }
 
+    /**
+     * Handles the staff command to view all enquiries for his camps.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffViewEnquiries(Staff staff)
     {
         enquiriesDB.viewByCamp(staff.getCampsCreated());
     }
 
+    /**
+     * Handles the staff command to reply to an enquiry via enquiry ID for his camps.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffReplyEnquiries(Staff staff)
     {
         enquiriesDB.viewByCamp(staff.getCampsCreated());
@@ -1178,6 +1309,11 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         enquiriesDB.addReply(enquiryNumber, text,staff.getCampsCreated());  
     }
 
+    /**
+     * Handles the staff command to set his desired filter category. 
+     * @param staff The current logged in staff user of this CommandParser.
+     * @param campDataBase The associated campDataBase object that contains a filter manager, which provides the interfaces for the staff to use to filter the camps.
+     */
     public void handleStaffSetFilterCategory(Staff staff,CampDataBase campDataBase)
     {
 
@@ -1264,6 +1400,14 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         
     }
 
+     /**
+     * Handles the staff command to set the filter string. This string is used to filter specific instances of camps, from the chosen filter category. 
+     * 
+     * <p>
+     * For example, a filterString of "Pioneer" with a filter category of Location would cause any viewing or generation of reports to only contain camps that are located in Pioneer.
+     * </p>
+     * @param staff The current logged in staff user of this CommandParser.
+     */
     public void handleStaffSetFilterString(Staff staff)
     {
         System.out.println("Enter what you would like to find based on your filter category.");
@@ -1276,6 +1420,11 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
     }
 
+    /**
+     * Handles the staff command to set the staff's preferred sorting category. 
+     * @param staff The current logged in staff user of this CommandParser.
+     * @param campDataBase The associated camp database that contains the sorting manager, which provides the interfaces to sort the camps according to the user's preferences.
+     */
     public void handleStaffSetSortingCategory(Staff staff,CampDataBase campDataBase)
     {
 

@@ -2,13 +2,7 @@ package user;
 
 import java.io.Serializable;
 
-import javax.xml.crypto.Data;
-
 import camp.*;
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
 import main.user.DataList;
 
 /** 

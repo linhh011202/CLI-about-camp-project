@@ -1,13 +1,5 @@
 package misc;
 
-import camp.*;
-import enquiries.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
-//NOT IN UMLYET
-
 /** 
  * Represents a class that provides integer error codes as static final constants for easier reading in code.
  * @author Soo Qi Yang

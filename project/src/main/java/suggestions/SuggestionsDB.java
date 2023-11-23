@@ -1,11 +1,5 @@
 package suggestions;
 
-import camp.*;
-import enquiries.*;
-import misc.*;
-import registration.*;
-import user.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

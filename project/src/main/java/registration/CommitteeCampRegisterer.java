@@ -1,9 +1,7 @@
 package registration;
 
 import camp.*;
-import enquiries.*;
 import misc.*;
-import suggestions.*;
 import user.*;
 
 import java.util.ArrayList;
@@ -98,7 +96,7 @@ public class CommitteeCampRegisterer implements IRegisterCommittee {
     public Student registerCamp(Student student, String campName) {
         /*
          * Error checks:
-         * 1.Check IF HES ALR A CAMPCOMM
+         * 1.Check if student is already a camp committee member
          * 2.Check if its visible.
          * 3.Check its open to his school
          * 4.Check if he alr registered to camp/dereged before

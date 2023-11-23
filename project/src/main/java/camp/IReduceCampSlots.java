@@ -1,11 +1,5 @@
 package camp;
 
-import enquiries.*;
-import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
-
 /** 
  * Represents an interface to reduce the remaining number of camp slots of a camp in a database.
  * @author Soo Qi Yang

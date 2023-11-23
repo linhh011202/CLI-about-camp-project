@@ -1,7 +1,5 @@
 package main.utils;
 
-// We need a Class to load the file, this comes from the Java library
-// Search online to see what library
 import java.io.FileReader;
 import java.io.BufferedReader;
 
@@ -17,14 +15,48 @@ import suggestions.*;
 import user.*;
 import main.user.DataList;
 
+/** 
+ * A File loader that reads in details about both staff and student user information from the respective csv files, and adds the objects into the user datalist.
+ * @author Soo Qi Yang
+ * @author Teo Kai Xuan
+ * @author Masagca Merwyn Louie Dumasis
+ * @author Nguyen Phuong Linh
+ * @author Tee Jeeng Yee
+ * @version 1.0
+ * @since 2023-11-24
+*/
 public class FileLoader {
-    public static final String STUDENT_PATH = "./student_list.csv"; // Define where to load the file
+    /**
+     * This FileLoader's predefined relative directory to load the student csv from.
+     */
+    public static final String STUDENT_PATH = "./student_list.csv"; 
+
+    /**
+     * This FileLoader's predefined relative directory to load the staff csv from.
+     */
     public static final String STAFF_PATH = "./staff_list.csv";
 
+    /**
+     * This FileLoader's associated camp database, needed to provide the appropriate interfaces for the users to utilise.
+     */
     private CampDataBase campDataBase;
+
+    /**
+     * This FileLoader's associated registration database, needed to provide the appropriate interfaces for the users to utilise.
+     */
     private RegistrationDataBase registrationDataBase;
+
+    /**
+     * This FileLoader's associated user datalist, where the newly read-in and created user objects are stored, so they can be used in the main UI loop.
+     */
     private DataList dataList;
 
+    /**
+     * Creates a new File Loader object with the corresponding databases.
+     * @param campDataBase This FileLoader's associated camp database, needed to provide the appropriate interfaces for the users to utilise.
+     * @param registrationDataBase This FileLoader's associated registration database, needed to provide the appropriate interfaces for the users to utilise.
+     * @param dataList This FileLoader's associated user datalist, where the newly read-in and created user objects are stored, so they can be used in the main UI loop.
+     */
     public FileLoader(CampDataBase campDataBase,RegistrationDataBase registrationDataBase,DataList dataList)
     {
         this.campDataBase=campDataBase;
@@ -32,10 +64,10 @@ public class FileLoader {
         this.dataList=dataList;
     }
 
-    // This thing is Javadoc!
-    /***
-     * This function read the content of the .csv file and parse into the appropriate data structure (Student List/ Staff List)
-     * We make sure that the file reading functionality works before we try to add into more complex class structure
+    /** 
+     * This function reads the content of the .csv file and parse into the appropriate data structure (Student List/ Staff List)
+     * We make sure that the file reading functionality works before we try to add into more complex class structure. 
+     * It is a function used for testing functionality.
      * @param path is the path to the file
      * @return nothing because it is a void
      */
@@ -75,13 +107,12 @@ public class FileLoader {
     }
 
 
-    // Remember to do javadoc as you code so that you can understand, and it is also one of the requirement
-    // Start by typing / follow by 3 *** and it will auto generate
 
-    /***
-     * This function load the file into the appropriate data structure
-     * @param path file path
-     * @param userList the appropriate list
+    /**
+     * This function reads the file data, creates appropriate user objects, and adds them to the provided user list.
+     * @param path The name of the file path
+     * @param type The type of object this function is reading for. Student or Staff.
+     * @param userList The userlist within the associated user DataList structure, either staff or student, depending on the input.
      */
 
     public void loadFile(String path, String type, ArrayList<User> userList){

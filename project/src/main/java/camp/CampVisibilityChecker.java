@@ -1,10 +1,6 @@
 package camp;
 
-import enquiries.*;
 import misc.*;
-import registration.*;
-import suggestions.*;
-import user.*;
 
 /** 
  * Represents a class that helps to change the visibility status, given a camp name in the associated camp database.
