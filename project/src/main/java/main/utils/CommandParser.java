@@ -673,7 +673,7 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             {
                 if(exception instanceof IllegalArgumentException)
                 {
-                    System.out.printf("Can't create a camp with starting date before current date! Try again\n!");
+                    System.out.printf("Can't create a camp with starting date before current date! Try again!\n");
                 }
                 else
                 {
