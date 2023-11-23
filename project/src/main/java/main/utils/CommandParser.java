@@ -7,6 +7,7 @@ import main.user.DataList;
 import main.utils.Login;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.time.LocalDate;
 
 import camp.*;
@@ -240,7 +241,7 @@ public class CommandParser {
      public void handleCommitteeCommand(CampCommittee campCommittee) {
         //Handles campCom commands
         Message.printCommitteeCommands();
-        Message.askForInput();
+        System.out.printf("Type index for command (enter any other value to return to menu)");
         String s2 = scanner.nextLine();
         switch(s2) {
             case "1":
@@ -655,64 +656,181 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         String campName;
         campName=scanner.nextLine();
 
-        System.out.printf("Enter Camp Start Date (DD/MM/YYYY): ");
         String startDate;
-        startDate=scanner.nextLine();
-        if(DateUtils.stringToDate(startDate).isBefore(LocalDate.now()))
+        while(true)
         {
-            System.out.println("Can't create a camp with starting date before current date! Returning to menu...");
-            return;
+            try
+            {
+                System.out.printf("Enter Camp Start Date (DD/MM/YYYY): ");
+                startDate=scanner.nextLine();
+                if(DateUtils.stringToDate(startDate).isBefore(LocalDate.now()))
+                {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }
+            catch(Exception exception)
+            {
+                if(exception instanceof IllegalArgumentException)
+                {
+                    System.out.printf("Can't create a camp with starting date before current date! Try again\n!");
+                }
+                else
+                {
+                    System.out.printf("Invalid date format! Try again.\n"); 
+                }        
+            }
         }
 
-        System.out.printf("Enter Camp End Date (DD/MM/YYYY): ");
         String endDate;
-        endDate=scanner.nextLine();
-        if(DateUtils.stringToDate(endDate).isBefore(DateUtils.stringToDate(startDate)) || DateUtils.stringToDate(endDate).isBefore(LocalDate.now()))
+        while(true)
         {
-            System.out.println("Error! End date must be after start date! Returning to menu...");
-            return;
+            try
+            {
+                System.out.printf("Enter Camp End Date (DD/MM/YYYY): ");
+                endDate=scanner.nextLine();
+                if(DateUtils.stringToDate(endDate).isBefore(DateUtils.stringToDate(startDate)) || DateUtils.stringToDate(endDate).isBefore(LocalDate.now()))
+                {
+                    throw new IllegalArgumentException();   
+                }
+                break;
+            }
+            catch(Exception exception)
+            {
+                if(exception instanceof IllegalArgumentException)
+                {
+                    System.out.println("Error! End date must be after start date! Try again!");
+                }
+                else
+                {
+                    System.out.printf("Invalid date format! Try again.\n");
+                }
+            }
         }
+        
 
-        System.out.printf("Enter Camp Registration Closing Date (DD/MM/YYYY): ");
         String regClosingDate;
-        regClosingDate=scanner.nextLine();
-        if(DateUtils.stringToDate(regClosingDate).isAfter(DateUtils.stringToDate(endDate)))
+        while(true)
         {
-            System.out.println("Error! Registration closing date can't be after camp end date! Returning to menu...");
-            return;
+            try
+            {
+                System.out.printf("Enter Camp Registration Closing Date (DD/MM/YYYY): ");
+                regClosingDate=scanner.nextLine();
+                if(DateUtils.stringToDate(regClosingDate).isAfter(DateUtils.stringToDate(endDate)))
+                {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }
+            catch(Exception exception)
+            {
+                if(exception instanceof IllegalArgumentException)
+                {
+                    System.out.printf("Can't create a camp with starting date before current date! Try again!\n");
+                }
+                else
+                {
+                      System.out.printf("Invalid date format! Try again.\n");
+                }
+            }
         }
-
-        System.out.printf("Enter Camp Registration starting visibility (True or False): ");
+        
+       
         boolean visibility;
-        visibility=scanner.nextBoolean();
-        scanner.nextLine();
+        while(true)
+        {
+            try
+            {
+                System.out.printf("Enter Camp Registration starting visibility (true or false): ");
+                String input=scanner.nextLine();
+                if((!input.toLowerCase().equals("true")) && !(input.toLowerCase().equals("false")))
+                {
+                    throw new Exception();
+                }
+                visibility=Boolean.valueOf(input);
+                break;
+            }
+            catch(Exception exception)
+            {        
+                System.out.printf("Invalid visibility was keyed in! Please try again.\n");
+            }
+        }
+        
+
 
         System.out.printf("Enter Camp Location: ");
         String location;
         location=scanner.nextLine();
-
-        System.out.printf("Enter Attendee Slots: ");
+        
         int attendeeSlots;
-        attendeeSlots=scanner.nextInt();
-        scanner.nextLine();
-
-        System.out.printf("Enter Camp Committee Slots: ");
-        int campComSlots;
-        campComSlots=scanner.nextInt();
-        scanner.nextLine();
-        if(campComSlots>10)
+        while(true)
         {
-            System.out.println("Error! Maximum camp committee slots is 10! Returning to menu...");
-            return;
+            try
+            {
+                System.out.printf("Enter Attendee Slots: ");
+                attendeeSlots=scanner.nextInt();
+                scanner.nextLine();
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                System.out.printf("Invalid input. Please enter an integer value!\n");
+            }
         }
+        
+        
+        int campComSlots;
+        while(true)
+        {
+            try
+            {
+                System.out.printf("Enter Camp Committee Slots: ");
+                campComSlots=scanner.nextInt();
+                if(campComSlots>10)
+                {
+                    throw new IllegalArgumentException();
+                }
+                scanner.nextLine();
+                break;
+            }
+            catch(Exception exception)
+            {
+                scanner.nextLine();
+                if(exception instanceof InputMismatchException)
+                {
+                    System.out.printf("Invalid input! Please enter an integer value!\n");
+                }
+                else
+                {
+                    System.out.printf("Invalid input! Maximum camp committee slots is 10! Please try again.\n");
+                }
+            }
+        }
+        
+        
 
         System.out.printf("Enter Camp Description: ");
         String description;
         description=scanner.nextLine();
 
-        System.out.printf("Enter Faculty it is open to (ALL CAPS, i.e SCSE): ");
+
         Faculty openTo;
-        openTo=Faculty.valueOf(scanner.nextLine());
+        while(true)
+        {
+            try
+            {
+                System.out.printf("Enter Faculty it is open to (ALL CAPS, i.e SCSE): ");
+                openTo=Faculty.valueOf(scanner.nextLine());
+                break;
+            }
+            catch(Exception exception)
+            {
+                System.out.printf("Invalid input! Please enter a valid faculty in all caps! Try again.\n");   
+            }
+        }
+        
+
 
         staff.createCamp(campName, startDate, endDate, regClosingDate, visibility, location, attendeeSlots, campComSlots, description, openTo);
 
@@ -810,7 +928,7 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
 
     public void handleStaffViewCamps(Staff staff) {
         // Handle view all camps
-        System.out.printf("a. View all camps \nb. View your created camps \n");
+        System.out.printf("Enter option to view! (enter any other value to return to menu)\n\na. View all camps \nb. View your created camps \n");
         Message.printDivider();
         Message.askForInput();
 
