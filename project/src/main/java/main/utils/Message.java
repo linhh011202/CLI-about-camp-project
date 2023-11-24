@@ -107,7 +107,7 @@ public class Message {
             +"10.Approve suggestions to your camps\n" 
             +"11.View enquiries for your camps\n"
             +"12.Reply to enquiries for your camps\n"
-            +"13.Set filter category Performance Report\n" 
+            +"13.Set filter category\n" 
             +"14.Set filter string\n" 
             +"15.Set sorting category\n" 
             +"16.Log out\n";
