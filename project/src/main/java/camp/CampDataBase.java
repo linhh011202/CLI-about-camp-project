@@ -71,6 +71,7 @@ public class CampDataBase {
      * members for all the camps that they are in charge of within the database.
      */
     private StaffPerformanceReportGenerator staffPerformanceReportGenerator;
+    
 
     // Association with the manager classes related to Sorting Interfaces.
     /**
@@ -157,6 +158,12 @@ public class CampDataBase {
      */
     private CampVisibilityChecker campVisibilityChecker;
 
+    /**
+     * This CampDataBase's class that implements an interface to allow clients to view the registered students and their roles for the camps they created.
+     */
+    private StaffStudentListViewer staffStudentListViewer;
+
+
 
     /**
      * Creates a new CampDataBase class. It initialises all the associated classes that will be used by clients as interfaces.
@@ -190,6 +197,7 @@ public class CampDataBase {
         registeredCampsPrinter = new RegisteredCampsPrinter(this);
         campVisibilityChecker = new CampVisibilityChecker(this);
 
+
         try{
             readFromStorage();
         }catch(Exception exception)
@@ -219,6 +227,7 @@ public class CampDataBase {
         campComStudentReportGenerator = new CampComStudentReportGenerator(this, registeredStudentNamesRolesGetter,
                 listOfCampsIsCommiteeOfGetter);
         staffPerformanceReportGenerator = new StaffPerformanceReportGenerator(this, registeredStudentNamesRolesGetter);
+        staffStudentListViewer = new StaffStudentListViewer(this, registeredStudentNamesRolesGetter);
     }
 
     //Provides functions to read in from storage, and write to storage.
@@ -443,6 +452,15 @@ public class CampDataBase {
      */
     public CampVisibilityChecker getCampVisibilityChecker() {
         return campVisibilityChecker;
+    }
+
+    /**
+     * Gets this CampDataBAse's StaffStudentListViewer object.
+     * @return This CampDataBAse's StaffStudentListViewer object.
+     */
+    public StaffStudentListViewer getStaffStudentListViewer()
+    {
+        return staffStudentListViewer;
     }
 
     /**

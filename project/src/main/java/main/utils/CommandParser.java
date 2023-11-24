@@ -726,56 +726,62 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 handleStaffCommandEditCamp(staff);
 
                 break;
+            
             case "5":
+                //View registered student list.
+                handleStaffViewRegisteredStudentList(staff);
+                break;
+
+            case "6":
                 // Generate Student Report
                 handleStaffGenerateStudentReport(staff);
                 break;
 
-            case "6":
+            case "7":
                 // Generate Performance Report
                 handleStaffGeneratePerformanceReport(staff);
                 break;
-            case "7":
+            case "8":
                 //Generate Enquiries Report
                 handleStaffGenerateEnquiriesReport(staff);
                 break;
 
-            case "8":
+            case "9":
                 // View suggestions to staff's camps 
                 handleStaffViewSuggestions(staff);
                 break;
 
-            case "9":
+            case "10":
                 // Accept suggetions to staff's camps
                 handleStaffAcceptSuggestion(staff);
                 break;
                 
-            case "10":
+            case "11":
             //View enquiries
                 handleStaffViewEnquiries(staff);
                 break;
 
-            case "11":
+            case "12":
             //reply enquiries
                 handleStaffReplyEnquiries(staff);
             break;
 
-            case "12":
+            case "13":
                 // Set filter category
                 handleStaffSetFilterCategory(staff, campDataBase);
                 break;
 
-            case "13":
+            case "14":
                 // Set filter string
                 handleStaffSetFilterString(staff);
                 break;
 
-            case "14":
+            case "15":
                 // Set sorting category
                 handleStaffSetSortingCategory(staff, campDataBase);
                 break;
 
-            case "15":
+            case "16":
                //Log Out
                 System.out.println("You  are logging out the programm");
                 break;
@@ -1194,6 +1200,7 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             {
                 registrationDataBase.getRegistrationCampNamesChanger().changeRegistrationCampNames(campName, newCampName);
                 enquiriesDB.updateEnquiresCampName(campName, newCampName);
+                suggestionsDB.updateSuggestionsCampName(campName, newCampName);
             }
             //Else dont.
             else
@@ -1201,6 +1208,18 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
                 ;
             }
         }
+    }
+
+    /**
+     * Handles the staff command to view all registered students and their corresponding roles for a camp that he is in charge of.
+     * @param staff The current logged in staff user of this CommandParser.
+     */
+    public void handleStaffViewRegisteredStudentList(Staff staff)
+    {
+        staff.viewOwnCamps();
+        System.out.printf("Enter name of camp whose registration list you wish to view: ");
+        String campName=scanner.nextLine();
+        campDataBase.getStaffStudentListViewer().viewStudentList(staff.getName(),campName);
     }
 
     /**

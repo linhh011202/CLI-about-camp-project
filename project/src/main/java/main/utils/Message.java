@@ -99,17 +99,18 @@ public class Message {
             +"2.Create camp\n"
             +"3.Delete Camp\n"
             +"4.Edit camp\n" 
-            +"5.Generate Student Report\n" 
-            +"6.Generate Performance Report\n" 
-            +"7.Generate Enquiries Report\n"
-            +"8.View suggestions to your camps\n" 
-            +"9.Approve suggestions to your camps\n" 
-            +"10.View enquiries for your camps\n"
-            +"11.Reply to enquiries for your camps\n"
-            +"12.Set filter category Performance Report\n" 
-            +"13.Set filter string\n" 
-            +"14.Set sorting category\n" 
-            +"15.Log out\n";
+            +"5.View registered student list for camp.\n"
+            +"6.Generate Student Report\n" 
+            +"7.Generate Performance Report\n" 
+            +"8.Generate Enquiries Report\n"
+            +"9.View suggestions to your camps\n" 
+            +"10.Approve suggestions to your camps\n" 
+            +"11.View enquiries for your camps\n"
+            +"12.Reply to enquiries for your camps\n"
+            +"13.Set filter category Performance Report\n" 
+            +"14.Set filter string\n" 
+            +"15.Set sorting category\n" 
+            +"16.Log out\n";
             
             
     /**

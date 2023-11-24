@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import enquiries.Enquiry;
+
 /** 
  * A database that stores all the existing suggestions in the system.
  * @author Soo Qi Yang
@@ -283,5 +285,20 @@ public class SuggestionsDB {
         }
         System.out.println("Suggestion not found.");
         return null;
+    }
+
+   /**
+     * Allows the caller to change all camp names in this suggestions database from one camp name to another. Only to be called after the staff.changeCampName method returns true.
+     *
+     * @param campName The old camp name.
+     * @param newCampName Thew new camp name
+     */
+    public void updateSuggestionsCampName(String campName, String newCampName) {
+        for (Suggestion suggestion : suggestionsDB) {
+            if(suggestion.getCamp().equals(campName))
+            {
+                suggestion.setCamp(newCampName);
+            }
+        }
     }
 }

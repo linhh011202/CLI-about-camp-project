@@ -92,7 +92,7 @@ public class Main {
                     } else if (dataList.containsStaff(username)) {
                         Staff userObject=(Staff)dataList.getStaff(username);
                         String s1 = commandParser.handleStaffCommand(dataList,username,userObject);
-                        if (s1.equals("15")) {
+                        if (s1.equals("16")) {
 
                             break;
                         }
