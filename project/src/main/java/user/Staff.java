@@ -140,18 +140,20 @@ public class Staff extends User {
     /**
      * Deletes a camp that was created by this Staff.
      * @param campName Name of camp to be deleted by this Staff.
+     * @return Returns true if camp successfully deleted. Returns false otherwise.
      */
-    public void deleteCamp(String campName) {
-        staffCampDeleter.deleteCamp(this, campName);
+    public boolean deleteCamp(String campName) {
+        return staffCampDeleter.deleteCamp(this, campName);
     }
 
     /**
      * Changes the camp name of a specified camp owned by this Staff.
      * @param campName Name of camp to be edited.
      * @param newCampName New camp name.
+     * @return Boolean that indicates the success or failure of updating the camp name.
      */
-    public void changeCampName(String campName, String newCampName) {
-        staffCampEditor.changeCampName(this, campName, newCampName);
+    public boolean changeCampName(String campName, String newCampName) {
+        return staffCampEditor.changeCampName(this, campName, newCampName);
     }
 
     /**

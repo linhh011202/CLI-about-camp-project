@@ -311,6 +311,37 @@ public class EnquiriesDB {// implements IEditEnquiry, IDeleteEnquiry, ISendEnqui
         }
     }
 
+
+    /**
+     * Allows the caller to change all camp names in this enquiries database from one camp name to another. Only to be called after the staff.changeCampName method returns true.
+     * @param campName The old camp name.
+     * @param newCampName The new camp name.
+     */
+    public void updateEnquiresCampName(String campName, String newCampName) {
+        for (Enquiry enquiry : enquiriesDB) {
+            if(enquiry.getCamp().equals(campName))
+            {
+                enquiry.setCamp(newCampName);
+            }
+        }
+    }
+
+     /**
+     * Allows the caller to delete all enquiry entries with a specified camp name. Should only be called after staff.deleteCamp() returns true.
+     * @param campName The name of the camp whose enquiry entries are to be deleted.
+     */
+    public void deleteCampEnquiries(String campName) {
+        //Find enquiry entries with camp name, delete them.
+        for (int i=0;i<enquiriesDB.size();++i) {
+            if(enquiriesDB.get(i).getCamp().equals(campName))
+            {
+                enquiriesDB.remove(i);
+                //decrement so we can continue to check the next element without accidentally skipping it.
+                --i;
+            }
+        }
+    }
+
     /**
      * Allows staff and camp committee members to generate enquiry report about camps managed by them and all replies.
      * This should be used only by staff and camp committee members.

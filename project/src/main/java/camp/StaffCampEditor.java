@@ -45,8 +45,6 @@ public class StaffCampEditor implements IEditCamp {
         return null;
     }
 
-    // TBC: PROBABLY NEED TO UPDATE the regsitrationDB if we change campName so go
-    // and change there too.
     public boolean changeCampName(User user, String campName, String newCampName) {
         Camp campToEdit = findCamp(user.getName(), campName);
         if (campToEdit == null) {
@@ -54,8 +52,17 @@ public class StaffCampEditor implements IEditCamp {
             return false;
         } // Unable to find camp under that editor to change.
 
-        System.out.printf("Changes made successfully!\n");
+        for(int i=0;i<campDataBase.getAllCamps().size();++i)
+        {
+            if(campDataBase.getAllCamps().get(i).getCampName().equals(newCampName))
+            {
+                System.out.printf("Error! Can't change a camp's name to that. That camp name already exists.\n");
+                return false;
+            }
+        }
+
         campToEdit.setCampName(newCampName);
+        System.out.printf("Changes made successfully!\n");
         return true;
     }
 

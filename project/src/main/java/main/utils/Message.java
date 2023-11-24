@@ -123,6 +123,7 @@ public class Message {
             +"5. Change starting date\n"
             +"6. Change ending date\n"
             +"7. Change registration closing date\n"
+            +"8. Change camp name\n"
             +DIVIDER;
 
 

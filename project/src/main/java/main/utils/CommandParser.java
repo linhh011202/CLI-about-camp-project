@@ -1005,7 +1005,17 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
         String campName;
         System.out.printf("Enter camp name of the camp you want to delete: ");
         campName = scanner.nextLine();
-        staff.deleteCamp(campName);
+        //Clear databases of old entries if camp is successfully deleted.
+        if(staff.deleteCamp(campName))
+        {
+            registrationDataBase.getRegistrationDeleter().deleteRegistrations(campName);
+            enquiriesDB.deleteCampEnquiries(campName);
+        }
+        //Else dont.
+        else
+        {
+            ;
+        }
     }
 
     /**
@@ -1175,6 +1185,21 @@ public String handleStaffCommand(DataList datalist, String username,Staff staff)
             
             staff.changeRegClosingDate(campName, newRegClose);
             break;
+
+            case "8":
+            System.out.printf("Enter the new camp name for this camp: ");
+            String newCampName=scanner.nextLine();
+            //Update databases if camp name successfully changed.
+            if(staff.changeCampName(campName, newCampName))
+            {
+                registrationDataBase.getRegistrationCampNamesChanger().changeRegistrationCampNames(campName, newCampName);
+                enquiriesDB.updateEnquiresCampName(campName, newCampName);
+            }
+            //Else dont.
+            else
+            {
+                ;
+            }
         }
     }
 

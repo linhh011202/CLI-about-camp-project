@@ -86,6 +86,16 @@ public class RegistrationDataBase {
      */
     private ListOfCampsIsCommiteeOfGetter listOfCampsIsCommiteeOfGetter;
 
+    /**
+     * This RegistrationDatabase's class that implements an interface to allow clients to change the camp names for all registration information containing that camp name.
+     */
+    private RegistrationCampNamesChanger registrationCampNamesChanger ;
+
+    /**
+     * This RegistrationDatabase's class that implements an interface to allow clients to delete all registration entries with a specified camp name.
+     */
+    private RegistrationDeleter registrationDeleter;
+
 
     /**
      * Creates a new RegistrationDatabase class. It initialises all the associated classes that will be used by clients as interfaces.
@@ -144,6 +154,8 @@ public class RegistrationDataBase {
         committeeRegistrationChecker = new CommitteeRegistrationChecker(this);
         registeredStudentNamesRolesGetter = new RegisteredStudentNamesRolesGetter(this);
         listOfCampsIsCommiteeOfGetter = new ListOfCampsIsCommiteeOfGetter(this);
+        registrationCampNamesChanger= new RegistrationCampNamesChanger(this);
+        registrationDeleter=new RegistrationDeleter(this);
 
     }
 
@@ -274,7 +286,24 @@ public class RegistrationDataBase {
         return listOfCampsIsCommiteeOfGetter;
     }
 
-    // debugging func
+    /**
+     * Gets this RegistrationDataBase's RegistrationCampNamesGetter object.
+     * @return This RegistrationDataBase's RegistrationCampNamesGetter object.
+     */
+    public RegistrationCampNamesChanger getRegistrationCampNamesChanger() {
+        return registrationCampNamesChanger;
+    }
+
+    /**
+     * Gets this RegistrationDataBase's RegistrationDeleter object.
+     * @return This RegistrationDataBase's RegistrationDeleter object.
+     */
+    public RegistrationDeleter getRegistrationDeleter()
+    {
+        return registrationDeleter;
+    }
+
+    // debugging function
     /**
      * Prints all the registration entries within the database.
      */

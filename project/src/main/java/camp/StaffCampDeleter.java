@@ -31,10 +31,6 @@ public class StaffCampDeleter implements IDeleteCamp {
     }
 
     public boolean deleteCamp(User user, String campName) {
-        // Possible error checking if its not a staff?? But dont think we need it since
-        // there shouldn't be a place in the mainApp
-        // where non-staffs can even call this func
-
         // Find the campName that has the StaffName as in-charge for row of camps.
         // If cant find because of no such camp, or camp is under diff staff, return
         // false to indicate failure.

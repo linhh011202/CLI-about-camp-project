@@ -40,6 +40,16 @@ public class StaffCampCreator implements ICreateCamp {
                 campComSlots, description, user, openTo);
 
         ArrayList<Camp> allCamps = campDataBase.getAllCamps();
+
+        //Check if camp with that camp name already exists.
+        for(int i=0;i<allCamps.size();++i)
+        {
+            if(allCamps.get(i).getCampName().equals(campName))
+            {
+                System.out.printf("Error! A camp with that camp name already exists. Failed to create camp!\n");
+                return;
+            }
+        }
         allCamps.add(newCamp);
         System.out.println("Camp successfully created!");
 
